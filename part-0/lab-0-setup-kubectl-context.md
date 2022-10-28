@@ -1,0 +1,50 @@
+
+# Lab 0 - Setup kubectl context
+
+## Collect all prerequisites
+
+Check all prerequisites:
+
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [xl-cli 22.3.2](https://dist.xebialabs.com/public/xl-cli/22.3.2/)
+  - [Install the XL CLI](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/how-to/install-the-xl-cli.html)
+- [yq](https://github.com/mikefarah/yq)
+- Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
+- One directory from where you will run `xl kube` commands
+
+### With the Azure cluster
+
+Run:
+
+```shell
+export AZURE_USERNAME=
+export AZURE_PASSWORD=
+export RESOURCE_GROUP=
+export CLUSTER_NAME=
+az login -u $AZURE_USERNAME -p $AZURE_PASSWORD 
+az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
+```
+
+### With minikube
+
+Run:
+
+```shell
+minikube start --driver=virtualbox --memory 15000 --cpus 6
+minikube addons enable ingress
+minikube addons enable ingress-dns
+```
+
+### With docker
+
+Run:
+
+```shell
+
+```
+
+## Check cluster connection
+
+```shell
+kubectl version
+```
