@@ -1,6 +1,18 @@
 
 # Lab 3 - OIDC setup (use Identity service)
 
+## Prepare Identity service
+
+Participant runs ‘xl apply setup-oidc-template.yaml’ with manual steps
+Participant runs template with instructions. (Mini wizard)
+We provide credentials to log in to https://devops-demo.staging.digital.ai/
+Participant creates OIDC client in Digital.ai Platform
+Participant copies Client ID and Secret into Release
+Release renders OIDC snippet
+Participant uses OIDC snippet in wizard / answers file / yaml file.
+
+## Upgrade with OIDC configuration
+
 ```shell
 xl kube upgrade
 ```

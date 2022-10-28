@@ -23,6 +23,7 @@ For the other questions and answers details check [Installation Wizard for Digit
 ```shell
 xl kube check --wait-for-ready 5
 xl kube check --wait-for-ready 5 --skip-collecting
+xl kube check --wait-for-ready 5 --zip-files
 ```
 
 ## Discover how to open the page and login
