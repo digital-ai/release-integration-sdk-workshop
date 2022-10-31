@@ -12,15 +12,17 @@ Check all prerequisites:
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
 - One directory from where you will run `xl kube` commands
 
+Use one of the following options 
+
 ### With the Azure cluster
 
 Run:
 
 ```shell
-export AZURE_USERNAME=
-export AZURE_PASSWORD=
-export RESOURCE_GROUP=
-export CLUSTER_NAME=
+export AZURE_USERNAME=xl-test-azure...
+export AZURE_PASSWORD=put_password_from_1pass
+export RESOURCE_GROUP=xl-kube-workshop-group
+export CLUSTER_NAME=xl-kube-workshop
 az login -u $AZURE_USERNAME -p $AZURE_PASSWORD 
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 ```
@@ -40,7 +42,7 @@ minikube addons enable ingress-dns
 Run:
 
 ```shell
-
+# TODO
 ```
 
 ## Check cluster connection

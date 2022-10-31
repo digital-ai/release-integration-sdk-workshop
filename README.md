@@ -19,7 +19,6 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
 1. Install Digital.ai Release 22.2.4
    a. Wait for resources with xl kube check
    b. Discover how to open the page and login
-   c. Discover how to check postgres and rabbitmq password
 2. OIDC setup (use Identity service)
 3. Upgrade Release 22.3.1
 4. Clean
@@ -47,3 +46,11 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
     a. Part 1
     b. Part 2
     c. Part 3
+
+## TODOs
+
+- License for participants 
+- Azure Cluster
+- Test multiple installation of release and deploy on the same cluster
+- Test on minikube
+- Test on docker

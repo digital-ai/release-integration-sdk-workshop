@@ -1,15 +1,18 @@
 
-# Lab 9 - How to change configuration file
+# Lab 8 - How to change configuration file
 
-## Custom configuration of deploy-server.yaml.template from cc pods
+Here we will update the configuration file on the central configuration server. We will update `deploy-server.yaml`.
+
+## Custom configuration of `deploy-server.yaml.template` from cc pods
 
 ### Steps
 
 1. Download current template configuration file that exists on cc Deploy pod that is running.
-   For example, if you want to update deploy-server.yaml.template, it is in the `/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template` in master pod.
+   For example, if you want to update `deploy-server.yaml.template`, it is in the 
+   `/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template` in master pod.
 
     ```shell
-    kubectl cp digitalai/dai-xld-digitalai-deploy-cc-server-0:/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template .
+    kubectl cp digitalai/dai-xld-my-namespace-deploy-cc-server-0:/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template .
     ```
 
 2. Update the CR file or CR on the cluster
@@ -28,8 +31,8 @@
             scriptData:
                 ...
                 deploy-server.yaml.template: |-
-                deploy.server:
-                ...
+                  deploy.server:
+                    ...
     ```
 
 3. If you have oidc enabled in CR, in that case disable it. Because the changes that are from there will conflict with your changes in the `deploy-server.yaml.template` file.
@@ -46,10 +49,10 @@
         scriptData:
             ...
             deploy-server.yaml.template: |-
-            deploy.server:
+              deploy.server:
                 ...
             deploy-oidc.yaml: |-
-            deploy.security:
+              deploy.security:
                 ...
     ```
 
