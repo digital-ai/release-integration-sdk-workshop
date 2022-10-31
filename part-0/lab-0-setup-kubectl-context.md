@@ -25,7 +25,7 @@ az login -u $AZURE_USERNAME -p $AZURE_PASSWORD
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 ```
 
-### With minikube
+### With Minikube
 
 Run:
 
@@ -35,13 +35,17 @@ minikube addons enable ingress
 minikube addons enable ingress-dns
 ```
 
-### With docker
+### With Docker Desktop
 
-Run:
+Enable Kubernetes under **Preferences > Kubernetes**.
 
-```shell
+The demo runs comfortably with the following resources allocated under **Preferences > Resources**:
 
-```
+* CPUs: 8
+* Memory: 22 GB
+* Swap: 4 GB
+* Disk image size: 60 GB
+
 
 ## Check cluster connection
 
