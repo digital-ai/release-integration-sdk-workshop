@@ -1,4 +1,5 @@
-# xl-kube-workshop
+![Release +_Deploy on Kubernetes in minutes!](xl kube install logo.jpg)
+
 Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes cluster using the `xl kube` command line interface.
 
 ## Prerequisites
@@ -7,8 +8,16 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
 - [xl-cli 22.3.2](https://dist.xebialabs.com/public/xl-cli/22.3.2/) - [Installation instructions](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/how-to/install-the-xl-cli.html)
 - [yq](https://github.com/mikefarah/yq)
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
+- `az` ?
+- `helm` ?
 
 ## Workshop Content
+
+### General remarks
+
+* `xl something --help` is your friend! For example: `xl kube install --help`
+* Passwords are not in this repo. Ask workshop teachers for the needed credentials.
+
 
 ### Part 0
 
