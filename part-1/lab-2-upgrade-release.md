@@ -29,11 +29,11 @@ $ xl kube upgrade
 ? Following kubectl context will be used during execution: `azure-aks-test-cluster`? 
 » Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
-» AzureAKS [Azure AKS]
+»⚠️ AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
 »⚠️ Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned:
-»⚠️ my-namespace
+»⚠️ digitalai-yourname
 ? Product server you want to perform upgrade for:
 » dai-release [Digital.ai Release]
 ? Select the type of upgrade you want:
@@ -53,7 +53,7 @@ $ xl kube upgrade
 ? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:
 »⚠️ Yes
 ? Enter the name of custom resource:
-» dai-xlr-my-namespace
+» dai-xlr-digitalai-yourname
 ? Edit list of custom resource keys that will migrate to the new Release CR: 
 »⚠️ Add: 
 .spec.nginx-ingress-controller.service.annotations
@@ -63,7 +63,7 @@ $ xl kube upgrade
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
 	| CleanBefore                    | true                                               |
-	| CrName                         | dai-xlr-my-namespace                               |
+	| CrName                         | dai-xlr-digitalai-yourname                               |
 	| CrdName                        | digitalaireleases.xlr.digital.ai                   |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
@@ -73,7 +73,7 @@ $ xl kube upgrade
 	| IngressType                    | nginx                                              |
 	| IsCrdReused                    | true                                               |
 	| K8sSetup                       | AzureAKS                                           |
-	| Namespace                      | my-namespace                                       |
+	| Namespace                      | digitalai-yourname                                       |
 	| OidcConfigType                 | no-oidc                                            |
 	| OidcConfigTypeUpgrade          | no-oidc                                            |
 	| OperatorImageReleaseGeneric    | xebialabs/release-operator:22.3.1                  |
@@ -89,45 +89,45 @@ $ xl kube upgrade
 	 -------------------------------- ----------------------------------------------------
 ? Do you want to proceed to the deployment with these values? 
 » Yes
-For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-152355/kubernetes
-Generated answers file successfully: digitalai/generated_answers_dai-release_my-namespace_upgrade-20221031-152355.yaml
+For current process files will be generated in the: digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes
+Generated answers file successfully: digitalai/generated_answers_dai-release_digitalai-yourname_upgrade-20221031-152355.yaml
 Starting upgrade processing
 Generated files successfully for operatorToOperator upgrade for AzureAKS.
 CRD creation will be skipped, expecting to have CRD already on cluster
 Cleaning the resources on the cluster!
-CR dai-xlr-my-namespace is available, deleting
-Deleted digitalaireleases.xlr.digital.ai/dai-xlr-my-namespace from namespace my-namespace
+CR dai-xlr-digitalai-yourname is available, deleting
+Deleted digitalaireleases.xlr.digital.ai/dai-xlr-digitalai-yourname from namespace digitalai-yourname
 Deleting statefulsets
-Deleted sts/dai-xlr-my-namespace-digitalai-release from namespace my-namespace (already deleted)
+Deleted sts/dai-xlr-digitalai-yourname-digitalai-release from namespace digitalai-yourname (already deleted)
 Deleting deployments
-Deleted deployment/xlr-operator-controller-manager from namespace my-namespace
+Deleted deployment/xlr-operator-controller-manager from namespace digitalai-yourname
 Deleting jobs
 Deleting services
-Deleted svc/xlr-operator-controller-manager-metrics-service from namespace my-namespace
+Deleted svc/xlr-operator-controller-manager-metrics-service from namespace digitalai-yourname
 Deleting secrets
-Deleted secret/sh.helm.release.v1.dai-xlr-my-namespace.v2 from namespace my-namespace
-Deleted ingressclass/nginx-dai-xlr-my-namespace from namespace my-namespace
+Deleted secret/sh.helm.release.v1.dai-xlr-digitalai-yourname.v2 from namespace digitalai-yourname
+Deleted ingressclass/nginx-dai-xlr-digitalai-yourname from namespace digitalai-yourname
 Deleting roles
-Deleted role/xlr-operator-leader-election-role from namespace my-namespace
-Deleted clusterrole/dai-xlr-my-namespace-nginx-ingress-controller from namespace my-namespace
-Deleted clusterrole/my-namespace-xlr-operator-manager-role from namespace my-namespace
-Deleted clusterrole/my-namespace-xlr-operator-metrics-reader from namespace my-namespace
-Deleted clusterrole/my-namespace-xlr-operator-proxy-role from namespace my-namespace
-Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace my-namespace
-Deleted clusterrolebinding/dai-xlr-my-namespace-nginx-ingress-controller from namespace my-namespace
-Deleted clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding from namespace my-namespace
-Deleted clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding from namespace my-namespace
+Deleted role/xlr-operator-leader-election-role from namespace digitalai-yourname
+Deleted clusterrole/dai-xlr-digitalai-yourname-nginx-ingress-controller from namespace digitalai-yourname
+Deleted clusterrole/release.digitalai-yourname-operator-manager-role from namespace digitalai-yourname
+Deleted clusterrole/release.digitalai-yourname-operator-metrics-reader from namespace digitalai-yourname
+Deleted clusterrole/release.digitalai-yourname-operator-proxy-role from namespace digitalai-yourname
+Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace digitalai-yourname
+Deleted clusterrolebinding/dai-xlr-digitalai-yourname-nginx-ingress-controller from namespace digitalai-yourname
+Deleted clusterrolebinding/release.digitalai-yourname-operator-manager-rolebinding from namespace digitalai-yourname
+Deleted clusterrolebinding/release.digitalai-yourname-operator-proxy-rolebinding from namespace digitalai-yourname
 Applying resources to the cluster!
-Applied resource clusterrole/my-namespace-xlr-operator-proxy-role from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/cluster-role-digital-proxy-role.yaml
-Applied resource clusterrole/my-namespace-xlr-operator-manager-role from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/cluster-role-manager-role.yaml
-Applied resource clusterrole/my-namespace-xlr-operator-metrics-reader from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/cluster-role-metrics-reader.yaml
-Applied resource service/xlr-operator-controller-manager-metrics-service from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/controller-manager-metrics-service.yaml
-Applied resource deployment/xlr-operator-controller-manager from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/deployment.yaml
-Applied resource role/xlr-operator-leader-election-role from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/leader-election-role.yaml
-Applied resource rolebinding/xlr-operator-leader-election-rolebinding from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/leader-election-rolebinding.yaml
-Applied resource clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/manager-rolebinding.yaml
-Applied resource clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/proxy-rolebinding.yaml
-Applied resource digitalairelease/dai-xlr-my-namespace from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/dai-release_cr.yaml
+Applied resource clusterrole/release.digitalai-yourname-operator-proxy-role from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/cluster-role-digital-proxy-role.yaml
+Applied resource clusterrole/release.digitalai-yourname-operator-manager-role from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/cluster-role-manager-role.yaml
+Applied resource clusterrole/release.digitalai-yourname-operator-metrics-reader from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource service/xlr-operator-controller-manager-metrics-service from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/controller-manager-metrics-service.yaml
+Applied resource deployment/xlr-operator-controller-manager from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/deployment.yaml
+Applied resource role/xlr-operator-leader-election-role from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/leader-election-role.yaml
+Applied resource rolebinding/xlr-operator-leader-election-rolebinding from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/leader-election-rolebinding.yaml
+Applied resource clusterrolebinding/release.digitalai-yourname-operator-manager-rolebinding from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/manager-rolebinding.yaml
+Applied resource clusterrolebinding/release.digitalai-yourname-operator-proxy-rolebinding from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/template/proxy-rolebinding.yaml
+Applied resource digitalairelease/dai-xlr-digitalai-yourname from the file digitalai/dai-release/digitalai-yourname/20221031-152355/kubernetes/dai-release_cr.yaml
 Upgrade finished successfully!
 ```
 

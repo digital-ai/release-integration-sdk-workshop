@@ -18,7 +18,7 @@ Use the following credentials:
 
 Go to **Clients** and press the **Add OIDC Client** button.
 
-1. Give the client a unique name:, for example "My-Namespace-Release'. 
+1. Give the client a unique name:, for example "digitalai-yourname-Release'. 
 2. Scroll down to **Valid Redirect URIs** and add `${releaseUrl}/oidc-login`. This should be the valid URL that points to your Release installation, followed by `/oidc-login`.
 
 Create the client, and then go back and edit the client. Got to the **Credentials** section and find the following values
@@ -43,9 +43,9 @@ oidc:
 
 ## Configure Release with OIDC configuration
 
-Open the `digitalai/dai-release/my-namespace/20221031-131244/kubernetes/dai-release_cr.yaml`. 
+Open the `digitalai/dai-release/digitalai-yourname/20221031-131244/kubernetes/dai-release_cr.yaml`. 
 
-For your path: check your installation log in the line For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-131244/kubernetes.
+For your path: check your installation log in the line For current process files will be generated in the: digitalai/dai-release/digitalai-yourname/20221031-131244/kubernetes.
 
 
 Find the `oidc` section. It should look like this:
@@ -55,9 +55,11 @@ Now replace it with the snippet you created above and save the file.
 
 We use the `kubectl` utility to apply the changes directly into Kubernetes. 
 
-kubectl apply -n my-namespace -f digitalai/dai-release/my-namespace/20221031-131244/kubernetes/dai-release_cr.yaml
+```shell
+kubectl apply -n digitalai-yourname -f digitalai/dai-release/digitalai-yourname/20221031-131244/kubernetes/dai-release_cr.yaml
+```
 
-Open the **k9s*** utility and see if the pods are starting.
+Open the **k9s** utility and see if the pods are starting.
 
 When everything has restarted, log out as `admin`. You should now be redirected to the Digital.ai Platform log in screen.
 
