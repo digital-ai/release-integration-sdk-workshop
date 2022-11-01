@@ -16,15 +16,24 @@ With following example we are deleting installed resources along with PVC, only 
 
 ```text
 ? xl kube clean
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
-? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
-? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
-? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
-? Product server you want to perform clean for: dai-release [Digital.ai Release]
-? Enter the name of custom resource definition you want to reuse or replace: digitalaireleases.xlr.digital.ai
-? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it: Yes
-? Enter the name of custom resource: dai-xlr-my-namespace
-? Should we preserve persisted volume claims? If not all volume data will be lost: No
+? Following kubectl context will be used during execution: `azure-aks-test-cluster`? 
+» Yes
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
+» AzureAKS [Azure AKS]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): 
+» Yes
+? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
+» my-namespace
+? Product server you want to perform clean for: 
+» dai-release [Digital.ai Release]
+? Enter the name of custom resource definition you want to reuse or replace: 
+» digitalaireleases.xlr.digital.ai
+? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it: 
+» Yes
+? Enter the name of custom resource: 
+» dai-xlr-my-namespace
+? Should we preserve persisted volume claims? If not all volume data will be lost: 
+» No
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
@@ -51,38 +60,51 @@ For current process files will be generated in the: digitalai/dai-release/my-nam
 Generated answers file successfully: digitalai/generated_answers_dai-release_my-namespace_clean-20221031-154651.yaml
 Cleaning the resources on the cluster!
 CR dai-xlr-my-namespace is available, deleting
-? Do you want to delete the resource digitalaireleases.xlr.digital.ai/dai-xlr-my-namespace: Yes
+? Do you want to delete the resource digitalaireleases.xlr.digital.ai/dai-xlr-my-namespace: 
+» Yes
 Deleted digitalaireleases.xlr.digital.ai/dai-xlr-my-namespace from namespace my-namespace
 Deleting statefulsets
 Deleting deployments
-? Do you want to delete the resource deployment/xlr-operator-controller-manager: Yes
+? Do you want to delete the resource deployment/xlr-operator-controller-manager: 
+» Yes
 Deleted deployment/xlr-operator-controller-manager from namespace my-namespace
 Deleting jobs
 Deleting services
-? Do you want to delete the resource svc/xlr-operator-controller-manager-metrics-service: Yes
+? Do you want to delete the resource svc/xlr-operator-controller-manager-metrics-service: 
+» Yes
 Deleted svc/xlr-operator-controller-manager-metrics-service from namespace my-namespace
 Deleting secrets
 Deleting roles
-? Do you want to delete the resource role/xlr-operator-leader-election-role: Yes
+? Do you want to delete the resource role/xlr-operator-leader-election-role: 
+» Yes
 Deleted role/xlr-operator-leader-election-role from namespace my-namespace
-? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-manager-role: Yes
+? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-manager-role: 
+» Yes
 Deleted clusterrole/my-namespace-xlr-operator-manager-role from namespace my-namespace
-? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-metrics-reader: Yes
+? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-metrics-reader: 
+» Yes
 Deleted clusterrole/my-namespace-xlr-operator-metrics-reader from namespace my-namespace
-? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-proxy-role: Yes
+? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-proxy-role: 
+» Yes
 Deleted clusterrole/my-namespace-xlr-operator-proxy-role from namespace my-namespace
-? Do you want to delete the resource rolebinding/xlr-operator-leader-election-rolebinding: Yes
+? Do you want to delete the resource rolebinding/xlr-operator-leader-election-rolebinding: 
+» Yes
 Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace my-namespace
-? Do you want to delete the resource clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding: Yes
+? Do you want to delete the resource clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding: 
+» Yes
 Deleted clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding from namespace my-namespace
-? Do you want to delete the resource clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding: Yes
+? Do you want to delete the resource clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding: 
+» Yes
 Deleted clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding from namespace my-namespace
 Deleting PVCs
-? Do you want to delete the resource pvc/dai-xlr-my-namespace-digitalai-release: Yes
+? Do you want to delete the resource pvc/dai-xlr-my-namespace-digitalai-release: 
+» Yes
 Deleted pvc/dai-xlr-my-namespace-digitalai-release from namespace my-namespace
-? Do you want to delete the resource pvc/data-dai-xlr-my-namespace-postgresql-0: Yes
+? Do you want to delete the resource pvc/data-dai-xlr-my-namespace-postgresql-0: 
+» Yes
 Deleted pvc/data-dai-xlr-my-namespace-postgresql-0 from namespace my-namespace
-? Do you want to delete the resource pvc/data-dai-xlr-my-namespace-rabbitmq-0: Yes
+? Do you want to delete the resource pvc/data-dai-xlr-my-namespace-rabbitmq-0:
+» Yes
 Deleted pvc/data-dai-xlr-my-namespace-rabbitmq-0 from namespace my-namespace
 Clean finished successfully!
 ```

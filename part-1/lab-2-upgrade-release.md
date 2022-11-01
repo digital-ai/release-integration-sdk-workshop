@@ -19,26 +19,45 @@ All custom changes in the CR after installation must be preserved. So for the an
 you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that
 we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.annotations`.
 
+We are upgrading from Operator to Operator. Note that the xl kube upgrade command can be used to upgrade helm-based installations from 10.2 and higher XXX Check this value 
+
+
 Here is example of the upgrade answers (example on the Azure):
 
 ```text
 $ xl kube upgrade
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
-? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
-? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
-? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
-? Product server you want to perform upgrade for: dai-release [Digital.ai Release]
-? Select the type of upgrade you want: operatorToOperator [Operator to Operator]
-? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): xebialabs
-? Enter the image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): xl-release
-? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 22.3.1
-? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
-? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): xebialabs/release-operator:22.3.1
-? Enter the name of custom resource definition you want to reuse or replace: digitalaireleases.xlr.digital.ai
-? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it: Yes
-? Enter the name of custom resource: dai-xlr-my-namespace
-? Edit list of custom resource keys that will migrate to the new Release CR: <Received>
-? Should we preserve persisted volume claims? If not all volume data will be lost: Yes
+? Following kubectl context will be used during execution: `azure-aks-test-cluster`? 
+» Yes
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
+» AzureAKS [Azure AKS]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
+» Yes
+? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned:
+» my-namespace
+? Product server you want to perform upgrade for:
+» dai-release [Digital.ai Release]
+? Select the type of upgrade you want:
+» operatorToOperator [Operator to Operator]
+? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>):
+» xebialabs
+? Enter the image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>):
+» xl-release
+? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
+» 22.3.1
+? Type of the OIDC configuration:
+» no-oidc [No OIDC Configuration]
+? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>):
+» xebialabs/release-operator:22.3.1
+? Enter the name of custom resource definition you want to reuse or replace:
+» digitalaireleases.xlr.digital.ai
+? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:
+» Yes
+? Enter the name of custom resource:
+» dai-xlr-my-namespace
+? Edit list of custom resource keys that will migrate to the new Release CR: 
+» <Add .spec.nginx-ingress-controller.service.annotations>
+? Should we preserve persisted volume claims? If not all volume data will be lost: 
+» Yes
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
@@ -67,7 +86,8 @@ $ xl kube upgrade
 	| UpgradeType                    | operatorToOperator                                 |
 	| UseCustomNamespace             | true                                               |
 	 -------------------------------- ----------------------------------------------------
-? Do you want to proceed to the deployment with these values? Yes
+? Do you want to proceed to the deployment with these values? 
+» Yes
 For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-152355/kubernetes
 Generated answers file successfully: digitalai/generated_answers_dai-release_my-namespace_upgrade-20221031-152355.yaml
 Starting upgrade processing
@@ -129,3 +149,12 @@ The upgrade process is first cleaning everything from the cluster and after that
 For each resource it is asking for confirmation before delete.
 
 For the other questions and answers details check [Upgrade Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-upgrade-wizard-release.html)
+
+
+Use the following command to wait for the upgrade to be complete:
+
+```shell
+xl kube check --skip-collecting --skip-prompts --wait-for-ready 5
+```
+
+When done, reload Release in the browser and check the version number again. It should now be **Version 22.3.1**

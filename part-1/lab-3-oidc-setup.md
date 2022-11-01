@@ -1,23 +1,13 @@
 
 # Lab 3 - OIDC setup (use Identity service)
 
-## Prepare Identity service
-
-Participant runs ‘xl apply setup-oidc-template.yaml’ with manual steps
-Participant runs template with instructions. (Mini wizard)
-We provide credentials to log in to https://devops-demo.staging.digital.ai/
-Participant creates OIDC client in Digital.ai Platform
-Participant copies Client ID and Secret into Release
-Release renders OIDC snippet
-Participant uses OIDC snippet in wizard / answers file / yaml file.
-
 ## Configure authentication on Digital.ai Platform
 
-In this step, we will create an OIDC client that will allow Digital.ai Release to use the authentication service of igtial.ai Platform
+In this step, we will create an OIDC client that will allow Digital.ai Release to use the authentication service of Digital.ai Platform
 
 ### 1. Log in to Digital.ai Platform
 
-Got to Digital.ai Platform at [https://devops-demo.staging.digital.ai/](https://devops-demo.staging.digital.ai/). 
+Go to Digital.ai Platform at [https://devops-demo.staging.digital.ai/](https://devops-demo.staging.digital.ai/). 
 
 Use the following credentials:
 
@@ -28,52 +18,50 @@ Use the following credentials:
 
 Go to **Clients** and press the **Add OIDC Client** button.
 
-1. Give the client a name, for example 'MyName-Release'. Note: choose a unique name.
+1. Give the client a unique name:, for example "My-Namespace-Release'. 
 2. Scroll down to **Valid Redirect URIs** and add `${releaseUrl}/oidc-login`. This should be the valid URL that points to your Release installation, followed by `/oidc-login`.
 
-Create the client and immediately edit the client. Copy the following values from the **Credentials** section into a text file
+Create the client, and then go back and edit the client. Got to the **Credentials** section and find the following values
   
 * **Client ID**
 * **Client Secret**
 
-Now fudge them into this snippet:
+Open a text editor with the snippet below and paste the values in there. Also add the Release URL 
 
-```
-external: true
-clientId: "[[YOUR CLIENT ID HERE]]"
-clientSecret: "[[YOUR CLIENT SECRET HERE]]"
-issuer: "https://identity.staging.digital.ai/auth/realms/devops-demo"
-redirectUri: "https://devops-demo.devops.digital.ai/oidc-login"
-postLogoutRedirectUri: "https://devops-demo.devops.digital.ai/oidc-login"
-rolesClaim: groups
-userNameClaim: preferred_username
-scopes: ["openid"]
-```
-
-or 
-
-```
+```yaml
 oidc:
   enabled: true
   clientId: "[[YOUR CLIENT ID HERE]]"
   clientSecret: "[[YOUR CLIENT SECRET HERE]]"
-  clientSecret: 0F9VGMRhK4G3Vzzj3ImJjuUFN2GFpVin
-  issuer: "https://identity.staging.digital.ai/auth/realms/devops-demo"
-  redirectUri: "https://devops-demo.devops.digital.ai/oidc-login"
-  postLogoutRedirectUri: "https://devops-demo.devops.digital.ai/oidc-login"
+  issuer: "https://identity-01.staging.digital.ai/auth/realms/devops-demo"
+  redirectUri: "[[RELEASE URL HERE]]/oidc-login"
+  postLogoutRedirectUri: "[[RELEASE URL HERE]]/oidc-login"
   rolesClaim: groups
   userNameClaim: preferred_username
   scopes: ["openid"]
 ```
 
-## Upgrade with OIDC configuration
+## Configure Release with OIDC configuration
 
-```shell
-xl kube upgrade
-```
+Open the `digitalai/dai-release/my-namespace/20221031-131244/kubernetes/dai-release_cr.yaml`. 
 
-- TODO:
-  - answers
-  - editor value for OIDC Identity service
+For your path: check your installation log in the line For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-131244/kubernetes.
 
-For the other questions and answers details check [Upgrade Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-upgrade-wizard-release.html)
+
+Find the `oidc` section. It should look like this:
+
+Now replace it with the snippet you created above and save the file. 
+
+
+We use the `kubectl` utility to apply the changes directly into Kubernetes. 
+
+kubectl apply -n my-namespace -f digitalai/dai-release/my-namespace/20221031-131244/kubernetes/dai-release_cr.yaml
+
+Open the **k9s*** utility and see if the pods are starting.
+
+When everything has restarted, log out as `admin`. You should now be redirected to the Digital.ai Platform log in screen.
+
+Use the following credentials, those were the same as you used to log in to Digital.ai Platform before to create the OIDC client.
+
+* **Username:** `admin-devops-demo.digital.ai`
+* **Password:** _ask in workshop_

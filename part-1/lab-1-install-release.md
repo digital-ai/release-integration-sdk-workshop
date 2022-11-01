@@ -2,7 +2,7 @@
 # Lab 1 - Install Digital.ai Release 22.2.4
 
 This lab is intro in using `xl kube install` to install Digital.ai Release to the K8S cluster.
-After installation we will check if everything running and do some customization in the CR on the cluster to setup Azure DNS.
+After installation we will check if everything is running and do some customization on the cluster to setup Azure DNS.
 
 ## Intro to `xl kube`
 
@@ -61,36 +61,65 @@ Following is example of answers and log after starting installation (example on 
 
 ```text
 $ xl kube install
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
-? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
-? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
-? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
-? Do you want to create custom Kubernetes namespace my-namespace, it does not exist: Yes
-? Product server you want to perform install for: dai-release [Digital.ai Release]
-? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): xebialabs
-? Enter the image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): xl-release
-? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 22.2.4
-? Enter the release server replica count: 2
-? Enter PVC size for Release (Gi): 1
-? Select between supported Access Modes: ReadWriteMany [ReadWriteMany]
-? Select between supported ingress types: nginx [NGINX]
-? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): No
-? Provide DNS name for accessing UI of the server: my-namespace-xlr.northcentralus.cloudapp.azure.com
-? Provide administrator password: l2DvSpebufAti0jc
-? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
-? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): xebialabs/release-operator:22.2.4
-? Select source of the license: file [Path to the license file (the file can be in clean text or base64 encoded)]
-? Provide license file for the server: ./xlr-license.lic
+? Following kubectl context will be used during execution: `azure-aks-test-cluster`? 
+» Yes
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
+» AzureAKS [Azure AKS]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): 
+» Yes
+? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
+» my-namespace
+? Do you want to create custom Kubernetes namespace my-namespace, it does not exist: 
+» Yes
+? Product server you want to perform install for: 
+» dai-release [Digital.ai Release]
+? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): 
+» xebialabs
+? Enter the image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+» xl-release
+? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 
+» 22.2.4
+? Enter the release server replica count: 
+» 2
+? Enter PVC size for Release (Gi): 
+» 1
+? Select between supported Access Modes: 
+» ReadWriteMany [ReadWriteMany]
+? Select between supported ingress types: 
+» nginx [NGINX]
+? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
+» No
+? Provide DNS name for accessing UI of the server: 
+» my-namespace-xlr.northcentralus.cloudapp.azure.com
+? Provide administrator password: 
+» admin
+? Type of the OIDC configuration: 
+» no-oidc [No OIDC Configuration]
+? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): 
+» xebialabs/release-operator:22.2.4
+? Select source of the license: 
+» file [Path to the license file (the file can be in clean text or base64 encoded)]
+? Provide license file for the server: 
+» ./xlr-license.lic
 ? Select source of the repository keystore: generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
-? Provide keystore passphrase: gdbzzXny7Mocuksl
-? Provide storage class for the server: azure-aks-test-cluster-file-storage-class
-? Do you want to install a new PostgreSQL on the cluster: Yes
-? Provide Storage Class to be defined for PostgreSQL: azure-aks-test-cluster-disk-storage-class
-? Provide PVC size for PostgreSQL (Gi): 1
-? Do you want to install a new RabbitMQ on the cluster: Yes
-? Replica count to be defined for RabbitMQ: 1
-? Storage Class to be defined for RabbitMQ: azure-aks-test-cluster-file-storage-class
-? Provide PVC size for RabbitMQ (Gi): 1
+? Provide keystore passphrase: 
+» gdbzzXny7Mocuksl
+? Provide storage class for the server: 
+» azure-aks-test-cluster-file-storage-class
+? Do you want to install a new PostgreSQL on the cluster: 
+» Yes
+? Provide Storage Class to be defined for PostgreSQL: 
+» azure-aks-test-cluster-disk-storage-class
+? Provide PVC size for PostgreSQL (Gi): 
+» 1
+? Do you want to install a new RabbitMQ on the cluster: 
+» Yes
+? Replica count to be defined for RabbitMQ: 
+» 1
+? Storage Class to be defined for RabbitMQ: 
+» azure-aks-test-cluster-file-storage-class
+? Provide PVC size for RabbitMQ (Gi): 
+» 1
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
@@ -132,7 +161,8 @@ $ xl kube install
 	| UseCustomNamespace             | true                                               |
 	| XlrReplicaCount                | 2                                                  |
 	 -------------------------------- ----------------------------------------------------
-? Do you want to proceed to the deployment with these values? Yes
+? Do you want to proceed to the deployment with these values? 
+» Yes
 For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-131244/kubernetes
 Generated answers file successfully: digitalai/generated_answers_dai-release_my-namespace_install-20221031-131244.yaml
 Starting install processing.
@@ -161,7 +191,7 @@ For the other questions and answers details check [Installation Wizard for Digit
 
 After xl-cli finishes all resources are not yet ready on the cluster, try to run following checks that are waiting for the resources to be fully running and ready on the cluster.
 
-Check for details with `xl kube check -h` for details what each flag is here.
+Check for details with `xl kube check --help` for details what each flag is here.
 
 ```shell
 xl kube check --wait-for-ready 5
@@ -245,15 +275,25 @@ Check finished successfully!
 
 For now you will be not able to login to the page `http://my-namespace-xlr.northcentralus.cloudapp.azure.com/`.
 
-You can connect directly to pod or via service port forwarding 
+You can connect directly to pod or via service port forwarding.  
 ```shell
 $ kubectl port-forward --namespace my-namespace svc/dai-xlr-my-namespace-digitalai-release 18080:80
 Forwarding from 127.0.0.1:18080 -> 5516
 Forwarding from [::1]:18080 -> 5516
-Handling connection for 18080
 ```
 
-Now try to open [http://localhost:18080](http://localhost:18080)
+Now try to open [http://localhost:18080](http://localhost:18080) and log in as `admin`. 
+
+If you forgot the password, you can get it with the command from the helm info (username is as always `admin`):
+
+```shell
+## To get the admin password for xl-release, run:
+kubectl get secret --namespace my-namespace dai-xlr-my-namespace-digitalai-release -o jsonpath="{.data.release-password}" | base64 --decode; echo
+```
+
+Check the version in **(Gear icon) > About Digital.ai Release**. We should be running **Version 22.2.4**
+
+## Set up DNS -- TODO SPLIT INTO SEPARATE SECTION?
 
 To finalize ingress setup with DNS host we will need to update CR YAML. There few options, here are two:
 
@@ -318,8 +358,5 @@ kubectl apply -n my-namespace -f digitalai/dai-release/my-namespace/20221031-131
 
 Now try to open [http://my-namespace-xlr.northcentralus.cloudapp.azure.com/](http://my-namespace-xlr.northcentralus.cloudapp.azure.com/)
 
-To check the password, you can get it with the command from the helm info (username is as always `admin`):
-```shell
-## To get the admin password for xl-release, run:
-kubectl get secret --namespace my-namespace dai-xlr-my-namespace-digitalai-release -o jsonpath="{.data.release-password}" | base64 --decode; echo
-```
+Note: it may take a while for the DNS changes to come through and you may get a 'server not found' page for a while.
+
