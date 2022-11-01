@@ -54,3 +54,11 @@ The demo runs comfortably with the following resources allocated under **Prefere
 ```shell
 kubectl version
 ```
+
+## Check `xl` command
+
+The `xl`command version 22.3.2 should be in the path. Check this with the following command:
+
+```shell
+xl version
+```

@@ -1,25 +1,25 @@
 
 # Lab 2 - Upgrade Release 22.3.1
 
-In this lab we will upgrade previous installation to the Digital.ai Release 22.3.1 version of product and operator.
+In this lab we will upgrade the previous installation to  Digital.ai Release 22.3.1.
 
-
-You just need to start upgrade process by running:
+Just start upgrade process by running:
 
 ```shell
-xl kube upgrade
+xl kube upgrade --skip-prompts
 ```
 
-... and after that answer to the questions. Some of the questions are repeating from the installation.
+...and answer all the questions. Some of the questions are repeated from the installation.
 
-Note that we are upgrading to 22.3.1. In case if you are sharing cluster with others, do not delete the CR that is shared between all installations.
-So you need to answer to `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with `Yes`.
+In this case we are sharing the cluster with others, so do NOT delete the Custom Resource that is shared between all installations.
+
+Answer the question `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
 
 All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` 
 you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that
 we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.annotations`.
 
-We are upgrading from Operator to Operator. Note that the xl kube upgrade command can be used to upgrade helm-based installations from 10.2 and higher XXX Check this value 
+We are upgrading from Operator to Operator. Note: the `xl kube upgrade` command can be used to upgrade helm-based installations from 10.2 and higher XXX Check this value 
 
 
 Here is example of the upgrade answers (example on the Azure):
@@ -31,9 +31,9 @@ $ xl kube upgrade
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
 » AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
-» Yes
+»⚠️ Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned:
-» my-namespace
+»⚠️ my-namespace
 ? Product server you want to perform upgrade for:
 » dai-release [Digital.ai Release]
 ? Select the type of upgrade you want:
@@ -51,11 +51,12 @@ $ xl kube upgrade
 ? Enter the name of custom resource definition you want to reuse or replace:
 » digitalaireleases.xlr.digital.ai
 ? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:
-» Yes
+»⚠️ Yes
 ? Enter the name of custom resource:
 » dai-xlr-my-namespace
 ? Edit list of custom resource keys that will migrate to the new Release CR: 
-» <Add .spec.nginx-ingress-controller.service.annotations>
+»⚠️ Add: 
+.spec.nginx-ingress-controller.service.annotations
 ? Should we preserve persisted volume claims? If not all volume data will be lost: 
 » Yes
 	 -------------------------------- ----------------------------------------------------
@@ -95,41 +96,26 @@ Generated files successfully for operatorToOperator upgrade for AzureAKS.
 CRD creation will be skipped, expecting to have CRD already on cluster
 Cleaning the resources on the cluster!
 CR dai-xlr-my-namespace is available, deleting
-? Do you want to delete the resource digitalaireleases.xlr.digital.ai/dai-xlr-my-namespace: Yes
 Deleted digitalaireleases.xlr.digital.ai/dai-xlr-my-namespace from namespace my-namespace
 Deleting statefulsets
-? Do you want to delete the resource sts/dai-xlr-my-namespace-digitalai-release: Yes
 Deleted sts/dai-xlr-my-namespace-digitalai-release from namespace my-namespace (already deleted)
 Deleting deployments
-? Do you want to delete the resource deployment/xlr-operator-controller-manager: Yes
 Deleted deployment/xlr-operator-controller-manager from namespace my-namespace
 Deleting jobs
 Deleting services
-? Do you want to delete the resource svc/xlr-operator-controller-manager-metrics-service: Yes
 Deleted svc/xlr-operator-controller-manager-metrics-service from namespace my-namespace
 Deleting secrets
-? Do you want to delete the resource secret/sh.helm.release.v1.dai-xlr-my-namespace.v2: Yes
 Deleted secret/sh.helm.release.v1.dai-xlr-my-namespace.v2 from namespace my-namespace
-? Do you want to delete the resource ingressclass/nginx-dai-xlr-my-namespace: Yes
 Deleted ingressclass/nginx-dai-xlr-my-namespace from namespace my-namespace
 Deleting roles
-? Do you want to delete the resource role/xlr-operator-leader-election-role: Yes
 Deleted role/xlr-operator-leader-election-role from namespace my-namespace
-? Do you want to delete the resource clusterrole/dai-xlr-my-namespace-nginx-ingress-controller: Yes
 Deleted clusterrole/dai-xlr-my-namespace-nginx-ingress-controller from namespace my-namespace
-? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-manager-role: Yes
 Deleted clusterrole/my-namespace-xlr-operator-manager-role from namespace my-namespace
-? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-metrics-reader: Yes
 Deleted clusterrole/my-namespace-xlr-operator-metrics-reader from namespace my-namespace
-? Do you want to delete the resource clusterrole/my-namespace-xlr-operator-proxy-role: Yes
 Deleted clusterrole/my-namespace-xlr-operator-proxy-role from namespace my-namespace
-? Do you want to delete the resource rolebinding/xlr-operator-leader-election-rolebinding: Yes
 Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace my-namespace
-? Do you want to delete the resource clusterrolebinding/dai-xlr-my-namespace-nginx-ingress-controller: Yes
 Deleted clusterrolebinding/dai-xlr-my-namespace-nginx-ingress-controller from namespace my-namespace
-? Do you want to delete the resource clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding: Yes
 Deleted clusterrolebinding/my-namespace-xlr-operator-manager-rolebinding from namespace my-namespace
-? Do you want to delete the resource clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding: Yes
 Deleted clusterrolebinding/my-namespace-xlr-operator-proxy-rolebinding from namespace my-namespace
 Applying resources to the cluster!
 Applied resource clusterrole/my-namespace-xlr-operator-proxy-role from the file digitalai/dai-release/my-namespace/20221031-152355/kubernetes/template/cluster-role-digital-proxy-role.yaml

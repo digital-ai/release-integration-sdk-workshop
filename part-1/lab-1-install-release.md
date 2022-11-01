@@ -1,63 +1,51 @@
 
 # Lab 1 - Install Digital.ai Release 22.2.4
 
-This lab is intro in using `xl kube install` to install Digital.ai Release to the K8S cluster.
-After installation we will check if everything is running and do some customization on the cluster to setup Azure DNS.
+This lab will use `xl kube install` to install Digital.ai Release to the K8s cluster.
+After installation we will check if everything is running properly and then configure the hostname in DNS.
 
-## Intro to `xl kube`
+Installation on Kubernetes is operator-based. We first install our custom Digital.ai Release or Deploy Operator into Kubernetes. Then we configure the application and the yaml configuration files are applied. The Operator takes care of creating the necessary resources and configuring Release. Currently the Operator uses Kubernetes under the hood, but this may change in the future.
 
-To investigate possible options to use during installation you can check `xl kube -h` and `xl kube install -h`.
-Also check [XL Kube Command Reference](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-kube.html) for the additional `xl kube` details.
+## Introducing `xl kube`
+
+Throughout this workshop , we will use the new `xl kube` command. It can do the following:
+
+* Install a Release or Deploy in a Kubernetes cluster
+* Upgrade Release and Deploy from a previous version
+* Check if installation was successful and gather log files
+* Clean the installation.
+
+To investigate all possible options, please use the `--help` command. For example `xl kube --help`, or `xl kube install --help`. 
+
+Also check [XL Kube Command Reference](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-kube.html) for more details.
+
 
 ## Installation
 
-Let's start installation, we will just run plain install and after that we need to answer on list of questions: 
+Installing Release or Deploy in Kubernetes is as easy as running this simple command:
 
 ```shell
 xl kube install
 ```
 
-Few notes for the following example:
-- we have `xl` command in the path 
-- we are installing 22.2.4 version of the release and operator, so we can upgrade it later 
-- the license file will be provided on the workshop and it is used from the working directory
-- for the domain we use `my-namespace-xlr.northcentralus.cloudapp.azure.com`, see more on [Apply a DNS label to the service](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service)
-  - the hostname must be unique in the location, so use some custom unique name here, for example your name as part of the hostname
-- for the storage class we use following two custom storage classes, they already exist on the cluster:
-  - azure-aks-test-cluster-file-storage-class based on the [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
+This command will take care of the asking for the relevant configuration using an interative wizard; producing Kubernetes yaml files and applying them to perform the installation.
 
-```yaml
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: azure-aks-test-cluster-file-storage-class
-provisioner: kubernetes.io/azure-file
-mountOptions:
-  - dir_mode=0777
-  - file_mode=0777
-  - uid=0
-  - gid=0
-  - mfsymlinks
-  - cache=strict
-  - actimeo=30
-parameters:
-  skuName: Standard_LRS
-```
-  - azure-aks-test-cluster-disk-storage-class based on the [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
+Before we kick it off, let's get our ducks in a row
 
-```yaml
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: azure-aks-test-cluster-disk-storage-class
-provisioner: kubernetes.io/azure-disk
-reclaimPolicy: Delete
-volumeBindingMode: WaitForFirstConsumer
-parameters:
-  storageaccounttype: Standard_LRS
-```
+- We are installing 22.2.4 version of Release. Later in the workshop we will upgrade it to 22.3.1
+- The license files will be provided during the workshop and need to be saved in the working directory.
+- Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `my-namespace`. Think of a unique label, for example `kube-yourname` and then everytime you encounter `my-namespace`, replace it wirth your own value.
+- When installing on Azure, you wil create a DNS entry for `my-namespace-xlr.northcentralus.cloudapp.azure.com`, see [Apply a DNS label to the service](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service)
+- On Azure we use two custom storage classes.They already exist on the cluster:
+  - `azure-aks-test-cluster-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
+  - `azure-aks-test-cluster-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
 
-Following is example of answers and log after starting installation (example on the Azure):
+Now let's get started!
+
+Kick off the command and look closely at the answers below. Note that sometimes you can take the default, sometimes you need to give the value as prompted below and sometimes you need to give a custom value. Please take it slow -- this is wizard is a very concentrated form of all parameters that are needed and doesn't lend itself very well to rush through it with a next-next-next approach. We've marked some of the questions where you need to pay attention with a warning sign.
+
+For more details on questions and answer, check [Installation Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-install-wizard-release.html)
+
 
 ```text
 $ xl kube install
@@ -68,7 +56,7 @@ $ xl kube install
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): 
 » Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
-» my-namespace
+»⚠️ my-namespace
 ? Do you want to create custom Kubernetes namespace my-namespace, it does not exist: 
 » Yes
 ? Product server you want to perform install for: 
@@ -78,11 +66,11 @@ $ xl kube install
 ? Enter the image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
 » xl-release
 ? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 
-» 22.2.4
+»⚠️ 22.2.4 
 ? Enter the release server replica count: 
-» 2
+»⚠️ 2
 ? Enter PVC size for Release (Gi): 
-» 1
+»⚠️ 1
 ? Select between supported Access Modes: 
 » ReadWriteMany [ReadWriteMany]
 ? Select between supported ingress types: 
@@ -90,13 +78,13 @@ $ xl kube install
 ? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
 » No
 ? Provide DNS name for accessing UI of the server: 
-» my-namespace-xlr.northcentralus.cloudapp.azure.com
+»⚠️ my-namespace-xlr.northcentralus.cloudapp.azure.com
 ? Provide administrator password: 
-» admin
+» 9M8KgUmLFp5KceHl
 ? Type of the OIDC configuration: 
 » no-oidc [No OIDC Configuration]
 ? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): 
-» xebialabs/release-operator:22.2.4
+»⚠️ xebialabs/release-operator:22.2.4
 ? Select source of the license: 
 » file [Path to the license file (the file can be in clean text or base64 encoded)]
 ? Provide license file for the server: 
@@ -105,21 +93,21 @@ $ xl kube install
 ? Provide keystore passphrase: 
 » gdbzzXny7Mocuksl
 ? Provide storage class for the server: 
-» azure-aks-test-cluster-file-storage-class
+»⚠️ azure-aks-test-cluster-file-storage-class
 ? Do you want to install a new PostgreSQL on the cluster: 
 » Yes
 ? Provide Storage Class to be defined for PostgreSQL: 
-» azure-aks-test-cluster-disk-storage-class
+»⚠️ azure-aks-test-cluster-disk-storage-class
 ? Provide PVC size for PostgreSQL (Gi): 
-» 1
+»⚠️ 1
 ? Do you want to install a new RabbitMQ on the cluster: 
 » Yes
 ? Replica count to be defined for RabbitMQ: 
-» 1
+»⚠️ 1
 ? Storage Class to be defined for RabbitMQ: 
-» azure-aks-test-cluster-file-storage-class
+»⚠️ azure-aks-test-cluster-file-storage-class
 ? Provide PVC size for RabbitMQ (Gi): 
-» 1
+»⚠️ 1
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
@@ -161,16 +149,53 @@ $ xl kube install
 	| UseCustomNamespace             | true                                               |
 	| XlrReplicaCount                | 2                                                  |
 	 -------------------------------- ----------------------------------------------------
-? Do you want to proceed to the deployment with these values? 
-» Yes
+? Do you want to proceed to the deployment with these values?
+```
+
+`xl kube install` gives a moment to breathe and shows the values we have entered. Before we say yes and start the installation, here's an overview of what will happen
+
+1. Store answers in a file for reuse.
+2. Generate Kubernetes yaml and other files needed.
+3. Use `kubectl` to apply in bulk and start the installation.
+
+Note that once we proceed, we can pick up the process at any time by using command line flags on `xl kube install`
+
+* We can edit the answers file and use it as input for `xl kube install`, avoiding the interactive questions
+* We can edit the Kubernetes Yaml file, and directly apply them using `kubectl`
+* We can edit the Kubernetes Yaml files, and apply them in bulk using `xl kube install`
+
+Now let's say **Yes** to the question and see what happens
+
+```
 For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-131244/kubernetes
+```
+
+All files of this installation run will be stored in a directory that has the timestamp in it. We will use these files later so it is useful to note that we get a reference to this directory here.
+
+```
 Generated answers file successfully: digitalai/generated_answers_dai-release_my-namespace_install-20221031-131244.yaml
+```
+
+The answers are stored in this file and can be reused later.
+
+```
 Starting install processing.
 Created keystore digitalai/dai-release/my-namespace/20221031-131244/kubernetes/repository-keystore.jceks
 Created namespace my-namespace
 Update CR with namespace... \ Using custom resource name dai-xlr-my-namespace
 Generated files successfully for AzureAKS installation.
+```
+
+All needed Yaml files are being created, as well as a keystore that will be used by the Release server.
+On Kubernetes, the namespace is configured automatically.
+
+```
 Applying resources to the cluster!
+```
+
+This indicates that `xl kube install` will now start calling `kubectl` with the generated yaml. Below you will see the list of all the files that are being applied.
+
+```
 Applied resource clusterrole/my-namespace-xlr-operator-proxy-role from the file digitalai/dai-release/my-namespace/20221031-131244/kubernetes/template/cluster-role-digital-proxy-role.yaml
 Applied resource clusterrole/my-namespace-xlr-operator-manager-role from the file digitalai/dai-release/my-namespace/20221031-131244/kubernetes/template/cluster-role-manager-role.yaml
 Applied resource clusterrole/my-namespace-xlr-operator-metrics-reader from the file digitalai/dai-release/my-namespace/20221031-131244/kubernetes/template/cluster-role-metrics-reader.yaml
@@ -185,22 +210,29 @@ Applied resource digitalairelease/dai-xlr-my-namespace from the file digitalai/d
 Install finished successfully!
 ```
 
-For the other questions and answers details check [Installation Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-install-wizard-release.html)
+And we are done!
+
+Sort of...
+
+This is Kubernetes. We have only told the cluster what the 'desired state' is and Kubernetes has acknowledged that it has gotten the configuration and will now _start_ work on making it so. In other words, we have only shipped over necessary files to K8s and now need to trust that the system will do the work. And that no errors will occur in the process. By design, Kubernetes will _not_ tell you when it is done and will _not_ tell you if an error occured. You need to ask for it and know where to look.
+
+That's why we added the `xl kube check` command. It knows what to check for and will give you timely status upates.
 
 ## Wait for resources with xl kube check
 
-After xl-cli finishes all resources are not yet ready on the cluster, try to run following checks that are waiting for the resources to be fully running and ready on the cluster.
+The `xl kube check` command will query Kubernetes if the installation is successful or not, and download all necessary configuration and log files for troubleshooting.
 
-Check for details with `xl kube check --help` for details what each flag is here.
+Use `xl kube check --help` to see all options and some example invocations.
+
+To see how our installation is doing, invoke the command
 
 ```shell
-xl kube check --wait-for-ready 5
 xl kube check --wait-for-ready 5 --skip-collecting
-xl kube check --wait-for-ready 5 --zip-files
 ```
 
-For example output for the second command (the helm info on the end will be displayed if you have helm in the path):
-Example is on the Azure.
+After asking the questions of what you want to check, this will wait 5 minutes for succesful installation, and will not download all configuration and logs.
+
+⚠️ Note that for the last part of the check you need to have `helm` installed. 
 
 ```text
 $ xl kube check --wait-for-ready 5 --skip-collecting
@@ -271,18 +303,22 @@ kubectl rollout restart sts dai-xlr-my-namespace-digitalai-release -n my-namespa
 Check finished successfully!
 ```
 
+**Exercise**: find out what combination of command line flags you need to give in order to avoid any prompt.
+
+<!-- xl kube check --answers digitalai/generated_answers_dai-release_kube-hes_install-20221101-132633.yaml --skip-collecting -w 5 -S -->
+
 ## Discover how to open the page and login
 
-For now you will be not able to login to the page `http://my-namespace-xlr.northcentralus.cloudapp.azure.com/`.
+We have not comfigured the DNS, so we can't access the public URL yet: `http://my-namespace-xlr.northcentralus.cloudapp.azure.com/`.
 
-You can connect directly to pod or via service port forwarding.  
+However, we can connect directly to the Release via service port forwarding.  
 ```shell
 $ kubectl port-forward --namespace my-namespace svc/dai-xlr-my-namespace-digitalai-release 18080:80
 Forwarding from 127.0.0.1:18080 -> 5516
 Forwarding from [::1]:18080 -> 5516
 ```
 
-Now try to open [http://localhost:18080](http://localhost:18080) and log in as `admin`. 
+Now open [http://localhost:18080](http://localhost:18080) and log in as `admin`. 
 
 If you forgot the password, you can get it with the command from the helm info (username is as always `admin`):
 
@@ -293,68 +329,37 @@ kubectl get secret --namespace my-namespace dai-xlr-my-namespace-digitalai-relea
 
 Check the version in **(Gear icon) > About Digital.ai Release**. We should be running **Version 22.2.4**
 
-## Set up DNS -- TODO SPLIT INTO SEPARATE SECTION?
+## Set up DNS
 
-To finalize ingress setup with DNS host we will need to update CR YAML. There few options, here are two:
+To configure the DNS we will need to update the Custom Resource (CR) YAML and tell Kubernetes we changed it.
 
-### 1. Edit CR on cluster
 
-CRD name is always `digitalaireleases.xlr.digital.ai`, and CR will be in the namespace:
+Open the file `dai-release_cr.yaml` that can be found in the directory `digitalai/dai-release/my-namespace/20221031-131244/kubernetes/`.
 
-```shell
-$ kubectl get digitalaireleases.xlr.digital.ai -n my-namespace
-NAME                   AGE
-dai-xlr-my-namespace   89m
-```
+Check the installation console output to find the correct timestamp. It's in the line `For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-131244/kubernetes`.
 
-So to edit CR use following (same as from helm info):
-
-```shell
-## To edit custom resource dai-xlr-my-namespace
-kubectl edit digitalaireleases.xlr.digital.ai dai-xlr-my-namespace -n my-namespace
-```
-
-Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `my-namespace-xlr`:
+Add your hostname in the yaml path of the CR file under spec > nginx-ingress-controller > service > annotations
 
 ```yaml
 spec:
-  
+  …  
   nginx-ingress-controller:
-    
+    …
     service:
-      
-      annotations:
-        service.beta.kubernetes.io/azure-dns-label-name: my-namespace-xlr        
-```
-
-Save the file and exit the editor.
-
-### 2. Edit CR file and apply it on cluster
-
-Other way to edit CR, open the `digitalai/dai-release/my-namespace/20221031-131244/kubernetes/dai-release_cr.yaml`.
-For your path: check your installation log in the line `For current process files will be generated in the: digitalai/dai-release/my-namespace/20221031-131244/kubernetes`.
-
-Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `my-namespace-xlr`:
-
-```yaml
-spec:
-  
-  nginx-ingress-controller:
-    
-    service:
-      
+      …
       annotations:
         service.beta.kubernetes.io/azure-dns-label-name: my-namespace-xlr        
 ```
 
 Save the changes in the file.
 
-Apply the edited file with
-```
+Apply the edited file to Kubernetes with
+
+```shell
 kubectl apply -n my-namespace -f digitalai/dai-release/my-namespace/20221031-131244/kubernetes/dai-release_cr.yaml
 ```
 
-### Try to open Release page
+### Open Release
 
 Now try to open [http://my-namespace-xlr.northcentralus.cloudapp.azure.com/](http://my-namespace-xlr.northcentralus.cloudapp.azure.com/)
 
