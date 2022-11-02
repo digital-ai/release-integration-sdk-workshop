@@ -35,7 +35,7 @@ Before we kick it off, let's get our ducks in a row
 - We are installing 22.2.4 version of Release. Later in the workshop we will upgrade it to 22.3.1
 - The license files will be provided during the workshop and need to be saved in the working directory.
 - Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `digitalai-yourname`. Everytime you encounter `digitalai-yourname`, replace it with your own namespace, for example `digitalai-alice`.
-- When installing on Azure, you wil [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `release.digitalai-yourname.northcentralus.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `release.digitalai-yourname.local`. 
+- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `release.digitalai-yourname.northcentralus.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `release.digitalai-yourname.local`. 
 - On Azure we use two custom storage classes.They already exist on the cluster:
   - `azure-aks-test-cluster-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
   - `azure-aks-test-cluster-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
@@ -313,7 +313,7 @@ Check finished successfully!
 
 ## Discover how to open the page and login
 
-We have not comfigured the DNS, so we can't access the public URL yet: `http://release.digitalai-yourname.northcentralus.cloudapp.azure.com/`.
+We have not configured the DNS, so we can't access the public URL yet: `http://release.digitalai-yourname.northcentralus.cloudapp.azure.com/`.
 
 However, we can connect directly to the Release via service port forwarding.  
 ```shell
