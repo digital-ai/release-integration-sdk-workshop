@@ -11,9 +11,11 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
 Optional
 
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
-- `az` ?
-- `helm` ?
-- `k9s`
+- [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
+- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop
+- [docker](https://docs.docker.com/get-docker/) - if you plan to use Docker during workshop
+- [helm](https://helm.sh/docs/intro/install/) - if you would like to get additional info 
+- [k9s](https://k9scli.io/topics/install/) - Kubernetes CLI To Manage Your Clusters In Style
 
 
 ## Workshop Content
@@ -63,8 +65,8 @@ Optional
 
 ## TODOs
 
-- License for participants 
-- Azure Cluster
+- License for participants
 - Test multiple installation of release and deploy on the same cluster
 - Test on minikube
 - Test on docker
+- Max name of the namespace

@@ -21,8 +21,8 @@ Run:
 ```shell
 export AZURE_USERNAME=xl-test-azure...
 export AZURE_PASSWORD=put_password_from_1pass
-export RESOURCE_GROUP=xl-kube-workshop-group
-export CLUSTER_NAME=xl-kube-workshop
+export RESOURCE_GROUP=xl-kube-workshop-group-X
+export CLUSTER_NAME=xl-kube-workshop-X
 az login -u $AZURE_USERNAME -p $AZURE_PASSWORD 
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 ```
