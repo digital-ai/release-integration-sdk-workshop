@@ -370,7 +370,13 @@ Note: it may take a while for the DNS changes to come through and you may get a 
 
 ## Set up 'DNS' on localhost for Minikube / Docker Desktop
 
-When using a local kube cluster, edit `/etc/hosts` and add your host name here.
+When using a local kube cluster, we need to edit the local `hosts` file and add your host name here.
+
+The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
+
+After adding the changes to the `hosts` file, go to [https://release.digitalai-yourname.local](https://release.digitalai-yourname.local)
+
+## Linux / Macos
 
 ```shell
 sudo vi /etc/hosts
@@ -382,4 +388,11 @@ Add following line somewhere:
 127.0.0.1 release.digitalai-yourname.local
 ```
 
-After saving, go to [https://release.digitalai-yourname.local](https://release.digitalai-yourname.local)
+## Windows
+
+The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line. 
+
+```text
+127.0.0.1 release.digitalai-yourname.local
+```
+
