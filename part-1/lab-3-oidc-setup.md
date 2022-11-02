@@ -31,6 +31,7 @@ Open a text editor with the snippet below and paste the values in there. Also ad
 ```yaml
 oidc:
   enabled: true
+  external: true
   clientId: "[[YOUR CLIENT ID HERE]]"
   clientSecret: "[[YOUR CLIENT SECRET HERE]]"
   issuer: "https://identity-01.staging.digital.ai/auth/realms/devops-demo"
@@ -52,7 +53,6 @@ Find the `oidc` section. It should look like this:
 
 Now replace it with the snippet you created above and save the file. 
 
-
 We use the `kubectl` utility to apply the changes directly into Kubernetes. 
 
 ```shell
@@ -63,7 +63,7 @@ Open the **k9s** utility and see if the pods are starting.
 
 When everything has restarted, log out as `admin`. You should now be redirected to the Digital.ai Platform log in screen.
 
-Use the following credentials, those were the same as you used to log in to Digital.ai Platform before to create the OIDC client.
+Use the following credentials, the same as you used to log in to Digital.ai Platform.
 
 * **Username:** `admin-devops-demo.digital.ai`
 * **Password:** _ask in workshop_
