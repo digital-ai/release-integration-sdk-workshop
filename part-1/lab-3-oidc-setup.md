@@ -67,3 +67,7 @@ Use the following credentials, the same as you used to log in to Digital.ai Plat
 
 * **Username:** `admin-devops-demo.digital.ai`
 * **Password:** _ask in workshop_
+
+---
+
+[Next](../part-1/lab-4-clean-release.md)

@@ -402,3 +402,7 @@ To check the password, you can get it with the command from the helm info (usern
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
 ```
+
+---
+
+[Next](../part-2/lab-6-clean-deploy.md)

@@ -205,3 +205,7 @@ Clean finished successfully!
 The clean process is cleaning everything from the cluster. For each resource it is asking for confirmation before delete.
 
 For the other questions and answers details check [XL Kube Command Reference](https://docs.digital.ai/bundle/devops-deploy-version-v.22.3/page/deploy/operator/xl-kube.html#xl-kube-clean)
+
+---
+
+[Next](../part-3/lab-7-troubleshoot.md)

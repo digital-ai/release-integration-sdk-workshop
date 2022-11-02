@@ -62,3 +62,8 @@ The `xl`command version 22.3.2 should be in the path. Check this with the follow
 ```shell
 xl version
 ```
+
+---
+
+[Next](../part-1/lab-1-install-release.md)
+

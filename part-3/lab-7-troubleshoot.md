@@ -588,3 +588,8 @@ kubectl rollout restart sts dai-xld-ns-yourname-digitalai-deploy-worker -n ns-yo
 
 Check finished successfully!
 ```
+
+---
+
+[Next](../part-3/lab-8-change-configuration-file.md)
+

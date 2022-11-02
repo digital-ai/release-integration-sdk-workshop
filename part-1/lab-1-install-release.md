@@ -398,3 +398,6 @@ The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need t
 127.0.0.1 ns-yourname-xlr.local
 ```
 
+---
+
+[Next](../part-1/lab-2-upgrade-release.md)

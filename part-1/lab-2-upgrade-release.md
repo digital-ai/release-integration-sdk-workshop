@@ -144,3 +144,7 @@ xl kube check --skip-collecting --skip-prompts --wait-for-ready 5
 ```
 
 When done, reload Release in the browser and check the version number again. It should now be **Version 22.3.1**
+
+---
+
+[Next](../part-1/lab-3-oidc-setup.md)

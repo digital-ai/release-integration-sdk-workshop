@@ -86,3 +86,7 @@ Clean finished successfully!
 The clean process is cleaning everything from the cluster. 
 
 For the other questions and answers details check [XL Kube Command Reference](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-kube.html#xl-kube-clean)
+
+---
+
+[Next](../part-2/lab-5-install-deploy.md)
