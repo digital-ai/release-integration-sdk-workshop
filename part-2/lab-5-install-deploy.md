@@ -55,13 +55,13 @@ For the example use following answers (example on the Azure):
 ? Provide license file for the server: ./xld-license.lic
 ? Select source of the repository keystore: generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
 ? Provide keystore passphrase: 1uwAFCtUJEdwmaDi
-? Provide storage class for the server: azure-aks-test-cluster-file-storage-class
+? Provide storage class for the server: xl-kube-workshop-file-storage-class
 ? Do you want to install a new PostgreSQL on the cluster: Yes
-? Provide Storage Class to be defined for PostgreSQL: azure-aks-test-cluster-disk-storage-class
+? Provide Storage Class to be defined for PostgreSQL: xl-kube-workshop-disk-storage-class
 ? Provide PVC size for PostgreSQL (Gi): 1
 ? Do you want to install a new RabbitMQ on the cluster: Yes
 ? Replica count to be defined for RabbitMQ: 1
-? Storage Class to be defined for RabbitMQ: azure-aks-test-cluster-file-storage-class
+? Storage Class to be defined for RabbitMQ: xl-kube-workshop-file-storage-class
 ? Provide PVC size for RabbitMQ (Gi): 1
 
 ...
@@ -177,7 +177,7 @@ Under `--files` we are using the reference on the previous dry-run by using part
 
 ```text
 $ xl kube install --files 20221020-001911 --local-repo ./xl-op-blueprints
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 TODO
 ```
 
@@ -206,7 +206,7 @@ Example is on the Azure.
 
 ```text
 $ xl kube check --wait-for-ready 5 --skip-collecting
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace

@@ -37,8 +37,8 @@ Before we kick it off, let's get our ducks in a row
 - Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `digitalai-yourname`. Everytime you encounter `digitalai-yourname`, replace it with your own namespace, for example `digitalai-alice`.
 - When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `release.digitalai-yourname.northcentralus.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `release.digitalai-yourname.local`. 
 - On Azure we use two custom storage classes.They already exist on the cluster:
-  - `azure-aks-test-cluster-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
-  - `azure-aks-test-cluster-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
+  - `xl-kube-workshop-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
+  - `xl-kube-workshop-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
 
 Now let's get started!
 
@@ -52,7 +52,7 @@ _The following example is for Azure. For minikube / Docker Desktop choose 'Plain
 
 ```text
 $ xl kube install
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? 
+? Following kubectl context will be used during execution: `xl-kube-workshop`? 
 » Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
 »⚠️ AzureAKS [Azure AKS]
@@ -96,11 +96,11 @@ $ xl kube install
 ? Provide keystore passphrase: 
 » gdbzzXny7Mocuksl
 ? Provide storage class for the server: 
-»⚠️ azure-aks-test-cluster-file-storage-class
+»⚠️ xl-kube-workshop-file-storage-class
 ? Do you want to install a new PostgreSQL on the cluster: 
 » Yes
 ? Provide Storage Class to be defined for PostgreSQL: 
-»⚠️ azure-aks-test-cluster-disk-storage-class
+»⚠️ xl-kube-workshop-disk-storage-class
 ? Provide PVC size for PostgreSQL (Gi): 
 »⚠️ 1
 ? Do you want to install a new RabbitMQ on the cluster: 
@@ -108,7 +108,7 @@ $ xl kube install
 ? Replica count to be defined for RabbitMQ: 
 »⚠️ 1
 ? Storage Class to be defined for RabbitMQ: 
-»⚠️ azure-aks-test-cluster-file-storage-class
+»⚠️ xl-kube-workshop-file-storage-class
 ? Provide PVC size for RabbitMQ (Gi): 
 »⚠️ 1
 	 -------------------------------- ----------------------------------------------------
@@ -138,17 +138,17 @@ $ xl kube install
 	| OperatorImageReleaseGeneric    | xebialabs/release-operator:22.2.4                  |
 	| OsType                         | darwin                                             |
 	| PostgresqlPvcSize              | 1                                                  |
-	| PostgresqlStorageClass         | azure-aks-test-cluster-disk-storage-class          |
+	| PostgresqlStorageClass         | xl-kube-workshop-disk-storage-class          |
 	| ProcessType                    | install                                            |
 	| PvcSizeRelease                 | 1                                                  |
 	| RabbitmqPvcSize                | 1                                                  |
 	| RabbitmqReplicaCount           | 1                                                  |
-	| RabbitmqStorageClass           | azure-aks-test-cluster-file-storage-class          |
+	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class          |
 	| RepositoryKeystoreSource       | generate                                           |
 	| RepositoryName                 | xebialabs                                          |
 	| ServerType                     | dai-release                                        |
 	| ShortServerName                | xlr                                                |
-	| StorageClass                   | azure-aks-test-cluster-file-storage-class          |
+	| StorageClass                   | xl-kube-workshop-file-storage-class          |
 	| UseCustomNamespace             | true                                               |
 	| XlrReplicaCount                | 2                                                  |
 	 -------------------------------- ----------------------------------------------------
@@ -240,7 +240,7 @@ After asking the questions of what you want to check, this will wait 5 minutes f
 
 ```text
 $ xl kube check --wait-for-ready 5 --skip-collecting
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: digitalai-yourname

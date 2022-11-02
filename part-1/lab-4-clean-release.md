@@ -16,7 +16,7 @@ The following example deletes installed resources along with PVC. Only the CRD r
 
 ```text
 ? xl kube clean
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? 
+? Following kubectl context will be used during execution: `xl-kube-workshop`? 
 » Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
 » AzureAKS [Azure AKS]

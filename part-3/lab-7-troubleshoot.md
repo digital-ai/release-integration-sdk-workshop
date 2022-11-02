@@ -7,7 +7,7 @@ We will now try to detect and correct problems that can happen during installati
 
 Do installation with following errors:
 - not existing operator image: xebialabs/deploy-operator:22.3.X
-- wrong storage class on the postgresql PVC, we will use azure-aks-test-cluster-file-storage-class, that is not required block storage
+- wrong storage class on the postgresql PVC, we will use xl-kube-workshop-file-storage-class, that is not required block storage
 
 ```shell
 xl kube install
@@ -15,7 +15,7 @@ xl kube install
 
 ```text
 $ xl kube install
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
@@ -41,13 +41,13 @@ $ xl kube install
 ? Provide license file for the server: ./xld-license.lic
 ? Select source of the repository keystore: generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
 ? Provide keystore passphrase: HEXRzENbwPvn85YB
-? Provide storage class for the server: azure-aks-test-cluster-file-storage-class
+? Provide storage class for the server: xl-kube-workshop-file-storage-class
 ? Do you want to install a new PostgreSQL on the cluster: Yes
-? Provide Storage Class to be defined for PostgreSQL: azure-aks-test-cluster-file-storage-class
+? Provide Storage Class to be defined for PostgreSQL: xl-kube-workshop-file-storage-class
 ? Provide PVC size for PostgreSQL (Gi): 1
 ? Do you want to install a new RabbitMQ on the cluster: Yes
 ? Replica count to be defined for RabbitMQ: 1
-? Storage Class to be defined for RabbitMQ: azure-aks-test-cluster-file-storage-class
+? Storage Class to be defined for RabbitMQ: xl-kube-workshop-file-storage-class
 ? Provide PVC size for RabbitMQ (Gi): 1
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
@@ -78,19 +78,19 @@ $ xl kube install
 	| OperatorImageDeployGeneric     | xebialabs/deploy-operator:22.3.X                   |
 	| OsType                         | darwin                                             |
 	| PostgresqlPvcSize              | 1                                                  |
-	| PostgresqlStorageClass         | azure-aks-test-cluster-file-storage-class          |
+	| PostgresqlStorageClass         | xl-kube-workshop-file-storage-class          |
 	| ProcessType                    | install                                            |
 	| PvcSizeCc                      | 0.500000                                           |
 	| PvcSizeDeploy                  | 1                                                  |
 	| PvcSizeDeployTaskEngine        | 1                                                  |
 	| RabbitmqPvcSize                | 1                                                  |
 	| RabbitmqReplicaCount           | 1                                                  |
-	| RabbitmqStorageClass           | azure-aks-test-cluster-file-storage-class          |
+	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class          |
 	| RepositoryKeystoreSource       | generate                                           |
 	| RepositoryName                 | xebialabs                                          |
 	| ServerType                     | dai-deploy                                         |
 	| ShortServerName                | xld                                                |
-	| StorageClass                   | azure-aks-test-cluster-file-storage-class          |
+	| StorageClass                   | xl-kube-workshop-file-storage-class          |
 	| UseCustomNamespace             | true                                               |
 	| XldMasterCount                 | 2                                                  |
 	| XldWorkerCount                 | 2                                                  |
@@ -133,7 +133,7 @@ Here is example of the running that line:
 
 ```text
 ? xl kube check --wait-for-ready 1 --skip-collecting
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
@@ -227,7 +227,7 @@ xl kube install --answers digitalai/generated_answers_dai-deploy_my-namespace_in
 
 ```text
 $ xl kube install --answers digitalai/generated_answers_dai-deploy_my-namespace_install-20221031-230614.yaml
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
@@ -257,19 +257,19 @@ $ xl kube install --answers digitalai/generated_answers_dai-deploy_my-namespace_
 	| OperatorImageDeployGeneric     | xebialabs/deploy-operator:22.3.1                   |
 	| OsType                         | darwin                                             |
 	| PostgresqlPvcSize              | 1                                                  |
-	| PostgresqlStorageClass         | azure-aks-test-cluster-file-storage-class          |
+	| PostgresqlStorageClass         | xl-kube-workshop-file-storage-class          |
 	| ProcessType                    | install                                            |
 	| PvcSizeCc                      | 0.500000                                           |
 	| PvcSizeDeploy                  | 1                                                  |
 	| PvcSizeDeployTaskEngine        | 1                                                  |
 	| RabbitmqPvcSize                | 1                                                  |
 	| RabbitmqReplicaCount           | 1                                                  |
-	| RabbitmqStorageClass           | azure-aks-test-cluster-file-storage-class          |
+	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class          |
 	| RepositoryKeystoreSource       | generate                                           |
 	| RepositoryName                 | xebialabs                                          |
 	| ServerType                     | dai-deploy                                         |
 	| ShortServerName                | xld                                                |
-	| StorageClass                   | azure-aks-test-cluster-file-storage-class          |
+	| StorageClass                   | xl-kube-workshop-file-storage-class          |
 	| UseCustomNamespace             | true                                               |
 	| XldMasterCount                 | 2                                                  |
 	| XldWorkerCount                 | 2                                                  |
@@ -333,7 +333,7 @@ Here is example of running that command:
 
 ```text
 $ xl kube check --wait-for-ready 1 --skip-collecting --answers digitalai/generated_answers_dai-deploy_my-namespace_check-20221031-231543.yaml
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
@@ -414,13 +414,13 @@ So PVC's storage class is not correct. We can again edit same answers file and c
 From:
 
 ```
-PostgresqlStorageClass: 'azure-aks-test-cluster-file-storage-class'
+PostgresqlStorageClass: 'xl-kube-workshop-file-storage-class'
 ```
 
 To
 
 ```
-PostgresqlStorageClass: 'azure-aks-test-cluster-disk-storage-class'
+PostgresqlStorageClass: 'xl-kube-workshop-disk-storage-class'
 ```
 
 Repeat installation with answers file, but clean before, because storage class cannot be updated on the PVC and use `--skip-prompts` to avoid answering all checks.
@@ -467,19 +467,19 @@ xl kube install --skip-prompts --answers digitalai/generated_answers_dai-deploy_
 	| OperatorImageDeployGeneric     | xebialabs/deploy-operator:22.3.1                   |
 	| OsType                         | darwin                                             |
 	| PostgresqlPvcSize              | 1                                                  |
-	| PostgresqlStorageClass         | azure-aks-test-cluster-disk-storage-class          |
+	| PostgresqlStorageClass         | xl-kube-workshop-disk-storage-class          |
 	| ProcessType                    | install                                            |
 	| PvcSizeCc                      | 0.500000                                           |
 	| PvcSizeDeploy                  | 1                                                  |
 	| PvcSizeDeployTaskEngine        | 1                                                  |
 	| RabbitmqPvcSize                | 1                                                  |
 	| RabbitmqReplicaCount           | 1                                                  |
-	| RabbitmqStorageClass           | azure-aks-test-cluster-file-storage-class          |
+	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class          |
 	| RepositoryKeystoreSource       | generate                                           |
 	| RepositoryName                 | xebialabs                                          |
 	| ServerType                     | dai-deploy                                         |
 	| ShortServerName                | xld                                                |
-	| StorageClass                   | azure-aks-test-cluster-file-storage-class          |
+	| StorageClass                   | xl-kube-workshop-file-storage-class          |
 	| UseCustomNamespace             | true                                               |
 	| XldMasterCount                 | 2                                                  |
 	| XldWorkerCount                 | 2                                                  |

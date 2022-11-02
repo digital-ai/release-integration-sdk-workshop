@@ -16,7 +16,7 @@ With following example we are deleting installed resources along with PVC, only 
 
 ```text
 $ xl kube clean
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
@@ -108,7 +108,7 @@ Deleted pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-worker-0 from namespa
 ? Do you want to delete the resource pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-worker-1: Yes
 Deleted pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-worker-1 from namespace my-namespace
 Clean finished successfully!❯ xl kube clean
-? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
+? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
