@@ -30,6 +30,9 @@ xl kube install --dry-run --local-repo ./xl-op-blueprints
 
 For the example use following answers (example on the Azure):
 
+For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
+When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`.
+
 ```text
 ? Following kubectl context will be used during execution: `minikube`? 
 » Yes
@@ -402,6 +405,35 @@ To check the password, you can get it with the command from the helm info (usern
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
 ```
+
+## Set up 'DNS' on localhost for Minikube / Docker Desktop
+
+When using a local kube cluster, we need to edit the local `hosts` file and add your host name here.
+
+The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
+
+After adding the changes to the `hosts` file, go to [https://ns-yourname-xld.local](https://ns-yourname-xld.local)
+
+## Linux / Macos
+
+```shell
+sudo vi /etc/hosts
+```
+
+Add following line somewhere:
+
+```text
+127.0.0.1 ns-yourname-xld.local
+```
+
+## Windows
+
+The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line.
+
+```text
+127.0.0.1 ns-yourname-xld.local
+```
+
 
 ---
 

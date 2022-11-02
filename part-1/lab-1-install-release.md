@@ -35,7 +35,7 @@ Before we kick it off, let's get our ducks in a row
 - We are installing 22.2.4 version of Release. Later in the workshop we will upgrade it to 22.3.1
 - The license files will be provided during the workshop and need to be saved in the working directory.
 - Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `ns-yourname`. Everytime you encounter `ns-yourname`, replace it with your own namespace, for example `ns-alice`. The namespace total length needs to be below 12 characters. Namespace will be created during first installation.  
-- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `ns-yourname-xlr.westus2.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`. 
+- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `ns-yourname-xlr.westus2.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`.
 - On Azure we use two custom storage classes.They already exist on the cluster:
   - `xl-kube-workshop-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
   - `xl-kube-workshop-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
@@ -50,7 +50,7 @@ In order not to overstretch thr cluster during our workshop, please make sure to
 
 For more details on the questions and answers, check our documentation:  [Installation Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-install-wizard-release.html)
 
-_The following example is for Azure. For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes._
+_The following example is for Azure. For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
 
 ```text
 $ xl kube install
