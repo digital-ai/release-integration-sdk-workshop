@@ -35,7 +35,7 @@ Before we kick it off, let's get our ducks in a row
 - We are installing 22.2.4 version of Release. Later in the workshop we will upgrade it to 22.3.1
 - The license files will be provided during the workshop and need to be saved in the working directory.
 - Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `ns-yourname`. Everytime you encounter `ns-yourname`, replace it with your own namespace, for example `ns-alice`. The namespace total length needs to be below 12 characters. Namespace will be created during first installation.  
-- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `release.ns-yourname.northcentralus.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `release.ns-yourname.local`. 
+- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `ns-yourname-xlr.westus2.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`. 
 - On Azure we use two custom storage classes.They already exist on the cluster:
   - `xl-kube-workshop-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
   - `xl-kube-workshop-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
@@ -83,7 +83,7 @@ $ xl kube install
 ? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
 » No
 ? Provide DNS name for accessing UI of the server: 
-»⚠️ release.ns-yourname.northcentralus.cloudapp.azure.com
+»⚠️ ns-yourname-xlr.westus2.cloudapp.azure.com
 ? Provide administrator password: 
 » 9M8KgUmLFp5KceHl
 ? Type of the OIDC configuration: 
@@ -127,30 +127,30 @@ $ xl kube install
 	| GenerationDateTime             | 20221031-131244                                    |
 	| ImageNameRelease               | xl-release                                         |
 	| ImageTag                       | 22.2.4                                             |
-	| IngressHost                    | release.ns-yourname.northcentralus.cloudapp.azure.com |
+	| IngressHost                    | ns-yourname-xlr.westus2.cloudapp.azure.com         |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | gdbzzXny7Mocuksl                                   |
 	| License                        | LS0tIExpY2Vuc2UgLS0tCkxpY2Vuc2UgdmVyc2lvbjogNApQ.. |
 	| LicenseFile                    | ./xlr-license.lic                                  |
 	| LicenseSource                  | file                                               |
-	| Namespace                      | ns-yourname                                       |
+	| Namespace                      | ns-yourname                                        |
 	| OidcConfigType                 | no-oidc                                            |
 	| OidcConfigTypeInstall          | no-oidc                                            |
 	| OperatorImageReleaseGeneric    | xebialabs/release-operator:22.2.4                  |
 	| OsType                         | darwin                                             |
 	| PostgresqlPvcSize              | 1                                                  |
-	| PostgresqlStorageClass         | xl-kube-workshop-disk-storage-class          |
+	| PostgresqlStorageClass         | xl-kube-workshop-disk-storage-class                |
 	| ProcessType                    | install                                            |
 	| PvcSizeRelease                 | 1                                                  |
 	| RabbitmqPvcSize                | 1                                                  |
 	| RabbitmqReplicaCount           | 1                                                  |
-	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class          |
+	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class                |
 	| RepositoryKeystoreSource       | generate                                           |
 	| RepositoryName                 | xebialabs                                          |
 	| ServerType                     | dai-release                                        |
 	| ShortServerName                | xlr                                                |
-	| StorageClass                   | xl-kube-workshop-file-storage-class          |
+	| StorageClass                   | xl-kube-workshop-file-storage-class                |
 	| UseCustomNamespace             | true                                               |
 	| XlrReplicaCount                | 2                                                  |
 	 -------------------------------- ----------------------------------------------------
@@ -289,7 +289,7 @@ REVISION: 1
 TEST SUITE: None
 NOTES:
 ## To get the application URL, run:
-http://release.ns-yourname.northcentralus.cloudapp.azure.com/
+http://ns-yourname-xlr.westus2.cloudapp.azure.com/
 
 ## To get the admin password for xl-release, run:
 kubectl get secret --namespace ns-yourname dai-xlr-ns-yourname-digitalai-release -o jsonpath="{.data.release-password}" | base64 --decode; echo
@@ -315,7 +315,7 @@ Check finished successfully!
 
 ## Discover how to open the page and login
 
-We have not configured the DNS, so we can't access the public URL yet: `http://release.ns-yourname.northcentralus.cloudapp.azure.com/`.
+We have not configured the DNS, so we can't access the public URL yet: `http://ns-yourname-xlr.westus2.cloudapp.azure.com/`.
 
 However, we can connect directly to the Release via service port forwarding.  
 ```shell
@@ -365,7 +365,7 @@ Apply the edited file to Kubernetes with
 kubectl apply -n ns-yourname -f digitalai/dai-release/ns-yourname/20221031-131244/kubernetes/dai-release_cr.yaml
 ```
 
-Now try to open [http://release.ns-yourname.northcentralus.cloudapp.azure.com/](http://release.ns-yourname.northcentralus.cloudapp.azure.com/)
+Now try to open [http://ns-yourname-xlr.westus2.cloudapp.azure.com/](http://ns-yourname-xlr.westus2.cloudapp.azure.com/)
 
 Note: it may take a while for the DNS changes to come through and you may get a 'server not found' page for a while.
 
@@ -376,7 +376,7 @@ When using a local kube cluster, we need to edit the local `hosts` file and add 
 
 The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
 
-After adding the changes to the `hosts` file, go to [https://release.ns-yourname.local](https://release.ns-yourname.local)
+After adding the changes to the `hosts` file, go to [https://ns-yourname-xlr.local](https://ns-yourname-xlr.local)
 
 ## Linux / Macos
 
@@ -387,7 +387,7 @@ sudo vi /etc/hosts
 Add following line somewhere:
 
 ```text
-127.0.0.1 release.ns-yourname.local
+127.0.0.1 ns-yourname-xlr.local
 ```
 
 ## Windows
@@ -395,6 +395,6 @@ Add following line somewhere:
 The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line. 
 
 ```text
-127.0.0.1 release.ns-yourname.local
+127.0.0.1 ns-yourname-xlr.local
 ```
 

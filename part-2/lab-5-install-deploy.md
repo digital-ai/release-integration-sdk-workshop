@@ -68,7 +68,7 @@ For the example use following answers (example on the Azure):
 ? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
 » No
 ? Provide DNS name for accessing UI of the server: 
-»⚠️ ns-yourname-xld.northcentralus.cloudapp.azure.com
+»⚠️ ns-yourname-xld.westus2.cloudapp.azure.com
 ? Provide administrator password: 
 » 30Q5utfMV6O9wnHF
 ? Type of the OIDC configuration: 
@@ -123,60 +123,71 @@ Dry run will generate the files in the working folder, in the `digitalai/dai-dep
 Go through generated files and update the image repository.
 There are 3 files that we need to update in the `digitalai/dai-deploy/digitalai/20221020-001911/kubernetes` directory.
 
-The `spec.centralConfiguration.image.repository`, `spec.ServerImageRepository` and `spec.WorkerImageRepository` should have already correct value.
-
 On the private registry we have following images:
 
 <img src="./images/images.png" width="300px" alt="Repositories"/>
 
+#### First create secret in your namespace with registry auth data
+
+```shell
+kubectl create secret docker-registry regcred \
+  --docker-server=azureakstestcluster.azurecr.io \
+  --docker-username=test-pull \
+  --docker-password=qgt4DFDV5ULAZ67UQBv9mtwz/TOhVbPu \
+  -n ns-yourname
+```
 
 #### kubernetes/dai-deploy_cr.yaml
 
 Update following in the file:
 
+- spec.ImagePullSecret: regcred
 - spec.TinyToolsImageRepository: "azureakstestcluster.azurecr.io/xebialabs/tiny-tools"
+
+The `spec.centralConfiguration.image.repository`, `spec.ServerImageRepository` and `spec.WorkerImageRepository` should have already correct value.
 
 ##### If you are using nginx
 
+- spec.nginx-ingress-controller.global.imagePullSecrets: [ "regcred" ]
 - spec.nginx-ingress-controller.defaultBackend.image.registry: azureakstestcluster.azurecr.io
-- spec.nginx-ingress-controller.defaultBackend.image.repository: bitnami/nginx
 - spec.nginx-ingress-controller.image.registry: azureakstestcluster.azurecr.io
-- spec.nginx-ingress-controller.image.repository: bitnami/nginx-ingress-controller
 
 ##### If you are using haproxy
 
+- spec.haproxy-ingress.controller.imagePullSecrets: [ "regcred" ]
 - spec.haproxy-ingress.controller.image.repository: azureakstestcluster.azurecr.io/jcmoraisjr/haproxy-ingress
 
 ##### If you are using embedded keycloak
 
+- spec.keycloak.imagePullSecrets: [ "regcred" ]
 - spec.keycloak.image.repository: azureakstestcluster.azurecr.io/jboss/keycloak
 - spec.keycloak.postgresql.image.registry: azureakstestcluster.azurecr.io
-- spec.keycloak.postgresql.image.repository: bitnami/postgresql
 
 ##### If you are using embedded postgresql
 
+- spec.postgresql.global.imagePullSecrets: [ "regcred" ]
 - spec.postgresql.image.registry: azureakstestcluster.azurecr.io
-- spec.postgresql.image.repository: bitnami/postgresql
 
 ##### If you are using embedded rabbitmq
 
+- spec.rabbitmq.global.imagePullSecrets: [ "regcred" ]
 - spec.rabbitmq.image.registry: azureakstestcluster.azurecr.io
-- spec.rabbitmq.image.repository: bitnami/rabbitmq
 - spec.rabbitmq.volumePermissions.image.registry: azureakstestcluster.azurecr.io
-- spec.rabbitmq.volumePermissions.image.repository: bitnami/bitnami-shell
 
 #### kubernetes/template/deployment.yaml
 
 Update following in the file:
 
+- spec.template.spec.imagePullSecrets[0].name: regcred
 - spec.template.spec.containers[0].image: azureakstestcluster.azurecr.io/kubebuilder/kube-rbac-proxy:v0.8.0
 
 The `spec.template.spec.containers[1].image` should have already correct value.
 
-#### kubernetes/template/postgresql-init-keycloak-db.yaml
+#### kubernetes/template/postgresql-init-keycloak-db.yaml - only in case of upgrade
 
 Update following in the file:
 
+- spec.template.spec.imagePullSecrets[0].name: regcred
 - spec.template.spec.initContainers[0].image: azureakstestcluster.azurecr.io/xebialabs/tiny-tools:22.2.0
 - spec.template.spec.containers[0].image: azureakstestcluster.azurecr.io/xebialabs/tiny-tools:22.2.0
 
@@ -214,9 +225,71 @@ Under `--files` we are using the reference on the previous dry-run by using part
 ```text
 $ xl kube install --files 20221020-001911 --local-repo ./xl-op-blueprints
 ? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
-TODO
+	 -------------------------------- ----------------------------------------------------
+	| LABEL                          | VALUE                                              |
+	 -------------------------------- ----------------------------------------------------
+	| AccessModeDeploy               | ReadWriteOnce                                      |
+	| AdminPassword                  | nwOgq4l9J5PxQtLy                                   |
+	| CleanBefore                    | false                                              |
+	| CreateNamespace                | true                                               |
+	| EnableIngressTls               | false                                              |
+	| EnablePostgresql               | true                                               |
+	| EnableRabbitmq                 | true                                               |
+	| ExternalOidcConf               | external: false                                    |
+	| GenerationDateTime             | 20221020-001911                                    |
+	| ImageNameCc                    | central-configuration                              |
+	| ImageNameDeploy                | xl-deploy                                          |
+	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
+	| ImageTag                       | 22.3.1                                             |
+	| IngressHost                    | ns-vedran-xld.westus2.cloudapp.azure.com    |
+	| IngressType                    | nginx                                              |
+	| K8sSetup                       | AzureAKS                                           |
+	| KeystorePassphrase             | LZtrjXiW39rlDY37                                   |
+	| License                        | LS0tIExpY2Vuc2UgLS0tCkxpY2Vuc2UgdmVyc2lvbjogMwpQ.. |
+	| LicenseFile                    | ./xld-license.lic                                  |
+	| LicenseSource                  | file                                               |
+	| Namespace                      | ns-yourname                                       |
+	| OidcConfigType                 | no-oidc                                            |
+	| OidcConfigTypeInstall          | no-oidc                                            |
+	| OperatorImageDeployGeneric     | azureakstestcluster.azurecr.io/xebialabs/deploy-.. |
+	| OsType                         | darwin                                             |
+	| PostgresqlPvcSize              | 1                                                  |
+	| PostgresqlStorageClass         | xl-kube-workshop-disk-storage-class                |
+	| ProcessType                    | install                                            |
+	| PvcSizeCc                      | 0.500000                                           |
+	| PvcSizeDeploy                  | 1                                                  |
+	| PvcSizeDeployTaskEngine        | 1                                                  |
+	| RabbitmqPvcSize                | 1                                                  |
+	| RabbitmqReplicaCount           | 1                                                  |
+	| RabbitmqStorageClass           | xl-kube-workshop-file-storage-class                |
+	| RepositoryKeystoreSource       | generate                                           |
+	| RepositoryName                 | azureakstestcluster.azurecr.io/xebialabs           |
+	| ServerType                     | dai-deploy                                         |
+	| ShortServerName                | xld                                                |
+	| StorageClass                   | xl-kube-workshop-file-storage-class                |
+	| UseCustomNamespace             | true                                               |
+	| XldMasterCount                 | 2                                                  |
+	| XldWorkerCount                 | 2                                                  |
+	 -------------------------------- ----------------------------------------------------
+? Do you want to proceed to the deployment with these values? Yes
+For current process files will be generated in the: digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes
+Generated answers file successfully: digitalai/generated_answers_dai-deploy_ns-yourname_install-20221020-001911.yaml
+Starting 'install' processing and will use generated files from reference install 20221020-001911 with files from digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes.
+? Do you want to apply resources from previos run '20221020-001911': Yes
+Applying resources to the cluster!
+Applied resource clusterrole/ns-yourname-xld-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-digital-proxy-role.yaml
+Applied resource clusterrole/ns-yourname-xld-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-manager-role.yaml
+Applied resource clusterrole/ns-yourname-xld-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource service/xld-operator-controller-manager-metrics-service from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/controller-manager-metrics-service.yaml
+Applied resource customresourcedefinition/digitalaideploys.xld.digital.ai from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/custom-resource-definition.yaml
+Applied resource deployment/xld-operator-controller-manager from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/deployment.yaml
+Applied resource role/xld-operator-leader-election-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/leader-election-role.yaml
+Applied resource rolebinding/xld-operator-leader-election-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/leader-election-rolebinding.yaml
+Applied resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/manager-rolebinding.yaml
+Applied resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/proxy-rolebinding.yaml
+Applied resource digitalaideploy/dai-xld-ns-yourname from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml
+Install finished successfully!
 ```
-
 
 After everything is on the cluster, you will see operator other resources pods running on the cluster.
 
@@ -295,7 +368,7 @@ REVISION: 1
 TEST SUITE: None
 NOTES:
 ## To get the application URL, run:
-http://ns-yourname-xld.northcentralus.cloudapp.azure.com/
+http://ns-yourname-xld.westus2.cloudapp.azure.com/
 
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
@@ -322,7 +395,7 @@ Check finished successfully!
 
 ## Discover how to open the page and login
 
-Now try to open [http://ns-yourname-xld.northcentralus.cloudapp.azure.com/](http://ns-yourname-xld.northcentralus.cloudapp.azure.com/)
+Now try to open [http://ns-yourname-xld.westus2.cloudapp.azure.com/](http://ns-yourname-xld.westus2.cloudapp.azure.com/)
 
 To check the password, you can get it with the command from the helm info (username is as always `admin`):
 ```shell

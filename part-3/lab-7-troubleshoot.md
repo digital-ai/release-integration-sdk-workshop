@@ -33,7 +33,7 @@ $ xl kube install
 ? Enter PVC size for Central Configuration (Gi): 0.500000
 ? Select between supported ingress types: nginx [NGINX]
 ? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): No
-? Provide DNS name for accessing UI of the server: ns-yourname-xld.northcentralus.cloudapp.azure.com
+? Provide DNS name for accessing UI of the server: ns-yourname-xld.westus2.cloudapp.azure.com
 ? Provide administrator password: ARTLY8Qgl6FPLXN7
 ? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
 ? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): xebialabs/deploy-operator:22.3.X
@@ -65,7 +65,7 @@ $ xl kube install
 	| ImageNameDeploy                | xl-deploy                                          |
 	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
 	| ImageTag                       | 22.3.1                                             |
-	| IngressHost                    | ns-yourname-xld.northcentralus.cloudapp.azure.com |
+	| IngressHost                    | ns-yourname-xld.westus2.cloudapp.azure.com |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | HEXRzENbwPvn85YB                                   |
@@ -244,7 +244,7 @@ $ xl kube install --answers digitalai/generated_answers_dai-deploy_ns-yourname_i
 	| ImageNameDeploy                | xl-deploy                                          |
 	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
 	| ImageTag                       | 22.3.1                                             |
-	| IngressHost                    | ns-yourname-xld.northcentralus.cloudapp.azure.com |
+	| IngressHost                    | ns-yourname-xld.westus2.cloudapp.azure.com |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | HEXRzENbwPvn85YB                                   |
@@ -454,7 +454,7 @@ xl kube install --skip-prompts --answers digitalai/generated_answers_dai-deploy_
 	| ImageNameDeploy                | xl-deploy                                          |
 	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
 	| ImageTag                       | 22.3.1                                             |
-	| IngressHost                    | ns-yourname-xld.northcentralus.cloudapp.azure.com |
+	| IngressHost                    | ns-yourname-xld.westus2.cloudapp.azure.com |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | HEXRzENbwPvn85YB                                   |
@@ -564,7 +564,7 @@ REVISION: 1
 TEST SUITE: None
 NOTES:
 ## To get the application URL, run:
-http://ns-yourname-xld.northcentralus.cloudapp.azure.com/
+http://ns-yourname-xld.westus2.cloudapp.azure.com/
 
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
