@@ -46,6 +46,8 @@ Kick off the `xl kube install` command and look closely at the answers below. No
 
 We've marked some of the questions where you need to pay extra attention with a warning sign.
 
+In order not to overstretch thr cluster during our workshop, please make sure to use a maximum of two Release replicas, and tweak the rest of the resources also as indicated below. 
+
 For more details on the questions and answers, check our documentation:  [Installation Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-install-wizard-release.html)
 
 _The following example is for Azure. For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes._

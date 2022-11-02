@@ -22,6 +22,8 @@ Unzip the `xl-op-blueprints-22.3.2.zip` to the working directory and use it with
 
 Run the installation with `--dry-run`, that command will just generate the files in the local directory.
 
+In order not to overstretch thr cluster during our workshop, please make sure to use a maximum of two Release replicas, and tweak the rest of the resources also as indicated below.
+
 ```shell
 xl kube install --dry-run --local-repo ./xl-op-blueprints
 ```
@@ -29,40 +31,74 @@ xl kube install --dry-run --local-repo ./xl-op-blueprints
 For the example use following answers (example on the Azure):
 
 ```text
-? Following kubectl context will be used during execution: `minikube`? Yes
-? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: PlainK8s [Plain multi-node K8s cluster]
-? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
-? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
-? Product server you want to perform install for: dai-deploy [Digital.ai Deploy]
-? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): azureakstestcluster.azurecr.io/xebialabs
-? Enter the deploy server image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): xl-deploy
-? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 22.3.1
-? Enter the deploy task engine image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): deploy-task-engine
-? Enter the central configuration image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): central-configuration
-? Enter the deploy master server replica count: 2
-? Enter PVC size for Deploy master (Gi): 1
-? Select between supported Access Modes: ReadWriteOnce [ReadWriteOnce]
-? Enter the deploy worker replica count: 2
-? Enter PVC size for Deploy worker (Gi): 1
-? Enter PVC size for Central Configuration (Gi): 0.500000
-? Select between supported ingress types: nginx [NGINX]
-? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): No
-? Provide DNS name for accessing UI of the server: my-namespace-xld.northcentralus.cloudapp.azure.com
-? Provide administrator password: 30Q5utfMV6O9wnHF
-? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
-? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): azureakstestcluster.azurecr.io/xebialabs/deploy-operator:22.3.1
-? Select source of the license: file [Path to the license file (the file can be in clean text or base64 encoded)]
-? Provide license file for the server: ./xld-license.lic
-? Select source of the repository keystore: generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
-? Provide keystore passphrase: 1uwAFCtUJEdwmaDi
-? Provide storage class for the server: azure-aks-test-cluster-file-storage-class
-? Do you want to install a new PostgreSQL on the cluster: Yes
-? Provide Storage Class to be defined for PostgreSQL: azure-aks-test-cluster-disk-storage-class
-? Provide PVC size for PostgreSQL (Gi): 1
-? Do you want to install a new RabbitMQ on the cluster: Yes
-? Replica count to be defined for RabbitMQ: 1
-? Storage Class to be defined for RabbitMQ: azure-aks-test-cluster-file-storage-class
-? Provide PVC size for RabbitMQ (Gi): 1
+? Following kubectl context will be used during execution: `minikube`? 
+» Yes
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
+» PlainK8s [Plain multi-node K8s cluster]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
+» Yes
+? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
+»⚠️ my-namespace
+? Product server you want to perform install for: 
+»⚠️ dai-deploy [Digital.ai Deploy]
+? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): 
+»⚠️ azureakstestcluster.azurecr.io/xebialabs
+? Enter the deploy server image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+» xl-deploy
+? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 
+» 22.3.1
+? Enter the deploy task engine image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+» deploy-task-engine
+? Enter the central configuration image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+»⚠️ central-configuration
+? Enter the deploy master server replica count: 
+»⚠️ 2
+? Enter PVC size for Deploy master (Gi): 
+»⚠️ 1
+? Select between supported Access Modes: 
+» ReadWriteOnce [ReadWriteOnce]
+? Enter the deploy worker replica count: 
+»⚠️ 2
+? Enter PVC size for Deploy worker (Gi): 
+»⚠️ 1
+? Enter PVC size for Central Configuration (Gi): 
+»⚠️ 0.500000
+? Select between supported ingress types: 
+» nginx [NGINX]
+? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
+» No
+? Provide DNS name for accessing UI of the server: 
+»⚠️ my-namespace-xld.northcentralus.cloudapp.azure.com
+? Provide administrator password: 
+» 30Q5utfMV6O9wnHF
+? Type of the OIDC configuration: 
+» no-oidc [No OIDC Configuration]
+? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): 
+»⚠️ azureakstestcluster.azurecr.io/xebialabs/deploy-operator:22.3.1
+? Select source of the license: 
+» file [Path to the license file (the file can be in clean text or base64 encoded)]
+? Provide license file for the server: 
+» ./xld-license.lic
+? Select source of the repository keystore: 
+» generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
+? Provide keystore passphrase: 
+» 1uwAFCtUJEdwmaDi
+? Provide storage class for the server: 
+»⚠️ azure-aks-test-cluster-file-storage-class
+? Do you want to install a new PostgreSQL on the cluster: 
+» Yes
+? Provide Storage Class to be defined for PostgreSQL: 
+»⚠️ azure-aks-test-cluster-disk-storage-class
+? Provide PVC size for PostgreSQL (Gi): 
+»⚠️ 1
+? Do you want to install a new RabbitMQ on the cluster: 
+» Yes
+? Replica count to be defined for RabbitMQ: 
+»⚠️ 1
+? Storage Class to be defined for RabbitMQ: 
+»⚠️ azure-aks-test-cluster-file-storage-class
+? Provide PVC size for RabbitMQ (Gi): 
+»⚠️ 1
 
 ...
 
