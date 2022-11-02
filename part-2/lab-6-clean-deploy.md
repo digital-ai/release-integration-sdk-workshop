@@ -9,8 +9,8 @@ Run following to clean the cluster from the installed resources:
 xl kube clean
 ```
 
-Note that in case if you are sharing cluster with others, do not delete the CR that is shared between all installations.
-So you need to answer to `Should CRD be reused, if No we will delete the CRD digitalaideploys.xld.digital.ai, and all related CRs will be deleted with it:` with `Yes`.
+⚠️Note that in case if you are sharing cluster with others, do not delete the CR that is shared between all installations.
+So you need to answer always to `Should CRD be reused, if No we will delete the CRD digitalaideploys.xld.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
 
 With following example we are deleting installed resources along with PVC, only CRD remains on the cluster (example on the Azure):
 
@@ -29,7 +29,7 @@ $ xl kube clean
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
 	| CleanBefore                    | false                                              |
-	| CrName                         | dai-xld-ns-yourname                               |
+	| CrName                         | dai-xld-ns-yourname                                |
 	| CrdName                        | digitalaideploys.xld.digital.ai                    |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
@@ -37,7 +37,7 @@ $ xl kube clean
 	| IngressType                    | nginx                                              |
 	| IsCrdReused                    | true                                               |
 	| K8sSetup                       | AzureAKS                                           |
-	| Namespace                      | ns-yourname                                       |
+	| Namespace                      | ns-yourname                                        |
 	| OidcConfigType                 | existing                                           |
 	| OsType                         | darwin                                             |
 	| PreservePvc                    | false                                              |

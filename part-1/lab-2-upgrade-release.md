@@ -11,9 +11,8 @@ xl kube upgrade --skip-prompts
 
 ...and answer all the questions. Some of the questions are repeated from the installation.
 
-In this case we are sharing the cluster with others, so do NOT delete the Custom Resource that is shared between all installations.
-
-Answer the question `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
+⚠️In this case we are sharing the cluster with others, so do NOT delete the Custom Resource that is shared between all installations.
+Answer always the question `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
 
 All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` 
 you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that
@@ -63,7 +62,7 @@ $ xl kube upgrade
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
 	| CleanBefore                    | true                                               |
-	| CrName                         | dai-xlr-ns-yourname                               |
+	| CrName                         | dai-xlr-ns-yourname                                |
 	| CrdName                        | digitalaireleases.xlr.digital.ai                   |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
@@ -73,7 +72,7 @@ $ xl kube upgrade
 	| IngressType                    | nginx                                              |
 	| IsCrdReused                    | true                                               |
 	| K8sSetup                       | AzureAKS                                           |
-	| Namespace                      | ns-yourname                                       |
+	| Namespace                      | ns-yourname                                        |
 	| OidcConfigType                 | no-oidc                                            |
 	| OidcConfigTypeUpgrade          | no-oidc                                            |
 	| OperatorImageReleaseGeneric    | xebialabs/release-operator:22.3.1                  |

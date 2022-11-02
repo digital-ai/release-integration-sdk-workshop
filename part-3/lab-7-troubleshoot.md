@@ -109,6 +109,8 @@ Applied resource clusterrole/ns-yourname-xld-operator-manager-role from the file
 Applied resource clusterrole/ns-yourname-xld-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-metrics-reader.yaml
 Applied resource service/xld-operator-controller-manager-metrics-service from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/controller-manager-metrics-service.yaml
 Applied resource customresourcedefinition/digitalaideploys.xld.digital.ai from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/custom-resource-definition.yaml
+? Do you want to replace the resource customresourcedefinition/digitalaideploys.xld.digital.ai with specification from file
+digitalai/dai-deploy/ns-vedran333/20221102-202805/kubernetes/template/custom-resource-definition.yaml: No
 Applied resource deployment/xld-operator-controller-manager from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/deployment.yaml
 Applied resource role/xld-operator-leader-election-role from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/leader-election-role.yaml
 Applied resource rolebinding/xld-operator-leader-election-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/leader-election-rolebinding.yaml
@@ -181,7 +183,7 @@ Stopping because error during wait for the deployment xld-operator-controller-ma
 ```
 
 As you can see the check failed with final message `Stopping because error during wait for the deployment xld-operator-controller-manager`.
-So we need to check more previous log is there something additionally halpfull.
+So we need to check more previous log is there something additionally helpful.
 One of the notes is
 
     Check the operator pod events with the describe command: kubectl describe pod xld-operator-controller-manager-5757db45fb-4lv8q -n ns-yourname
@@ -407,7 +409,7 @@ postgresql 22:50:03.06 INFO  ==> pg_hba.conf file not detected. Generating it...
 postgresql 22:50:03.06 INFO  ==> Generating local authentication configuration
 ```
 
-After googling the error we can find that postgresql is not working on the current storageclass:
+After googling the error we can find that postgresql is not working on the current StorageClass:
 [https://github.com/bitnami/bitnami-docker-postgresql/issues/285#issuecomment-814925197](https://github.com/bitnami/bitnami-docker-postgresql/issues/285#issuecomment-814925197)
 
 So PVC's storage class is not correct. We can again edit same answers file and change it with correct disk storage class:
@@ -425,14 +427,16 @@ PostgresqlStorageClass: 'xl-kube-workshop-disk-storage-class'
 
 Repeat installation with answers file, but clean before, because storage class cannot be updated on the PVC and use `--skip-prompts` to avoid answering all checks.
 
+⚠️During running next clean command, do not delete CRD because there are other installation that are reusing same CRD!
+
+Cleaning takes some time because we need to wait the pods to timeout initialization.
+
 Run following:
 
 ```shell
 xl kube clean --skip-prompts
 xl kube install --skip-prompts --answers digitalai/generated_answers_dai-deploy_ns-yourname_install-20221031-230614.yaml
 ```
-
-During running clean, do not delete CRD because there are other installation that are reusing same CRD.
 
 Here is example of the installation output:
 
@@ -506,10 +510,10 @@ Applied resource digitalaideploy/dai-xld-ns-yourname from the file digitalai/dai
 Install finished successfully!
 ```
 
-We can now run final check to see if everything is running:
+We can now run final check to see if everything is running OK:
 
 ```text
-xl kube check --skip-prompts --wait-for-ready 1 --skip-collecting --answers digitalai/generated_answers_dai-deploy_ns-yourname_check-20221031-231543.yaml
+xl kube check --skip-prompts --wait-for-ready 5 --skip-collecting --answers digitalai/generated_answers_dai-deploy_ns-yourname_check-20221031-231543.yaml
 ```
 
 Output is now OK:

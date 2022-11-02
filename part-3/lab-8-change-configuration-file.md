@@ -63,3 +63,7 @@ Here we will update the configuration file on the central configuration server. 
     kubectl rollout restart sts dai-xld-digitalai-deploy-master -n digitalai
     kubectl rollout restart sts dai-xld-digitalai-deploy-worker -n digitalai
     ```
+
+---
+
+That's all Folks!

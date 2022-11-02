@@ -9,8 +9,8 @@ Run the following command to clean the cluster from the installed resources:
 xl kube clean --skip-prompts
 ```
 
-Note that in case if you are sharing cluster with others, do not delete the CR that is shared between all installations.
-So you need to answer to `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with `Yes`.
+⚠️Note that in case if you are sharing cluster with others, do not delete the CR that is shared between all installations.
+So you need to answer to `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
 
 The following example deletes installed resources along with PVC. Only the CRD remains on the cluster (example on the Azure):
 
@@ -38,7 +38,7 @@ The following example deletes installed resources along with PVC. Only the CRD r
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
 	| CleanBefore                    | false                                              |
-	| CrName                         | dai-xlr-ns-yourname                               |
+	| CrName                         | dai-xlr-ns-yourname                                |
 	| CrdName                        | digitalaireleases.xlr.digital.ai                   |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
@@ -46,7 +46,7 @@ The following example deletes installed resources along with PVC. Only the CRD r
 	| IngressType                    | nginx                                              |
 	| IsCrdReused                    | true                                               |
 	| K8sSetup                       | AzureAKS                                           |
-	| Namespace                      | ns-yourname                                       |
+	| Namespace                      | ns-yourname                                        |
 	| OidcConfigType                 | existing                                           |
 	| OsType                         | darwin                                             |
 	| PreservePvc                    | false                                              |
