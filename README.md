@@ -1,4 +1,4 @@
-![Release +_Deploy on Kubernetes in minutes!](xl kube install logo.jpg)
+![Release +_Deploy on Kubernetes in minutes!](xl-kube-install-logo.jpg)
 
 Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes cluster using the `xl kube` command line interface.
 
@@ -22,6 +22,7 @@ Optional
 
 ### General remarks
 
+* We will use the Slack channel [#xl-kube-workshop](https://digitalai.slack.com/archives/C0491D8G9MK) for communication
 * `xl something --help` is your friend! For example: `xl kube install --help`
 * Passwords are not in this repo. Ask workshop teachers for the needed credentials.
 

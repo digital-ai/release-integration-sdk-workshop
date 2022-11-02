@@ -23,7 +23,7 @@ The following example deletes installed resources along with PVC. Only the CRD r
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): 
 » Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
-» digitalai-yourname
+» ns-yourname
 ? Product server you want to perform clean for: 
 » dai-release [Digital.ai Release]
 ? Enter the name of custom resource definition you want to reuse or replace: 
@@ -31,14 +31,14 @@ The following example deletes installed resources along with PVC. Only the CRD r
 ? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it: 
 »⚠️ Yes
 ? Enter the name of custom resource: 
-» dai-xlr-digitalai-yourname
+» dai-xlr-ns-yourname
 ? Should we preserve persisted volume claims? If not all volume data will be lost: 
 » No
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
 	| CleanBefore                    | false                                              |
-	| CrName                         | dai-xlr-digitalai-yourname                               |
+	| CrName                         | dai-xlr-ns-yourname                               |
 	| CrdName                        | digitalaireleases.xlr.digital.ai                   |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
@@ -46,7 +46,7 @@ The following example deletes installed resources along with PVC. Only the CRD r
 	| IngressType                    | nginx                                              |
 	| IsCrdReused                    | true                                               |
 	| K8sSetup                       | AzureAKS                                           |
-	| Namespace                      | digitalai-yourname                                       |
+	| Namespace                      | ns-yourname                                       |
 	| OidcConfigType                 | existing                                           |
 	| OsType                         | darwin                                             |
 	| PreservePvc                    | false                                              |
@@ -56,30 +56,30 @@ The following example deletes installed resources along with PVC. Only the CRD r
 	| UseCustomNamespace             | true                                               |
 	 -------------------------------- ----------------------------------------------------
 ? Do you want to proceed to the deployment with these values? Yes
-For current process files will be generated in the: digitalai/dai-release/digitalai-yourname/20221031-154651/kubernetes
-Generated answers file successfully: digitalai/generated_answers_dai-release_digitalai-yourname_clean-20221031-154651.yaml
+For current process files will be generated in the: digitalai/dai-release/ns-yourname/20221031-154651/kubernetes
+Generated answers file successfully: digitalai/generated_answers_dai-release_ns-yourname_clean-20221031-154651.yaml
 Cleaning the resources on the cluster!
-CR dai-xlr-digitalai-yourname is available, deleting
-Deleted digitalaireleases.xlr.digital.ai/dai-xlr-digitalai-yourname from namespace digitalai-yourname
+CR dai-xlr-ns-yourname is available, deleting
+Deleted digitalaireleases.xlr.digital.ai/dai-xlr-ns-yourname from namespace ns-yourname
 Deleting statefulsets
 Deleting deployments
-Deleted deployment/xlr-operator-controller-manager from namespace digitalai-yourname
+Deleted deployment/xlr-operator-controller-manager from namespace ns-yourname
 Deleting jobs
 Deleting services
-Deleted svc/xlr-operator-controller-manager-metrics-service from namespace digitalai-yourname
+Deleted svc/xlr-operator-controller-manager-metrics-service from namespace ns-yourname
 Deleting secrets
 Deleting roles
-Deleted role/xlr-operator-leader-election-role from namespace digitalai-yourname
-Deleted clusterrole/release.digitalai-yourname-operator-manager-role from namespace digitalai-yourname
-Deleted clusterrole/release.digitalai-yourname-operator-metrics-reader from namespace digitalai-yourname
-Deleted clusterrole/release.digitalai-yourname-operator-proxy-role from namespace digitalai-yourname
-Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace digitalai-yourname
-Deleted clusterrolebinding/release.digitalai-yourname-operator-manager-rolebinding from namespace digitalai-yourname
-Deleted clusterrolebinding/release.digitalai-yourname-operator-proxy-rolebinding from namespace digitalai-yourname
+Deleted role/xlr-operator-leader-election-role from namespace ns-yourname
+Deleted clusterrole/release.ns-yourname-operator-manager-role from namespace ns-yourname
+Deleted clusterrole/release.ns-yourname-operator-metrics-reader from namespace ns-yourname
+Deleted clusterrole/release.ns-yourname-operator-proxy-role from namespace ns-yourname
+Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace ns-yourname
+Deleted clusterrolebinding/release.ns-yourname-operator-manager-rolebinding from namespace ns-yourname
+Deleted clusterrolebinding/release.ns-yourname-operator-proxy-rolebinding from namespace ns-yourname
 Deleting PVCs
-Deleted pvc/dai-xlr-digitalai-yourname-digitalai-release from namespace digitalai-yourname
-Deleted pvc/data-dai-xlr-digitalai-yourname-postgresql-0 from namespace digitalai-yourname
-Deleted pvc/data-dai-xlr-digitalai-yourname-rabbitmq-0 from namespace digitalai-yourname
+Deleted pvc/dai-xlr-ns-yourname-digitalai-release from namespace ns-yourname
+Deleted pvc/data-dai-xlr-ns-yourname-postgresql-0 from namespace ns-yourname
+Deleted pvc/data-dai-xlr-ns-yourname-rabbitmq-0 from namespace ns-yourname
 Clean finished successfully!
 ```
 

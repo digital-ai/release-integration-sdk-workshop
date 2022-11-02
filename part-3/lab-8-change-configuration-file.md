@@ -12,7 +12,7 @@ Here we will update the configuration file on the central configuration server. 
    `/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template` in master pod.
 
     ```shell
-    kubectl cp digitalai/dai-xld-my-namespace-deploy-cc-server-0:/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template .
+    kubectl cp digitalai/dai-xld-ns-yourname-deploy-cc-server-0:/opt/xebialabs/central-configuration-server/central-conf/deploy-server.yaml.template .
     ```
 
 2. Update the CR file or CR on the cluster

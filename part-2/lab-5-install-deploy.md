@@ -1,7 +1,7 @@
 
 # Lab 5 - Install Deploy with –files 22.3.1 and use private image registry for all images
 
-For this lab we will do installation of the Digital.ai Deploy. The installation will be done in two phases. 
+For this lab we will do installation of the Digital.ai Deploy. The installation will be done in two phases.
 In the first we will generate all files, and in the second we will apply the files to the cluster.
 After first part we will change generated files. The changes in the generated files will:
 - define Azure DNS settings;
@@ -9,7 +9,7 @@ After first part we will change generated files. The changes in the generated fi
 
 `xl kube` uses blueprints from the [https://dist.xebialabs.com/public/xl-op-blueprints/](https://dist.xebialabs.com/public/xl-op-blueprints/).
 For the cases when working environment does not have access to Internet, we can download the blueprints to use them from local directory.
-The zip version of blueprints we can download from 
+The zip version of blueprints we can download from
 [https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/](https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/).
 
 ## Installation
@@ -22,6 +22,8 @@ Unzip the `xl-op-blueprints-22.3.2.zip` to the working directory and use it with
 
 Run the installation with `--dry-run`, that command will just generate the files in the local directory.
 
+In order not to overstretch thr cluster during our workshop, please make sure to use a maximum of two Release replicas, and tweak the rest of the resources also as indicated below.
+
 ```shell
 xl kube install --dry-run --local-repo ./xl-op-blueprints
 ```
@@ -29,40 +31,74 @@ xl kube install --dry-run --local-repo ./xl-op-blueprints
 For the example use following answers (example on the Azure):
 
 ```text
-? Following kubectl context will be used during execution: `minikube`? Yes
-? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: PlainK8s [Plain multi-node K8s cluster]
-? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
-? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
-? Product server you want to perform install for: dai-deploy [Digital.ai Deploy]
-? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): azureakstestcluster.azurecr.io/xebialabs
-? Enter the deploy server image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): xl-deploy
-? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 22.3.1
-? Enter the deploy task engine image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): deploy-task-engine
-? Enter the central configuration image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): central-configuration
-? Enter the deploy master server replica count: 2
-? Enter PVC size for Deploy master (Gi): 1
-? Select between supported Access Modes: ReadWriteOnce [ReadWriteOnce]
-? Enter the deploy worker replica count: 2
-? Enter PVC size for Deploy worker (Gi): 1
-? Enter PVC size for Central Configuration (Gi): 0.500000
-? Select between supported ingress types: nginx [NGINX]
-? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): No
-? Provide DNS name for accessing UI of the server: my-namespace-xld.northcentralus.cloudapp.azure.com
-? Provide administrator password: 30Q5utfMV6O9wnHF
-? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
-? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): azureakstestcluster.azurecr.io/xebialabs/deploy-operator:22.3.1
-? Select source of the license: file [Path to the license file (the file can be in clean text or base64 encoded)]
-? Provide license file for the server: ./xld-license.lic
-? Select source of the repository keystore: generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
-? Provide keystore passphrase: 1uwAFCtUJEdwmaDi
-? Provide storage class for the server: xl-kube-workshop-file-storage-class
-? Do you want to install a new PostgreSQL on the cluster: Yes
-? Provide Storage Class to be defined for PostgreSQL: xl-kube-workshop-disk-storage-class
-? Provide PVC size for PostgreSQL (Gi): 1
-? Do you want to install a new RabbitMQ on the cluster: Yes
-? Replica count to be defined for RabbitMQ: 1
-? Storage Class to be defined for RabbitMQ: xl-kube-workshop-file-storage-class
-? Provide PVC size for RabbitMQ (Gi): 1
+? Following kubectl context will be used during execution: `minikube`? 
+» Yes
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
+» PlainK8s [Plain multi-node K8s cluster]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
+» Yes
+? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
+»⚠️ ns-yourname
+? Product server you want to perform install for: 
+»⚠️ dai-deploy [Digital.ai Deploy]
+? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): 
+»⚠️ azureakstestcluster.azurecr.io/xebialabs
+? Enter the deploy server image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+» xl-deploy
+? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 
+» 22.3.1
+? Enter the deploy task engine image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+» deploy-task-engine
+? Enter the central configuration image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+»⚠️ central-configuration
+? Enter the deploy master server replica count: 
+»⚠️ 2
+? Enter PVC size for Deploy master (Gi): 
+»⚠️ 1
+? Select between supported Access Modes: 
+» ReadWriteOnce [ReadWriteOnce]
+? Enter the deploy worker replica count: 
+»⚠️ 2
+? Enter PVC size for Deploy worker (Gi): 
+»⚠️ 1
+? Enter PVC size for Central Configuration (Gi): 
+»⚠️ 0.500000
+? Select between supported ingress types: 
+» nginx [NGINX]
+? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
+» No
+? Provide DNS name for accessing UI of the server: 
+»⚠️ ns-yourname-xld.northcentralus.cloudapp.azure.com
+? Provide administrator password: 
+» 30Q5utfMV6O9wnHF
+? Type of the OIDC configuration: 
+» no-oidc [No OIDC Configuration]
+? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): 
+»⚠️ azureakstestcluster.azurecr.io/xebialabs/deploy-operator:22.3.1
+? Select source of the license: 
+» file [Path to the license file (the file can be in clean text or base64 encoded)]
+? Provide license file for the server: 
+» ./xld-license.lic
+? Select source of the repository keystore: 
+» generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
+? Provide keystore passphrase: 
+» 1uwAFCtUJEdwmaDi
+? Provide storage class for the server: 
+»⚠️ azure-aks-test-cluster-file-storage-class
+? Do you want to install a new PostgreSQL on the cluster: 
+» Yes
+? Provide Storage Class to be defined for PostgreSQL: 
+»⚠️ azure-aks-test-cluster-disk-storage-class
+? Provide PVC size for PostgreSQL (Gi): 
+»⚠️ 1
+? Do you want to install a new RabbitMQ on the cluster: 
+» Yes
+? Replica count to be defined for RabbitMQ: 
+»⚠️ 1
+? Storage Class to be defined for RabbitMQ: 
+»⚠️ azure-aks-test-cluster-file-storage-class
+? Provide PVC size for RabbitMQ (Gi): 
+»⚠️ 1
 
 ...
 
@@ -75,7 +111,7 @@ Starting install processing.
 
 We are using here private registry so we need to add `azureakstestcluster.azurecr.io` to the repository name.
 
-Here all notes for the license, storage class and hostname will be same from the Release Part 1. 
+Here all notes for the license, storage class and hostname will be same from the Release Part 1.
 
 For the other questions and answers details check [Installation Wizard for Digital.ai Deploy](https://docs.digital.ai/bundle/devops-deploy-version-v.22.3/page/deploy/operator/xl-op-install-wizard-deploy.html)
 
@@ -147,19 +183,19 @@ Update following in the file:
 
 ### Edit generated files and update the Azure DNS setup
 
-Other way to edit CR, open the `digitalai/dai-deploy/my-namespace/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
+Other way to edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
 
-Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `my-namespace-xld`:
+Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `ns-yourname-xld`:
 
 ```yaml
 spec:
-  
+
   nginx-ingress-controller:
-    
+
     service:
-      
+
       annotations:
-        service.beta.kubernetes.io/azure-dns-label-name: my-namespace-xld
+        service.beta.kubernetes.io/azure-dns-label-name: ns-yourname-xld
 ```
 
 Save the changes in the file.
@@ -177,7 +213,7 @@ Under `--files` we are using the reference on the previous dry-run by using part
 
 ```text
 $ xl kube install --files 20221020-001911 --local-repo ./xl-op-blueprints
-? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
+? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
 TODO
 ```
 
@@ -206,10 +242,10 @@ Example is on the Azure.
 
 ```text
 $ xl kube check --wait-for-ready 5 --skip-collecting
-? Following kubectl context will be used during execution: `xl-kube-workshop`? Yes
+? Following kubectl context will be used during execution: `azure-aks-test-cluster`? Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): Yes
-? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: my-namespace
+? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: ns-yourname
 ? Product server you want to perform clean for: dai-deploy [Digital.ai Deploy]
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
@@ -220,7 +256,7 @@ $ xl kube check --wait-for-ready 5 --skip-collecting
 	| GenerationDateTime             | 20221101-001131                                    |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
-	| Namespace                      | my-namespace                                       |
+	| Namespace                      | ns-yourname                                       |
 	| OidcConfigType                 | existing                                           |
 	| OsType                         | darwin                                             |
 	| ProcessType                    | check                                              |
@@ -228,68 +264,68 @@ $ xl kube check --wait-for-ready 5 --skip-collecting
 	| ShortServerName                | xld                                                |
 	| UseCustomNamespace             | true                                               |
 	 -------------------------------- ----------------------------------------------------
-For current process files will be generated in the: digitalai/dai-deploy/my-namespace/20221101-001131/kubernetes
-Generated answers file successfully: digitalai/generated_answers_dai-deploy_my-namespace_check-20221101-001131.yaml
+For current process files will be generated in the: digitalai/dai-deploy/ns-yourname/20221101-001131/kubernetes
+Generated answers file successfully: digitalai/generated_answers_dai-deploy_ns-yourname_check-20221101-001131.yaml
 Collecting the CR data
 Waiting for resources to be ready
-Deployment deployment/xld-operator-controller-manager is available in the namespace my-namespace
-Deployment deployment/dai-xld-my-namespace-nginx-ingress-controller is available in the namespace my-namespace
-Deployment deployment/dai-xld-my-namespace-nginx-ingress-controller-default-backend is available in the namespace my-namespace
-PVC pvc/data-dai-xld-my-namespace-rabbitmq-0 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-rabbitmq-0 is available in the namespace my-namespace
-PVC pvc/data-dai-xld-my-namespace-postgresql-0 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-postgresql-0 is available in the namespace my-namespace
-PVC pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-cc-server-0 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-digitalai-deploy-cc-server-0 is available in the namespace my-namespace
-PVC pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-master-0 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-digitalai-deploy-master-0 is available in the namespace my-namespace
-PVC pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-master-1 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-digitalai-deploy-master-1 is available in the namespace my-namespace
-PVC pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-worker-0 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-digitalai-deploy-worker-0 is available in the namespace my-namespace
-PVC pvc/data-dir-dai-xld-my-namespace-digitalai-deploy-worker-1 is bound in the namespace my-namespace
-Pod pod/dai-xld-my-namespace-digitalai-deploy-worker-1 is available in the namespace my-namespace
+Deployment deployment/xld-operator-controller-manager is available in the namespace ns-yourname
+Deployment deployment/dai-xld-ns-yourname-nginx-ingress-controller is available in the namespace ns-yourname
+Deployment deployment/dai-xld-ns-yourname-nginx-ingress-controller-default-backend is available in the namespace ns-yourname
+PVC pvc/data-dai-xld-ns-yourname-rabbitmq-0 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-rabbitmq-0 is available in the namespace ns-yourname
+PVC pvc/data-dai-xld-ns-yourname-postgresql-0 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-postgresql-0 is available in the namespace ns-yourname
+PVC pvc/data-dir-dai-xld-ns-yourname-digitalai-deploy-cc-server-0 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-digitalai-deploy-cc-server-0 is available in the namespace ns-yourname
+PVC pvc/data-dir-dai-xld-ns-yourname-digitalai-deploy-master-0 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-digitalai-deploy-master-0 is available in the namespace ns-yourname
+PVC pvc/data-dir-dai-xld-ns-yourname-digitalai-deploy-master-1 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-digitalai-deploy-master-1 is available in the namespace ns-yourname
+PVC pvc/data-dir-dai-xld-ns-yourname-digitalai-deploy-worker-0 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-digitalai-deploy-worker-0 is available in the namespace ns-yourname
+PVC pvc/data-dir-dai-xld-ns-yourname-digitalai-deploy-worker-1 is bound in the namespace ns-yourname
+Pod pod/dai-xld-ns-yourname-digitalai-deploy-worker-1 is available in the namespace ns-yourname
 Checking helm installation status
-Operator's dai-xld-my-namespace helm status in the namespace my-namespace for the installation:
-NAME: dai-xld-my-namespace
+Operator's dai-xld-ns-yourname helm status in the namespace ns-yourname for the installation:
+NAME: dai-xld-ns-yourname
 LAST DEPLOYED: Mon Oct 31 23:06:42 2022
-NAMESPACE: my-namespace
+NAMESPACE: ns-yourname
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 NOTES:
 ## To get the application URL, run:
-http://my-namespace-xld.northcentralus.cloudapp.azure.com/
+http://ns-yourname-xld.northcentralus.cloudapp.azure.com/
 
 ## To get the admin password for xl-deploy, run:
-kubectl get secret --namespace my-namespace dai-xld-my-namespace-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
+kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
 ## To get the password for postgresql, run:
-kubectl get secret --namespace  my-namespace dai-xld-my-namespace-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo
+kubectl get secret --namespace  ns-yourname dai-xld-ns-yourname-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo
 
 ## To get the password for rabbitMQ, run:
-kubectl get secret --namespace  my-namespace dai-xld-my-namespace-rabbitmq   -o jsonpath="{.data.rabbitmq-password}" | base64 --decode; echo
+kubectl get secret --namespace  ns-yourname dai-xld-ns-yourname-rabbitmq   -o jsonpath="{.data.rabbitmq-password}" | base64 --decode; echo
 
-## To edit custom resource dai-xld-my-namespace
-kubectl edit digitalaideploys.xld.digital.ai dai-xld-my-namespace -n my-namespace
+## To edit custom resource dai-xld-ns-yourname
+kubectl edit digitalaideploys.xld.digital.ai dai-xld-ns-yourname -n ns-yourname
 
 ## To restart deploy central configuration pods use restart of the statefulset
-kubectl rollout restart sts dai-xld-my-namespace-digitalai-deploy-cc-server -n my-namespace
+kubectl rollout restart sts dai-xld-ns-yourname-digitalai-deploy-cc-server -n ns-yourname
 
 ## To restart deploy master pods use restart of the statefulset
-kubectl rollout restart sts dai-xld-my-namespace-digitalai-deploy-master -n my-namespace
+kubectl rollout restart sts dai-xld-ns-yourname-digitalai-deploy-master -n ns-yourname
 
 ## To restart deploy worker pods use restart of the statefulset
-kubectl rollout restart sts dai-xld-my-namespace-digitalai-deploy-worker -n my-namespace
+kubectl rollout restart sts dai-xld-ns-yourname-digitalai-deploy-worker -n ns-yourname
 
 Check finished successfully!
 ```
 
 ## Discover how to open the page and login
 
-Now try to open [http://my-namespace-xld.northcentralus.cloudapp.azure.com/](http://my-namespace-xld.northcentralus.cloudapp.azure.com/)
+Now try to open [http://ns-yourname-xld.northcentralus.cloudapp.azure.com/](http://ns-yourname-xld.northcentralus.cloudapp.azure.com/)
 
 To check the password, you can get it with the command from the helm info (username is as always `admin`):
 ```shell
 ## To get the admin password for xl-deploy, run:
-kubectl get secret --namespace my-namespace dai-xld-my-namespace-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
+kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
 ```
