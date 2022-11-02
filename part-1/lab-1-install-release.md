@@ -34,7 +34,7 @@ Before we kick it off, let's get our ducks in a row
 
 - We are installing 22.2.4 version of Release. Later in the workshop we will upgrade it to 22.3.1
 - The license files will be provided during the workshop and need to be saved in the working directory.
-- Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `ns-yourname`. Everytime you encounter `ns-yourname`, replace it with your own namespace, for example `ns-alice`.
+- Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to it as `ns-yourname`. Everytime you encounter `ns-yourname`, replace it with your own namespace, for example `ns-alice`. The namespace total length needs to be below 12 characters. Namespace will be created during first installation.  
 - When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `release.ns-yourname.northcentralus.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `release.ns-yourname.local`. 
 - On Azure we use two custom storage classes.They already exist on the cluster:
   - `xl-kube-workshop-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
