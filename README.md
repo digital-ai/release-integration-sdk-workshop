@@ -33,8 +33,8 @@ Optional
 ### [Part 1](./part-1/lab-1-install-release.md)
 
 1. [Install Digital.ai Release 22.2.4](./part-1/lab-1-install-release.md)
-   a. Wait for resources with xl kube check
-   b. Discover how to open the page and login
+   - Wait for resources with `xl kube check`
+   - Discover how to open the page and login
 2. [Upgrade Release 22.3.1](./part-1/lab-2-upgrade-release.md)
 3. [OIDC setup (use Identity service)](./part-1/lab-3-oidc-setup.md)
 4. [Clean Release from cluster](./part-1/lab-4-clean-release.md)
@@ -42,24 +42,25 @@ Optional
 ### [Part 2](./part-2/lab-5-install-deploy.md)
 
 5. [Install Deploy with –files 22.3.1](./part-2/lab-5-install-deploy.md)
-   a. Use private image registry for all images
-   b. Discover how to open the page and login
-7. [Clean Deploy from cluster](./part-2/lab-6-clean-deploy.md)
+   - Use private image registry for all images
+   - Discover how to open the page and login
+6. [Clean Deploy from cluster](./part-2/lab-6-clean-deploy.md)
 
 ### [Part 3](./part-3/lab-7-troubleshoot.md)
 
-8. [Fix errors - Troubleshoot](./part-3/lab-7-troubleshoot.md)
-    a. Use wrong tag
-    b. Use for postgres wrong storageclass
-9. [How to change configuration file](./part-3/lab-8-change-configuration-file.md)
+7. [Fix errors - Troubleshoot](./part-3/lab-7-troubleshoot.md)
+    - Use wrong tag
+    - Use for postgres wrong storageclass
+8. [How to change configuration file](./part-3/lab-8-change-configuration-file.md)
 
 ## Workshop Agenda
 
 1. Introduction - PowerPoint
 2. Work on Labs
-    a. Part 1
-    b. Part 2
-    c. Part 3
+   - Part 0
+   - Part 1
+   - Part 2
+   - Part 3
 
 ## TODOs
 
