@@ -1,4 +1,4 @@
-![Release +_Deploy on Kubernetes in minutes!](xl kube install logo.jpg)
+![Release + Deploy on Kubernetes in minutes!](./xl kube install logo.jpg)
 
 Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes cluster using the `xl kube` command line interface.
 
