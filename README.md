@@ -26,34 +26,32 @@ Optional
 * Passwords are not in this repo. Ask workshop teachers for the needed credentials.
 
 
-### Part 0
+### [Part 0](./part-0/lab-0-setup-kubectl-context.md)
 
-0. Setup kubectl context
+0. [Setup kubectl context](./part-0/lab-0-setup-kubectl-context.md)
 
-### Part 1
+### [Part 1](./part-1/lab-1-install-release.md)
 
-1. Install Digital.ai Release 22.2.4
+1. [Install Digital.ai Release 22.2.4](./part-1/lab-1-install-release.md)
    a. Wait for resources with xl kube check
    b. Discover how to open the page and login
-2. OIDC setup (use Identity service)
-3. Upgrade Release 22.3.1
-4. Clean
+2. [Upgrade Release 22.3.1](./part-1/lab-2-upgrade-release.md)
+3. [OIDC setup (use Identity service)](./part-1/lab-3-oidc-setup.md)
+4. [Clean Release from cluster](./part-1/lab-4-clean-release.md)
 
-### Part 2
+### [Part 2](./part-2/lab-5-install-deploy.md)
 
-5. Install Deploy with –files 22.3.1
-6. Use private image registry for all images
-    a. Installation
-    b. Upgrade
-7. Clean
+5. [Install Deploy with –files 22.3.1](./part-2/lab-5-install-deploy.md)
+   a. Use private image registry for all images
+   b. Discover how to open the page and login
+7. [Clean Deploy from cluster](./part-2/lab-6-clean-deploy.md)
 
-### Part 3
+### [Part 3](./part-3/lab-7-troubleshoot.md)
 
-8. Fix errors - Troubleshoot
+8. [Fix errors - Troubleshoot](./part-3/lab-7-troubleshoot.md)
     a. Use wrong tag
     b. Use for postgres wrong storageclass
-9. How to change configuration file
-    a. Which file??? - nexus/maven settings (deploy)
+9. [How to change configuration file](./part-3/lab-8-change-configuration-file.md)
 
 ## Workshop Agenda
 
