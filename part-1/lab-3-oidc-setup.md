@@ -42,6 +42,8 @@ oidc:
   scopes: ["openid"]
 ```
 
+XXX CHANGE: paste this into the `dair-release_cr.yaml` directly and then edit 
+
 ## Configure Release with OIDC configuration
 
 Open the `digitalai/dai-release/ns-yourname/20221031-131244/kubernetes/dai-release_cr.yaml`. 
@@ -50,6 +52,12 @@ For your path: check your installation log in the line For current process files
 
 
 Find the `oidc` section. It should look like this:
+
+```text
+  oidc:
+    enabled: false
+    external: false
+```
 
 Now replace it with the snippet you created above and save the file. 
 
@@ -61,9 +69,13 @@ kubectl apply -n ns-yourname -f digitalai/dai-release/ns-yourname/20221031-13124
 
 Open the **k9s** utility and see if the pods are starting.
 
-When everything has restarted, log out as `admin`. You should now be redirected to the Digital.ai Platform log in screen.
+XXX MOVE K9s hint into lab-1 or lab-2
 
-Use the following credentials, the same as you used to log in to Digital.ai Platform.
+When everything has restarted, go to RELEASE URL.
+
+You should be logged in through SSO as `admin-devops-demo.digital.ai`, the same user as you used to log in to Digital.ai Platform!
+
+If not, reuse the following credentials:
 
 * **Username:** `admin-devops-demo.digital.ai`
 * **Password:** _ask in workshop_

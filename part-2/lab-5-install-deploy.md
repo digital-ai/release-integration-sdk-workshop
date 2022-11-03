@@ -31,7 +31,7 @@ xl kube install --dry-run --local-repo ./xl-op-blueprints
 For the example use following answers (example on the Azure):
 
 For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
-When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`.
+When using minikube or Docker you can use any host name you want, for example `deploy-ns-yourname.local`.
 
 ```text
 ? Following kubectl context will be used during execution: `minikube`? 
@@ -71,7 +71,7 @@ When using minikube or Docker you can use any host name you want, for example `n
 ? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): 
 » No
 ? Provide DNS name for accessing UI of the server: 
-»⚠️ ns-yourname-xld.westus2.cloudapp.azure.com
+»⚠️ deploy-ns-yourname.westus2.cloudapp.azure.com
 ? Provide administrator password: 
 » 30Q5utfMV6O9wnHF
 ? Type of the OIDC configuration: 
@@ -199,7 +199,7 @@ Update following in the file:
 
 Other way to edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
 
-Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `ns-yourname-xld`:
+Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `deploy-ns-yourname`:
 
 ```yaml
 spec:
@@ -209,7 +209,7 @@ spec:
     service:
 
       annotations:
-        service.beta.kubernetes.io/azure-dns-label-name: ns-yourname-xld
+        service.beta.kubernetes.io/azure-dns-label-name: deploy-ns-yourname
 ```
 
 Save the changes in the file.
@@ -280,16 +280,16 @@ Generated answers file successfully: digitalai/generated_answers_dai-deploy_ns-y
 Starting 'install' processing and will use generated files from reference install 20221020-001911 with files from digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes.
 ? Do you want to apply resources from previos run '20221020-001911': Yes
 Applying resources to the cluster!
-Applied resource clusterrole/ns-yourname-xld-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-digital-proxy-role.yaml
-Applied resource clusterrole/ns-yourname-xld-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-manager-role.yaml
-Applied resource clusterrole/ns-yourname-xld-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-digital-proxy-role.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-manager-role.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/cluster-role-metrics-reader.yaml
 Applied resource service/xld-operator-controller-manager-metrics-service from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/controller-manager-metrics-service.yaml
 Applied resource customresourcedefinition/digitalaideploys.xld.digital.ai from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/custom-resource-definition.yaml
 Applied resource deployment/xld-operator-controller-manager from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/deployment.yaml
 Applied resource role/xld-operator-leader-election-role from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/leader-election-role.yaml
 Applied resource rolebinding/xld-operator-leader-election-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/leader-election-rolebinding.yaml
-Applied resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/manager-rolebinding.yaml
-Applied resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/proxy-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/manager-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/template/proxy-rolebinding.yaml
 Applied resource digitalaideploy/dai-xld-ns-yourname from the file digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml
 Install finished successfully!
 ```
@@ -371,7 +371,7 @@ REVISION: 1
 TEST SUITE: None
 NOTES:
 ## To get the application URL, run:
-http://ns-yourname-xld.westus2.cloudapp.azure.com/
+http://deploy-ns-yourname.westus2.cloudapp.azure.com/
 
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
@@ -398,7 +398,7 @@ Check finished successfully!
 
 ## Discover how to open the page and login
 
-Now try to open [http://ns-yourname-xld.westus2.cloudapp.azure.com/](http://ns-yourname-xld.westus2.cloudapp.azure.com/)
+Now try to open [http://deploy-ns-yourname.westus2.cloudapp.azure.com/](http://deploy-ns-yourname.westus2.cloudapp.azure.com/)
 
 To check the password, you can get it with the command from the helm info (username is as always `admin`):
 ```shell
@@ -412,7 +412,7 @@ When using a local kube cluster, we need to edit the local `hosts` file and add 
 
 The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
 
-After adding the changes to the `hosts` file, go to [https://ns-yourname-xld.local](https://ns-yourname-xld.local)
+After adding the changes to the `hosts` file, go to [https://deploy-ns-yourname.local](https://deploy-ns-yourname.local)
 
 ## Linux / Macos
 
@@ -423,7 +423,7 @@ sudo vi /etc/hosts
 Add following line somewhere:
 
 ```text
-127.0.0.1 ns-yourname-xld.local
+127.0.0.1 deploy-ns-yourname.local
 ```
 
 ## Windows
@@ -431,7 +431,7 @@ Add following line somewhere:
 The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line.
 
 ```text
-127.0.0.1 ns-yourname-xld.local
+127.0.0.1 deploy-ns-yourname.local
 ```
 
 

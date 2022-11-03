@@ -33,7 +33,7 @@ $ xl kube install
 ? Enter PVC size for Central Configuration (Gi): 0.500000
 ? Select between supported ingress types: nginx [NGINX]
 ? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): No
-? Provide DNS name for accessing UI of the server: ns-yourname-xld.westus2.cloudapp.azure.com
+? Provide DNS name for accessing UI of the server: deploy-ns-yourname.westus2.cloudapp.azure.com
 ? Provide administrator password: ARTLY8Qgl6FPLXN7
 ? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
 ? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): xebialabs/deploy-operator:22.3.X
@@ -65,7 +65,7 @@ $ xl kube install
 	| ImageNameDeploy                | xl-deploy                                          |
 	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
 	| ImageTag                       | 22.3.1                                             |
-	| IngressHost                    | ns-yourname-xld.westus2.cloudapp.azure.com |
+	| IngressHost                    | deploy-ns-yourname.westus2.cloudapp.azure.com |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | HEXRzENbwPvn85YB                                   |
@@ -104,9 +104,9 @@ Skip creating namespace ns-yourname, already exists
 Creating namespace ns-yourname... - Using custom resource name dai-xld-ns-yourname
 Generated files successfully for AzureAKS installation.
 Applying resources to the cluster!
-Applied resource clusterrole/ns-yourname-xld-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-digital-proxy-role.yaml
-Applied resource clusterrole/ns-yourname-xld-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-manager-role.yaml
-Applied resource clusterrole/ns-yourname-xld-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-digital-proxy-role.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-manager-role.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/cluster-role-metrics-reader.yaml
 Applied resource service/xld-operator-controller-manager-metrics-service from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/controller-manager-metrics-service.yaml
 Applied resource customresourcedefinition/digitalaideploys.xld.digital.ai from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/custom-resource-definition.yaml
 ? Do you want to replace the resource customresourcedefinition/digitalaideploys.xld.digital.ai with specification from file
@@ -114,8 +114,8 @@ digitalai/dai-deploy/ns-vedran333/20221102-202805/kubernetes/template/custom-res
 Applied resource deployment/xld-operator-controller-manager from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/deployment.yaml
 Applied resource role/xld-operator-leader-election-role from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/leader-election-role.yaml
 Applied resource rolebinding/xld-operator-leader-election-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/leader-election-rolebinding.yaml
-Applied resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/manager-rolebinding.yaml
-Applied resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/proxy-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/manager-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/template/proxy-rolebinding.yaml
 Applied resource digitalaideploy/dai-xld-ns-yourname from the file digitalai/dai-deploy/ns-yourname/20221031-230614/kubernetes/dai-deploy_cr.yaml
 Install finished successfully!
 ```
@@ -246,7 +246,7 @@ $ xl kube install --answers digitalai/generated_answers_dai-deploy_ns-yourname_i
 	| ImageNameDeploy                | xl-deploy                                          |
 	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
 	| ImageTag                       | 22.3.1                                             |
-	| IngressHost                    | ns-yourname-xld.westus2.cloudapp.azure.com |
+	| IngressHost                    | deploy-ns-yourname.westus2.cloudapp.azure.com |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | HEXRzENbwPvn85YB                                   |
@@ -285,15 +285,15 @@ Skip creating namespace ns-yourname, already exists
 Update central configuration values... - Using custom resource name dai-xld-ns-yourname
 Generated files successfully for AzureAKS installation.
 Applying resources to the cluster!
-? Do you want to replace the resource clusterrole/ns-yourname-xld-operator-proxy-role with specification from file
+? Do you want to replace the resource clusterrole/deploy-ns-yourname-operator-proxy-role with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-digital-proxy-role.yaml: Yes
-Applied resource clusterrole/ns-yourname-xld-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-digital-proxy-role.yaml
-? Do you want to replace the resource clusterrole/ns-yourname-xld-operator-manager-role with specification from file
+Applied resource clusterrole/deploy-ns-yourname-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-digital-proxy-role.yaml
+? Do you want to replace the resource clusterrole/deploy-ns-yourname-operator-manager-role with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-manager-role.yaml: Yes
-Applied resource clusterrole/ns-yourname-xld-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-manager-role.yaml
-? Do you want to replace the resource clusterrole/ns-yourname-xld-operator-metrics-reader with specification from file
+Applied resource clusterrole/deploy-ns-yourname-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-manager-role.yaml
+? Do you want to replace the resource clusterrole/deploy-ns-yourname-operator-metrics-reader with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-metrics-reader.yaml: Yes
-Applied resource clusterrole/ns-yourname-xld-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/cluster-role-metrics-reader.yaml
 ? Do you want to replace the resource service/xld-operator-controller-manager-metrics-service with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/controller-manager-metrics-service.yaml: Yes
 Applied resource service/xld-operator-controller-manager-metrics-service from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/controller-manager-metrics-service.yaml
@@ -309,12 +309,12 @@ Applied resource role/xld-operator-leader-election-role from the file digitalai/
 ? Do you want to replace the resource rolebinding/xld-operator-leader-election-rolebinding with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/leader-election-rolebinding.yaml: Yes
 Applied resource rolebinding/xld-operator-leader-election-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/leader-election-rolebinding.yaml
-? Do you want to replace the resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding with specification from file
+? Do you want to replace the resource clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/manager-rolebinding.yaml: Yes
-Applied resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/manager-rolebinding.yaml
-? Do you want to replace the resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding with specification from file
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/manager-rolebinding.yaml
+? Do you want to replace the resource clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/proxy-rolebinding.yaml: Yes
-Applied resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/proxy-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/template/proxy-rolebinding.yaml
 ? Do you want to replace the resource digitalaideploy/dai-xld-ns-yourname with specification from file
 digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/dai-deploy_cr.yaml: Yes
 Applied resource digitalaideploy/dai-xld-ns-yourname from the file digitalai/dai-deploy/ns-yourname/20221031-232810/kubernetes/dai-deploy_cr.yaml
@@ -458,7 +458,7 @@ xl kube install --skip-prompts --answers digitalai/generated_answers_dai-deploy_
 	| ImageNameDeploy                | xl-deploy                                          |
 	| ImageNameDeployTaskEngine      | deploy-task-engine                                 |
 	| ImageTag                       | 22.3.1                                             |
-	| IngressHost                    | ns-yourname-xld.westus2.cloudapp.azure.com |
+	| IngressHost                    | deploy-ns-yourname.westus2.cloudapp.azure.com |
 	| IngressType                    | nginx                                              |
 	| K8sSetup                       | AzureAKS                                           |
 	| KeystorePassphrase             | HEXRzENbwPvn85YB                                   |
@@ -496,16 +496,16 @@ Skip creating namespace ns-yourname, already exists
 Update central configuration values... - Using custom resource name dai-xld-ns-yourname
 Generated files successfully for AzureAKS installation.
 Applying resources to the cluster!
-Applied resource clusterrole/ns-yourname-xld-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/cluster-role-digital-proxy-role.yaml
-Applied resource clusterrole/ns-yourname-xld-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/cluster-role-manager-role.yaml
-Applied resource clusterrole/ns-yourname-xld-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-proxy-role from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/cluster-role-digital-proxy-role.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-manager-role from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/cluster-role-manager-role.yaml
+Applied resource clusterrole/deploy-ns-yourname-operator-metrics-reader from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/cluster-role-metrics-reader.yaml
 Applied resource service/xld-operator-controller-manager-metrics-service from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/controller-manager-metrics-service.yaml
 Applied resource customresourcedefinition/digitalaideploys.xld.digital.ai from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/custom-resource-definition.yaml
 Applied resource deployment/xld-operator-controller-manager from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/deployment.yaml
 Applied resource role/xld-operator-leader-election-role from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/leader-election-role.yaml
 Applied resource rolebinding/xld-operator-leader-election-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/leader-election-rolebinding.yaml
-Applied resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/manager-rolebinding.yaml
-Applied resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/proxy-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/manager-rolebinding.yaml
+Applied resource clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/template/proxy-rolebinding.yaml
 Applied resource digitalaideploy/dai-xld-ns-yourname from the file digitalai/dai-deploy/ns-yourname/20221101-000553/kubernetes/dai-deploy_cr.yaml
 Install finished successfully!
 ```
@@ -568,7 +568,7 @@ REVISION: 1
 TEST SUITE: None
 NOTES:
 ## To get the application URL, run:
-http://ns-yourname-xld.westus2.cloudapp.azure.com/
+http://deploy-ns-yourname.westus2.cloudapp.azure.com/
 
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
