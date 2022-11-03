@@ -10,7 +10,7 @@ Check all prerequisites:
   - [Install the XL CLI](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/how-to/install-the-xl-cli.html)
 - [yq](https://github.com/mikefarah/yq)
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
-- One directory from where you will run `xl kube` commands
+- A directory from where you will run `xl kube` commands
 
 Use one of the following options 
 
@@ -26,6 +26,8 @@ export CLUSTER_NAME=xl-kube-workshop-X
 az login -u $AZURE_USERNAME -p $AZURE_PASSWORD 
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 ```
+
+XXX TEST cluster connectivity! Hes could not connect to xl-kube-workshop-2
 
 ### With Minikube
 
@@ -56,7 +58,7 @@ The demo runs comfortably with the following resources allocated under **Prefere
 ## Check cluster connection
 
 ```shell
-kubectl version
+kubectl cluster-info
 ```
 
 For example it will return for minikube:

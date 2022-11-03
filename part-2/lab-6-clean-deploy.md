@@ -77,21 +77,21 @@ Deleting roles
 Deleted role/xld-operator-leader-election-role from namespace ns-yourname
 ? Do you want to delete the resource clusterrole/dai-xld-ns-yourname-nginx-ingress-controller: Yes
 Deleted clusterrole/dai-xld-ns-yourname-nginx-ingress-controller from namespace ns-yourname
-? Do you want to delete the resource clusterrole/ns-yourname-xld-operator-manager-role: Yes
-Deleted clusterrole/ns-yourname-xld-operator-manager-role from namespace ns-yourname
-? Do you want to delete the resource clusterrole/ns-yourname-xld-operator-metrics-reader: Yes
-Deleted clusterrole/ns-yourname-xld-operator-metrics-reader from namespace ns-yourname
-? Do you want to delete the resource clusterrole/ns-yourname-xld-operator-proxy-role: Yes
-Deleted clusterrole/ns-yourname-xld-operator-proxy-role from namespace ns-yourname
+? Do you want to delete the resource clusterrole/deploy-ns-yourname-operator-manager-role: Yes
+Deleted clusterrole/deploy-ns-yourname-operator-manager-role from namespace ns-yourname
+? Do you want to delete the resource clusterrole/deploy-ns-yourname-operator-metrics-reader: Yes
+Deleted clusterrole/deploy-ns-yourname-operator-metrics-reader from namespace ns-yourname
+? Do you want to delete the resource clusterrole/deploy-ns-yourname-operator-proxy-role: Yes
+Deleted clusterrole/deploy-ns-yourname-operator-proxy-role from namespace ns-yourname
 ? Do you want to delete the resource rolebinding/xld-operator-leader-election-rolebinding: Yes
 Deleted rolebinding/xld-operator-leader-election-rolebinding from namespace ns-yourname
 Fetching clusterrolebinding from ns-yourname namespace... /
 ? Do you want to delete the resource clusterrolebinding/dai-xld-ns-yourname-nginx-ingress-controller: Yes
 Deleted clusterrolebinding/dai-xld-ns-yourname-nginx-ingress-controller from namespace ns-yourname
-? Do you want to delete the resource clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding: Yes
-Deleted clusterrolebinding/ns-yourname-xld-operator-manager-rolebinding from namespace ns-yourname
-? Do you want to delete the resource clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding: Yes
-Deleted clusterrolebinding/ns-yourname-xld-operator-proxy-rolebinding from namespace ns-yourname
+? Do you want to delete the resource clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding: Yes
+Deleted clusterrolebinding/deploy-ns-yourname-operator-manager-rolebinding from namespace ns-yourname
+? Do you want to delete the resource clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding: Yes
+Deleted clusterrolebinding/deploy-ns-yourname-operator-proxy-rolebinding from namespace ns-yourname
 Deleting PVCs
 ? Do you want to delete the resource pvc/data-dai-xld-ns-yourname-postgresql-0: Yes
 Deleted pvc/data-dai-xld-ns-yourname-postgresql-0 from namespace ns-yourname

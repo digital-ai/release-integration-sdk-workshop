@@ -11,20 +11,20 @@ xl kube upgrade --skip-prompts
 
 ...and answer all the questions. Some of the questions are repeated from the installation.
 
-⚠️In this case we are sharing the cluster with others, so do NOT delete the Custom Resource that is shared between all installations.
-Answer always the question `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
+* In this case we are sharing the cluster with others, so do NOT delete the Custom Resource that is shared between all installations.
+  Answer the question `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
 
-All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` 
-you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that
-we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.annotations`.
+* All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.annotations`.
 
-We are upgrading from Operator to Operator. Note: the `xl kube upgrade` command can be used to upgrade helm-based installations from 10.2 and higher XXX Check this value 
+* We are upgrading from Operator to Operator. Note: the `xl kube upgrade` command can be used to upgrade helm-based installations from 10.2 and higher XXX Check this value 
+
+For the other questions and answers details check [Upgrade Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-upgrade-wizard-release.html)
 
 
-Here is example of the upgrade answers (example on the Azure):
+Here is example of the upgrade answers, based on Azure:
 
 ```text
-$ xl kube upgrade
+$ xl kube upgrade --skip-prompts
 ? Following kubectl context will be used during execution: `xl-kube-workshop`? 
 » Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
@@ -109,31 +109,28 @@ Deleted ingressclass/nginx-dai-xlr-ns-yourname from namespace ns-yourname
 Deleting roles
 Deleted role/xlr-operator-leader-election-role from namespace ns-yourname
 Deleted clusterrole/dai-xlr-ns-yourname-nginx-ingress-controller from namespace ns-yourname
-Deleted clusterrole/release.ns-yourname-operator-manager-role from namespace ns-yourname
-Deleted clusterrole/release.ns-yourname-operator-metrics-reader from namespace ns-yourname
-Deleted clusterrole/release.ns-yourname-operator-proxy-role from namespace ns-yourname
+Deleted clusterrole/release-ns-yourname-operator-manager-role from namespace ns-yourname
+Deleted clusterrole/release-ns-yourname-operator-metrics-reader from namespace ns-yourname
+Deleted clusterrole/release-ns-yourname-operator-proxy-role from namespace ns-yourname
 Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace ns-yourname
 Deleted clusterrolebinding/dai-xlr-ns-yourname-nginx-ingress-controller from namespace ns-yourname
-Deleted clusterrolebinding/release.ns-yourname-operator-manager-rolebinding from namespace ns-yourname
-Deleted clusterrolebinding/release.ns-yourname-operator-proxy-rolebinding from namespace ns-yourname
+Deleted clusterrolebinding/release-ns-yourname-operator-manager-rolebinding from namespace ns-yourname
+Deleted clusterrolebinding/release-ns-yourname-operator-proxy-rolebinding from namespace ns-yourname
 Applying resources to the cluster!
-Applied resource clusterrole/release.ns-yourname-operator-proxy-role from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/cluster-role-digital-proxy-role.yaml
-Applied resource clusterrole/release.ns-yourname-operator-manager-role from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/cluster-role-manager-role.yaml
-Applied resource clusterrole/release.ns-yourname-operator-metrics-reader from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/cluster-role-metrics-reader.yaml
+Applied resource clusterrole/release-ns-yourname-operator-proxy-role from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/cluster-role-digital-proxy-role.yaml
+Applied resource clusterrole/release-ns-yourname-operator-manager-role from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/cluster-role-manager-role.yaml
+Applied resource clusterrole/release-ns-yourname-operator-metrics-reader from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/cluster-role-metrics-reader.yaml
 Applied resource service/xlr-operator-controller-manager-metrics-service from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/controller-manager-metrics-service.yaml
 Applied resource deployment/xlr-operator-controller-manager from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/deployment.yaml
 Applied resource role/xlr-operator-leader-election-role from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/leader-election-role.yaml
 Applied resource rolebinding/xlr-operator-leader-election-rolebinding from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/leader-election-rolebinding.yaml
-Applied resource clusterrolebinding/release.ns-yourname-operator-manager-rolebinding from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/manager-rolebinding.yaml
-Applied resource clusterrolebinding/release.ns-yourname-operator-proxy-rolebinding from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/proxy-rolebinding.yaml
+Applied resource clusterrolebinding/release-ns-yourname-operator-manager-rolebinding from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/manager-rolebinding.yaml
+Applied resource clusterrolebinding/release-ns-yourname-operator-proxy-rolebinding from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/template/proxy-rolebinding.yaml
 Applied resource digitalairelease/dai-xlr-ns-yourname from the file digitalai/dai-release/ns-yourname/20221031-152355/kubernetes/dai-release_cr.yaml
 Upgrade finished successfully!
 ```
 
 The upgrade process is first cleaning everything from the cluster and after that applying the new version.
-For each resource it is asking for confirmation before delete.
-
-For the other questions and answers details check [Upgrade Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-upgrade-wizard-release.html)
 
 
 Use the following command to wait for the upgrade to be complete:
