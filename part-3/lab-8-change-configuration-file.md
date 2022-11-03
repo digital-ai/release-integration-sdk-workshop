@@ -117,6 +117,9 @@ Here we will update the configuration file on the central configuration server. 
     kubectl rollout restart sts dai-xld-ns-yourname-digitalai-deploy-worker -n ns-yourname
     ```
 
+After restart check the `deploy-repository.yaml` on CC server, the content should have `connection-timeout` and `max-pool-size` keys.
+On the worker pods the logs will be in debug level.
+
 ---
 
 That's all Folks!
