@@ -22,7 +22,7 @@ Unzip the `xl-op-blueprints-22.3.2.zip` to the xl-op-blueprints directory in you
 
 Run the installation with `--dry-run`, that command will just generate the files in the local directory.
 
-In order not to overstretch thr cluster during our workshop, please make sure to use a maximum of two Release replicas, and tweak the rest of the resources also as indicated below.
+In order not to overstretch thr cluster during our workshop, please make sure to use a maximum of two master and worker replicas, and tweak the rest of the resources also as indicated below.
 
 ```shell
 xl kube install --dry-run --local-repo ./xl-op-blueprints
@@ -32,7 +32,6 @@ For the example use following answers (example on the Azure):
 
 For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
 When using minikube or Docker you can use any host name you want, for example `deploy-ns-yourname.local`. 
-And when selecting the ingress type `? Select between supported ingress types` use answer: _None - Ingress will not be set up during installation_ 
 
 ```text
 ? Following kubectl context will be used during execution: `minikube`? 
@@ -198,7 +197,7 @@ Update following in the file:
 
 ### Edit generated files and update the Azure DNS setup
 
-Other way to edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
+Edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
 
 Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `deploy-ns-yourname`:
 
@@ -211,6 +210,26 @@ spec:
 
       annotations:
         service.beta.kubernetes.io/azure-dns-label-name: deploy-ns-yourname
+```
+
+Save the changes in the file.
+
+
+### Edit generated files and update the Minikube Ingress setup to use NodePort
+
+We will use NodePort option in following example, and will need to update the Custom Resource (CR) YAML and tell Kubernetes we changed it.
+Edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
+
+Change from `LoadBalancer` value in the yaml path of the CR file under spec > nginx-ingress-controller > service > type
+
+```yaml
+spec:
+  …  
+  nginx-ingress-controller:
+    …
+    service:
+      …
+      type: NodePort
 ```
 
 Save the changes in the file.
@@ -399,23 +418,35 @@ Check finished successfully!
 
 ## Discover how to open the page and login
 
-Now try to open [http://deploy-ns-yourname.westus2.cloudapp.azure.com/](http://deploy-ns-yourname.westus2.cloudapp.azure.com/)
+We can access the public URL now on Azure: `http://deploy-ns-yourname.westus2.cloudapp.azure.com/`.
 
-To check the password, you can get it with the command from the helm info (username is as always `admin`):
+However, we can connect directly to the Deploy master via service port forwarding.
+```shell
+$ kubectl port-forward --namespace ns-yourname svc/dai-xld-ns-yourname-digitalai-deploy-lb 18080:4516
+Forwarding from 127.0.0.1:18080 -> 4516
+Forwarding from [::1]:18080 -> 4516
+```
+
+Now open [http://localhost:18080](http://localhost:18080) and log in as `admin`.
+
+If you forgot the password, you can get it with the command from the helm info (username is as always `admin`):
+
 ```shell
 ## To get the admin password for xl-deploy, run:
 kubectl get secret --namespace ns-yourname dai-xld-ns-yourname-digitalai-deploy -o jsonpath="{.data.deploy-password}" | base64 --decode; echo
 ```
 
-## Set up 'DNS' on localhost for Minikube / Docker Desktop
+## Set up 'DNS' on localhost for Docker Desktop
 
 When using a local kube cluster, we need to edit the local `hosts` file and add your host name here.
 
 The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
 
-After adding the changes to the `hosts` file, go to [https://deploy-ns-yourname.local](https://deploy-ns-yourname.local)
+For Docker Desktop, after adding the changes to the `hosts` file, go to [http://deploy-ns-yourname.local](http://deploy-ns-yourname.local) or for HTTPS [https://deploy-ns-yourname.local](https://deploy-ns-yourname.local)
 
-## Linux / Macos
+Note: The browser will warn that the site is not secure because of the certificate. This happens because we are using a self-signed certificate and not a proper certificate. Ignore the warning and proceed to the site.
+
+### Linux / Macos
 
 ```shell
 sudo vi /etc/hosts
@@ -427,13 +458,67 @@ Add following line somewhere:
 127.0.0.1 deploy-ns-yourname.local
 ```
 
-## Windows
+### Windows
 
 The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line.
 
 ```text
 127.0.0.1 deploy-ns-yourname.local
 ```
+
+## Set up 'DNS' on localhost for Minikube
+
+There are multiple ways to access the application on minikube. Check following document for details: [Accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
+
+When using a local kube cluster, we need to edit the local `hosts` file and add your host name here.
+
+The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
+
+First discover the IP of your minikube node with:
+```shell
+$ minikube ip
+192.168.59.103
+```
+
+Use that IP from your response in setting the `hosts` file.
+
+### Linux / Macos
+
+```shell
+sudo vi /etc/hosts
+```
+
+Add following line somewhere:
+
+```text
+192.168.59.103 deploy-ns-yourname.local
+```
+
+### Windows
+
+The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line.
+
+```text
+192.168.59.103 deploy-ns-yourname.local
+```
+
+### Using NodePort to connect to Deploy
+
+We are using NodePort in the ingress service setup, so we need to get the node ports. 
+
+Check the ports with following command:
+
+```shell
+$ kubectl get service dai-xld-ns-yourname-nginx-ingress-controller  -n ns-yourname
+NAME                                            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+dai-xld-ns-yourname-nginx-ingress-controller   NodePort   10.97.133.203   <none>        80:32039/TCP,443:31948/TCP   52m
+```
+
+Now try to open [http://deploy-ns-yourname.local:32039/](http://deploy-ns-yourname.local:32039/) or for HTTPS: [http://deploy-ns-yourname.local:31948/](http://deploy-ns-yourname.local:31948/)
+
+Ports _32039_, _31948_ are from above example, replace the port value with the correct value that you have in the response.
+
+Note: The browser will warn that the site is not secure because of the certificate. This happens because we are using a self-signed certificate and not a proper certificate. Ignore the warning and proceed to the site.
 
 
 ---

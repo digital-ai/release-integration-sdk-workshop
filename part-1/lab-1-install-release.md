@@ -51,6 +51,7 @@ In order not to overstretch the cluster during our workshop, please make sure to
 For more details on the questions and answers, check our documentation:  [Installation Wizard for Digital.ai Release](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-install-wizard-release.html)
 
 _The following example is for Azure. For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
+When using minikube or Docker you can use any host name you want, for example `release-ns-yourname.local`.
 
 ```text
 $ xl kube install
@@ -331,7 +332,7 @@ Check finished successfully!
 
 ## Discover how to open the page and login
 
-We have not configured the DNS, so we can't access the public URL yet: `http://release-ns-yourname.westus2.cloudapp.azure.com/`.
+We have not configured the DNS, so we can't access the public URL yet: `http://release-ns-yourname.westus2.cloudapp.azure.com/` (same is on minkube and docker setup).
 
 However, we can connect directly to the Release via service port forwarding.  
 ```shell
@@ -392,15 +393,17 @@ Note: it may take a while for the DNS changes to come through and you may get a 
 Note: The browser will warn that the site is not secure because of the certificate. This happens because we are using a self-signed certificate and not a proper certificate. Ignore the warning and proceed to the site. 
 
 
-## Set up 'DNS' on localhost for Minikube / Docker Desktop
+## Set up 'DNS' on localhost for Docker Desktop
 
 When using a local kube cluster, we need to edit the local `hosts` file and add your host name here.
 
 The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
 
-After adding the changes to the `hosts` file, go to [https://release-ns-yourname.local](https://release-ns-yourname.local)
+For Docker Desktop, after adding the changes to the `hosts` file, go to [http://release-ns-yourname.local](http://release-ns-yourname.local) or for HTTPS [https://release-ns-yourname.local](https://release-ns-yourname.local)
 
-## Linux / Macos
+Note: The browser will warn that the site is not secure because of the certificate. This happens because we are using a self-signed certificate and not a proper certificate. Ignore the warning and proceed to the site.
+
+### Linux / Macos
 
 ```shell
 sudo vi /etc/hosts
@@ -412,13 +415,100 @@ Add following line somewhere:
 127.0.0.1 release-ns-yourname.local
 ```
 
-## Windows
+### Windows
 
 The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line. 
 
 ```text
 127.0.0.1 release-ns-yourname.local
 ```
+
+## Set up 'DNS' on localhost for Minikube
+
+There are multiple ways to access the application on minikube. Check following document for details: [Accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
+
+When using a local kube cluster, we need to edit the local `hosts` file and add your host name here.
+
+The procedure is slightly different for Unix and Windows. For more detailed instructions than the ones below, see [How to Edit Your Hosts File on Windows, Mac, or Linux](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)
+
+First discover the IP of your minikube node with:
+```shell
+$ minikube ip
+192.168.59.103
+```
+
+Use that IP from your response in setting the `hosts` file.
+
+### Linux / Macos
+
+```shell
+sudo vi /etc/hosts
+```
+
+Add following line somewhere:
+
+```text
+192.168.59.103 release-ns-yourname.local
+```
+
+### Windows
+
+The hosts file is located in `C:\Windows\System32\drivers\etc\hosts`. You need to edit it as an administrator and add the following line.
+
+```text
+192.168.59.103 release-ns-yourname.local
+```
+
+### Using NodePort to connect to Release
+
+We will use NodePort option in following example, and will need to update the Custom Resource (CR) YAML and tell Kubernetes we changed it.
+
+Open the file `dai-release_cr.yaml` that can be found in the directory `digitalai/dai-release/ns-yourname/20221031-131244/kubernetes/`.
+
+Check the installation console output to find the correct timestamp. It's in the line `For current process files will be generated in the: digitalai/dai-release/ns-yourname/20221031-131244/kubernetes`.
+
+Change from `LoadBalancer` value in the yaml path of the CR file under spec > nginx-ingress-controller > service > type
+
+```yaml
+spec:
+  …  
+  nginx-ingress-controller:
+    …
+    service:
+      …
+      type: NodePort
+```
+
+Save the the file and apply the changes to Kubernetes with the command:
+
+```shell
+kubectl apply -n ns-yourname -f digitalai/dai-release/ns-yourname/20221031-131244/kubernetes/dai-release_cr.yaml
+```
+The output should say
+
+```shell
+digitalairelease.xlr.digital.ai/dai-xlr-ns-yourname configured
+```
+
+Note: it may take a while for the service changes to come through.
+
+
+Check now the changes with following command:
+
+```shell
+$ kubectl get service dai-xlr-ns-yourname-nginx-ingress-controller  -n ns-yourname
+NAME                                            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+dai-xlr-ns-yourname-nginx-ingress-controller   NodePort   10.97.133.203   <none>        80:32039/TCP,443:31948/TCP   52m
+```
+
+Wait until _Type_ has value _"NodePort"_, like it is in above example.
+
+Now try to open [http://release-ns-yourname.local:32039/](http://release-ns-yourname.local:32039/) or for HTTPS: [http://release-ns-yourname.local:31948/](http://release-ns-yourname.local:31948/)
+
+Ports _32039_, _31948_ are from above example, replace the port value with the correct value that you have in the response.
+
+Note: The browser will warn that the site is not secure because of the certificate. This happens because we are using a self-signed certificate and not a proper certificate. Ignore the warning and proceed to the site.
+
 
 ---
 
