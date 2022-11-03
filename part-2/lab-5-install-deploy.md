@@ -4,8 +4,8 @@
 For this lab we will do installation of the Digital.ai Deploy. The installation will be done in two phases.
 In the first we will generate all files, and in the second we will apply the files to the cluster.
 After first part we will change generated files. The changes in the generated files will:
-- define Azure DNS settings;
-- use private container registry azureakstestcluster.azurecr.io to get all images.
+- use private container registry azureakstestcluster.azurecr.io to get all images;
+- define Azure DNS settings (only in case you working on Azure).
 
 `xl kube` uses blueprints from the [https://dist.xebialabs.com/public/xl-op-blueprints/](https://dist.xebialabs.com/public/xl-op-blueprints/).
 For the cases when working environment does not have access to Internet, we can download the blueprints to use them from local directory.
@@ -16,7 +16,7 @@ The zip version of blueprints we can download from
 
 Download the blueprints for the current version:
 [https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/22.3.2/xl-op-blueprints-22.3.2.zip](https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/22.3.2/xl-op-blueprints-22.3.2.zip).
-Unzip the `xl-op-blueprints-22.3.2.zip` to the working directory and use it with `--local-repo` flag.
+Unzip the `xl-op-blueprints-22.3.2.zip` to the xl-op-blueprints directory in your working directory and use it with `--local-repo` flag.
 
 ### Dry-run installation
 
@@ -31,7 +31,8 @@ xl kube install --dry-run --local-repo ./xl-op-blueprints
 For the example use following answers (example on the Azure):
 
 For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
-When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`.
+When using minikube or Docker you can use any host name you want, for example `ns-yourname-xlr.local`. 
+And when selecting the ingress type `? Select between supported ingress types` use answer: _None - Ingress will not be set up during installation_ 
 
 ```text
 ? Following kubectl context will be used during execution: `minikube`? 

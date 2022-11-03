@@ -32,10 +32,12 @@ az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --o
 Run:
 
 ```shell
-minikube start --driver=virtualbox --memory 15000 --cpus 6
+minikube start --driver=virtualbox --memory 22000 --cpus 8 --disk-size 60000mb
 minikube addons enable ingress
 minikube addons enable ingress-dns
 ```
+
+After minikube start, kubectl will use the minikube context.
 
 ### With Docker Desktop
 
@@ -49,10 +51,22 @@ The demo runs comfortably with the following resources allocated under **Prefere
 * Disk image size: 60 GB
 
 
+
+
 ## Check cluster connection
 
 ```shell
 kubectl version
+```
+
+For example it will return for minikube:
+
+```text
+$ kubectl version
+WARNING: This version information is deprecated and will be replaced with the output from kubectl version --short.  Use --output=yaml|json to get the full version.
+Client Version: version.Info{Major:"1", Minor:"25", GitVersion:"v1.25.2", GitCommit:"5835544ca568b757a8ecae5c153f317e5736700e", GitTreeState:"clean", BuildDate:"2022-09-21T14:33:49Z", GoVersion:"go1.19.1", Compiler:"gc", Platform:"linux/amd64"}
+Kustomize Version: v4.5.7
+Server Version: version.Info{Major:"1", Minor:"25", GitVersion:"v1.25.2", GitCommit:"5835544ca568b757a8ecae5c153f317e5736700e", GitTreeState:"clean", BuildDate:"2022-09-21T14:27:13Z", GoVersion:"go1.19.1", Compiler:"gc", Platform:"linux/amd64"}
 ```
 
 ## Check `xl` command
@@ -61,6 +75,20 @@ The `xl`command version 22.3.2 should be in the path. Check this with the follow
 
 ```shell
 xl version
+```
+
+Example of the response on linux:
+
+```text
+$ xl version
+CLI version:             22.3.2
+Git version:             v22.3.1-3-gf1e275f
+API version XL Deploy:   xl-deploy/v1
+API version XL Release:  xl-release/v1
+Git commit:              f1e275f548795ee0624d2add34376053c09effe5
+Build date:              2022-10-27T12:58:14.038Z
+GO version:              go1.16
+OS/Arch:                 linux/amd64
 ```
 
 ---
