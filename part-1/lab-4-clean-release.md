@@ -70,12 +70,12 @@ Deleted svc/xlr-operator-controller-manager-metrics-service from namespace ns-yo
 Deleting secrets
 Deleting roles
 Deleted role/xlr-operator-leader-election-role from namespace ns-yourname
-Deleted clusterrole/release.ns-yourname-operator-manager-role from namespace ns-yourname
-Deleted clusterrole/release.ns-yourname-operator-metrics-reader from namespace ns-yourname
-Deleted clusterrole/release.ns-yourname-operator-proxy-role from namespace ns-yourname
+Deleted clusterrole/release-ns-yourname-operator-manager-role from namespace ns-yourname
+Deleted clusterrole/release-ns-yourname-operator-metrics-reader from namespace ns-yourname
+Deleted clusterrole/release-ns-yourname-operator-proxy-role from namespace ns-yourname
 Deleted rolebinding/xlr-operator-leader-election-rolebinding from namespace ns-yourname
-Deleted clusterrolebinding/release.ns-yourname-operator-manager-rolebinding from namespace ns-yourname
-Deleted clusterrolebinding/release.ns-yourname-operator-proxy-rolebinding from namespace ns-yourname
+Deleted clusterrolebinding/release-ns-yourname-operator-manager-rolebinding from namespace ns-yourname
+Deleted clusterrolebinding/release-ns-yourname-operator-proxy-rolebinding from namespace ns-yourname
 Deleting PVCs
 Deleted pvc/dai-xlr-ns-yourname-digitalai-release from namespace ns-yourname
 Deleted pvc/data-dai-xlr-ns-yourname-postgresql-0 from namespace ns-yourname
