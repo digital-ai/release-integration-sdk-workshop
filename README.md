@@ -12,7 +12,7 @@ Optional
 
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
 - [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
-- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version)
+- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing only on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
 - [docker](https://docs.docker.com/get-docker/) - if you plan to use Docker during workshop (use the latest version)
 - [helm](https://helm.sh/docs/intro/install/) - if you would like to get additional info 
 - [k9s](https://k9scli.io/topics/install/) - Kubernetes CLI To Manage Your Clusters In Style
