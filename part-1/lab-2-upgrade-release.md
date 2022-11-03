@@ -14,7 +14,9 @@ xl kube upgrade --skip-prompts
 * In this case we are sharing the cluster with others, so do NOT delete the Custom Resource that is shared between all installations.
   Answer the question `Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it:` with **Yes**.
 
-* All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.annotations`.
+* For Azure: All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` you need to add all keys under which you changed the values. We have one example from previous lab `spec.nginx-ingress-controller.service.annotations`, because of that we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.annotations`.
+
+* For Minikube: All custom changes in the CR after installation must be preserved. So for the answer  `Edit list of custom resource keys that will migrate to the new Release CR:` you need to add all keys under which you changed the values. We have one example from previous lab `.spec.nginx-ingress-controller.service.type`, because of that we need to add key in the list, in the new line `.spec.nginx-ingress-controller.service.type`.
 
 * We are upgrading from Operator to Operator. Note: the `xl kube upgrade` command can be used to upgrade helm-based installations from 10.2 and higher XXX Check this value 
 
@@ -140,6 +142,8 @@ xl kube check --skip-collecting --skip-prompts --wait-for-ready 5
 ```
 
 When done, reload Release in the browser and check the version number again. It should now be **Version 22.3.1**
+
+Note: Minikube service ports are changed, check the service ports again to see which you need to use in the Release URL.
 
 ---
 
