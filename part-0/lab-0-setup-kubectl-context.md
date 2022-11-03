@@ -27,8 +27,6 @@ az login -u $AZURE_USERNAME -p $AZURE_PASSWORD
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 ```
 
-XXX TEST cluster connectivity! Hes could not connect to xl-kube-workshop-2
-
 ### With Minikube
 
 Run:
@@ -52,7 +50,17 @@ The demo runs comfortably with the following resources allocated under **Prefere
 * Swap: 4 GB
 * Disk image size: 60 GB
 
+Check current list of contexts.
 
+```shell
+kubectl config get-contexts
+```
+
+In the list there should be docker-desktop, to use it, run following:
+
+```shell
+kubectl config use-context docker-desktop
+```
 
 
 ## Check cluster connection
