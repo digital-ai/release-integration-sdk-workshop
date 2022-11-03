@@ -205,7 +205,7 @@ The custom resource definition is shared by everybody in the cluster. During ins
 
 ```
 Do you want to replace the resource customresourcedefinition/digitalaireleases.xlr.digital.ai with specification from file
-digitalai/dai-release/ns-hes/20221102-165023/kubernetes/template/custom-resource-definition.yaml: 
+digitalai/dai-release/ns-yourname/20221102-165023/kubernetes/template/custom-resource-definition.yaml: 
 »⚠️ No
 ```
 
