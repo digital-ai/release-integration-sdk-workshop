@@ -93,6 +93,16 @@ GO version:              go1.16
 OS/Arch:                 linux/amd64
 ```
 
+## Monitor Kubernetes
+
+Our favorite tool to check what's going on is [K9s](https://k9scli.io). Launch it with
+
+```shell
+k9s
+```
+
+You will see everything that is going in the cluster! That is probably too much information. Narrow down the scope by typing `:ns`. This will allow you to select a namespace. In the subsequent exercises you will create your own namespace. This will be your private spot on the cluster where all necessary components are installed.
+
 ---
 
 [Next](../part-1/lab-1-install-release.md)

@@ -48,8 +48,7 @@ XXX CHANGE: paste this into the `dair-release_cr.yaml` directly and then edit
 
 Open the `digitalai/dai-release/ns-yourname/20221031-131244/kubernetes/dai-release_cr.yaml`. 
 
-For your path: check your installation log in the line For current process files will be generated in the: digitalai/dai-release/ns-yourname/20221031-131244/kubernetes.
-
+For your path: check the installation log of the upgrade you did in lab-2.
 
 Find the `oidc` section. It should look like this:
 
@@ -67,9 +66,7 @@ We use the `kubectl` utility to apply the changes directly into Kubernetes.
 kubectl apply -n ns-yourname -f digitalai/dai-release/ns-yourname/20221031-131244/kubernetes/dai-release_cr.yaml
 ```
 
-Open the **k9s** utility and see if the pods are starting.
-
-XXX MOVE K9s hint into lab-1 or lab-2
+The changes will not be applied until the Release server restarts. Open the **k9s** utility and see if the `dai-xlr-ns-yourname-digitalai-release-X` pods are restarting. 
 
 When everything has restarted, go to RELEASE URL.
 
