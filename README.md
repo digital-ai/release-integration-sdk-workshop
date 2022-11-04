@@ -73,9 +73,6 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
    - Part 2
    - Part 3
 
-## TODOs
+---
 
-- License for participants
-- Test multiple installation of release and deploy on the same cluster
-- Test on minikube
-- Test on docker
+[Start](./part-0/lab-0-setup-kubectl-context.md)
