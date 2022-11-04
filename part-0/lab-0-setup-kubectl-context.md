@@ -1,6 +1,10 @@
 
 # Lab 0 - Setup kubectl context
 
+## Slack 
+
+Connect to Slack channel `#xl-kube-workshop`
+
 ## Collect all prerequisites
 
 Check all prerequisites:
@@ -15,6 +19,8 @@ Check all prerequisites:
 Use one of the following options 
 
 ### With the Azure cluster
+
+Real values of parameters will be provided on the Slack channel `#xl-kube-workshop`.
 
 Run:
 
