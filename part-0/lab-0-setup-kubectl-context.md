@@ -15,8 +15,10 @@ Check all prerequisites:
 - [yq](https://github.com/mikefarah/yq)
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
 - A directory from where you will run `xl kube` commands
+- License files for Release and Deploy (it will be provided on the Slack channel `#xl-kube-workshop`)
+- Username/password for Identity Server (it will be provided on the Slack channel `#xl-kube-workshop`) 
 
-Use one of the following options 
+Use one of the following options to get the kubectl context on your machine:
 
 ### With the Azure cluster
 
@@ -56,7 +58,7 @@ The demo runs comfortably with the following resources allocated under **Prefere
 * Swap: 4 GB
 * Disk image size: 60 GB
 
-Check current list of contexts.
+Check current list of contexts, in command line run to get all contexts.
 
 ```shell
 kubectl config get-contexts
@@ -69,13 +71,21 @@ kubectl config use-context docker-desktop
 ```
 
 
-## Check cluster connection
+## Check cluster connection for any provider
+
+Run
 
 ```shell
 kubectl cluster-info
 ```
 
-For example it will return for minikube:
+and 
+
+```shell
+kubectl version
+```
+
+For example, it will return for minikube:
 
 ```text
 $ kubectl version
