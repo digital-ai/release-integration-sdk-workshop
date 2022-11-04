@@ -8,12 +8,22 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
 - [xl-cli 22.3.2](https://dist.xebialabs.com/public/xl-cli/22.3.2/) - [Installation instructions](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/how-to/install-the-xl-cli.html)
 - [yq](https://github.com/mikefarah/yq)
 
-Optional
+### Mandatory for Azure
+
+- [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
+
+### Mandatory for Minikube
+
+- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing only on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
+- [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
+
+### Mandatory for Docker Desktop
+
+- [docker](https://docs.docker.com/get-docker/) - if you plan to use Docker during workshop (use the latest version)
+
+### Optional
 
 - Java 11 - keytool (only if you plan to use the generation of the keystore inside the xl-cli kube)
-- [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
-- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing only on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
-- [docker](https://docs.docker.com/get-docker/) - if you plan to use Docker during workshop (use the latest version)
 - [helm](https://helm.sh/docs/intro/install/) - if you would like to get additional info 
 - [k9s](https://k9scli.io/topics/install/) - Kubernetes CLI To Manage Your Clusters In Style
 
