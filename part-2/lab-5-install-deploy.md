@@ -266,8 +266,6 @@ spec:
           image: azureakstestcluster.azurecr.io/xebialabs/deploy-operator:22.3.1 # Change
 
 ```
-- spec.template.spec.imagePullSecrets[0].name: regcred
-- spec.template.spec.containers[0].image: azureakstestcluster.azurecr.io/kubebuilder/kube-rbac-proxy:v0.8.0
 
 The `spec.template.spec.containers[1].image` should have already correct value.
 
