@@ -1,45 +1,60 @@
 
-# Lab 5 - Install Deploy with –files 22.3.1 and use private image registry for all images
+# Lab 5 - Install Deploy using a private image registry
 
-For this lab we will do installation of the Digital.ai Deploy. The installation will be done in two phases.
-In the first we will generate all files, and in the second we will apply the files to the cluster.
-After first part we will change generated files. The changes in the generated files will:
-- use private container registry azureakstestcluster.azurecr.io to get all images;
-- define Azure DNS settings (only in case you working on Azure).
+In this lab we will do the installation of Digital.ai Deploy with a private image registry. Most large enterprises will not allow to download container images from just any public repositpory.
 
-`xl kube` uses blueprints from the [https://dist.xebialabs.com/public/xl-op-blueprints/](https://dist.xebialabs.com/public/xl-op-blueprints/).
-For the cases when working environment does not have access to Internet, we can download the blueprints to use them from local directory.
-The zip version of blueprints we can download from
-[https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/](https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/).
+The installation will be done in three phases.
+1. Generate all files
+2. Modify generated files
+3. Apply the files to the cluster
+
+We will change the generated files to do the following:
+- Use a private container registry at `azureakstestcluster.azurecr.io` for all images;
+- Define Azure DNS settings (only in case you are working on Azure)
+
+`xl kube` downloads blueprints from [https://dist.xebialabs.com/public/xl-op-blueprints/](https://dist.xebialabs.com/public/xl-op-blueprints/).
+In case the working environment does not have access to Internet, we can download the blueprints to use them from local directory.
+The zip versions of the needed blueprints are available on our [public Nexus repository](https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/).
 
 ## Installation
 
 Download the blueprints for the current version:
 [https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/22.3.2/xl-op-blueprints-22.3.2.zip](https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public/ai/digital/xlclient/blueprints/xl-op-blueprints/22.3.2/xl-op-blueprints-22.3.2.zip).
-Unzip the `xl-op-blueprints-22.3.2.zip` to the xl-op-blueprints directory in your working directory and use it with `--local-repo` flag.
+
+
+Unzip the `xl-op-blueprints-22.3.2.zip` to the `xl-op-blueprints` directory in your working directory. You can now use it with the `--local-repo` flag.
 
 ### Dry-run installation
 
-Run the installation with `--dry-run`, that command will just generate the files in the local directory.
+Run the installation with `--dry-run`. With this flag, `xl` will just generate the files in the local directory and stop.
 
-In order not to overstretch thr cluster during our workshop, please make sure to use a maximum of two master and worker replicas, and tweak the rest of the resources also as indicated below.
 
 ```shell
 xl kube install --dry-run --local-repo ./xl-op-blueprints
 ```
 
-For the example use following answers (example on the Azure):
 
-For minikube / Docker Desktop choose 'PlainK8s' for K8sSetup and use default storage classes.
-When using minikube or Docker you can use any host name you want, for example `deploy-ns-yourname.local`. 
+Use the following answers (example on the Azure):
+
+⚠️ In order not to overstretch the cluster during our workshop, please make sure to use a maximum of two master and worker replicas, and tweak the rest of the resources also as indicated below.
+
+For minikube / Docker Desktop choose `PlainK8s` for K8sSetup and use default storage classes.
+
+When using minikube or Docker you can use any host name you want, for example `deploy-ns-yourname.local`. Otherwise, use the Azure host name you used in previous exercises but prefix it with `deploy`.
+
+We are using here private registry so we need to add `azureakstestcluster.azurecr.io` to the repository name.
+
+Questions for license, storage class and hostname will be similar as for Release in the previous exercises. Make sure you use the Deploy license!
+
+For the other questions and answers details check [Installation Wizard for Digital.ai Deploy](https://docs.digital.ai/bundle/devops-deploy-version-v.22.3/page/deploy/operator/xl-op-install-wizard-deploy.html)
 
 ```text
-? Following kubectl context will be used during execution: `minikube`? 
+? Following kubectl context will be used during execution: `xl-kube-workshop-2`? 
 » Yes
-? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: 
-» PlainK8s [Plain multi-node K8s cluster]
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
+» AzureAKS [Azure AKS]
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
-» Yes
+»⚠️ Yes
 ? Enter the name of the Kubernetes namespace where the Digital.ai DevOps Platform will be installed, updated or cleaned: 
 »⚠️ ns-yourname
 ? Product server you want to perform install for: 
@@ -53,7 +68,7 @@ When using minikube or Docker you can use any host name you want, for example `d
 ? Enter the deploy task engine image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
 » deploy-task-engine
 ? Enter the central configuration image name for version 22 and above (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
-»⚠️ central-configuration
+» central-configuration
 ? Enter the deploy master server replica count: 
 »⚠️ 2
 ? Enter PVC size for Deploy master (Gi): 
@@ -112,25 +127,19 @@ Starting install processing.
 ...
 ```
 
-We are using here private registry so we need to add `azureakstestcluster.azurecr.io` to the repository name.
+Dry run will generate the files in the working folder, somewhere like `digitalai/dai-deploy/digitalai/20221020-001911/kubernetes`. Check the command output for the exact location. 
 
-Here all notes for the license, storage class and hostname will be same from the Release Part 1.
+## Updating the image repository
 
-For the other questions and answers details check [Installation Wizard for Digital.ai Deploy](https://docs.digital.ai/bundle/devops-deploy-version-v.22.3/page/deploy/operator/xl-op-install-wizard-deploy.html)
-
-Dry run will generate the files in the working folder, in the `digitalai/dai-deploy/digitalai/20221020-001911/kubernetes` folder like the example says.
-
-
-### Edit generated files and update the image repository
-
-Go through generated files and update the image repository.
-There are 3 files that we need to update in the `digitalai/dai-deploy/digitalai/20221020-001911/kubernetes` directory.
+We will now configure access and update the generated files so when we start the installation, images will be downloaded from our custom repository,
 
 On the private registry we have following images:
 
 <img src="./images/images.png" width="300px" alt="Repositories"/>
 
-#### First create secret in your namespace with registry auth data
+### Configure credentials
+
+First create a secret in your namespace with the registry and authentication data. This way we don't have to store passwords in the Yaml files.
 
 ```shell
 kubectl create secret docker-registry regcred \
@@ -140,21 +149,53 @@ kubectl create secret docker-registry regcred \
   -n ns-yourname
 ```
 
+### Update the image repository in the generated files
+
+We now need to adapt some files to point to our custom repository for all images.
+
+* `kubernetes/dai-deploy_cr.yaml`
+* `kubernetes/template/deployment.yaml`
+<!--
+* `kubernetes/template/postgresql-init-keycloak-db.yaml` - only in case of upgrade
+-->
+
 #### kubernetes/dai-deploy_cr.yaml
 
 Update following in the file:
 
-- spec.ImagePullSecret: regcred
-- spec.TinyToolsImageRepository: "azureakstestcluster.azurecr.io/xebialabs/tiny-tools"
+```yaml
+spec:
+  …
+  ImagePullSecret: regcred
+  …
+  TinyToolsImageRepository: "azureakstestcluster.azurecr.io/xebialabs/tiny-tools"
+```
 
 The `spec.centralConfiguration.image.repository`, `spec.ServerImageRepository` and `spec.WorkerImageRepository` should have already correct value.
 
-##### If you are using nginx
+##### Ngninx
 
-- spec.nginx-ingress-controller.global.imagePullSecrets: [ "regcred" ]
-- spec.nginx-ingress-controller.defaultBackend.image.registry: azureakstestcluster.azurecr.io
-- spec.nginx-ingress-controller.image.registry: azureakstestcluster.azurecr.io
+```yaml
+spec:
+  …
+  nginx-ingress-controller:
+    …
+    defaultBackend:
+      …
+      image:
+        …
+        registry: azureakstestcluster.azurecr.io
+    …
+    global:
+      …
+      imagePullSecrets: [ "regcred" ]
+    …
+    image:
+      …
+      registry: azureakstestcluster.azurecr.io
+```
 
+<!--
 ##### If you are using haproxy
 
 - spec.haproxy-ingress.controller.imagePullSecrets: [ "regcred" ]
@@ -165,27 +206,72 @@ The `spec.centralConfiguration.image.repository`, `spec.ServerImageRepository` a
 - spec.keycloak.imagePullSecrets: [ "regcred" ]
 - spec.keycloak.image.repository: azureakstestcluster.azurecr.io/jboss/keycloak
 - spec.keycloak.postgresql.image.registry: azureakstestcluster.azurecr.io
+-->
 
-##### If you are using embedded postgresql
+##### PostgreSQL
 
-- spec.postgresql.global.imagePullSecrets: [ "regcred" ]
-- spec.postgresql.image.registry: azureakstestcluster.azurecr.io
+```yaml
+spec:
+  …
+  postgresql:
+    …
+    global:
+      …
+      imagePullSecrets: [ "regcred" ]
+    …
+    image:
+      …
+      registry: azureakstestcluster.azurecr.io
+```
 
-##### If you are using embedded rabbitmq
+##### RabbitMQ
 
-- spec.rabbitmq.global.imagePullSecrets: [ "regcred" ]
-- spec.rabbitmq.image.registry: azureakstestcluster.azurecr.io
-- spec.rabbitmq.volumePermissions.image.registry: azureakstestcluster.azurecr.io
+```yaml
+spec:
+  …
+  rabbitmq:
+    …
+    global:
+      …
+      imagePullSecrets: [ "regcred" ]
+    …
+    image:
+      …
+      registry: azureakstestcluster.azurecr.io
+    …
+    volumePermissions:
+      …
+      image:
+        …
+        registry: azureakstestcluster.azurecr.io
+```
 
 #### kubernetes/template/deployment.yaml
 
 Update following in the file:
 
+```yaml
+spec:
+  …
+  template:
+    …
+    spec:
+      imagePullSecrets:  # Add
+        - name: regcred  # Add
+      containers:
+        - name: kube-rbac-proxy
+          image: azureakstestcluster.azurecr.io/kubebuilder/kube-rbac-proxy:v0.8.0 # Change
+          …
+        - name: manager
+          image: azureakstestcluster.azurecr.io/xebialabs/deploy-operator:22.3.1 # Change
+
+```
 - spec.template.spec.imagePullSecrets[0].name: regcred
 - spec.template.spec.containers[0].image: azureakstestcluster.azurecr.io/kubebuilder/kube-rbac-proxy:v0.8.0
 
 The `spec.template.spec.containers[1].image` should have already correct value.
 
+<!--
 #### kubernetes/template/postgresql-init-keycloak-db.yaml - only in case of upgrade
 
 Update following in the file:
@@ -193,21 +279,21 @@ Update following in the file:
 - spec.template.spec.imagePullSecrets[0].name: regcred
 - spec.template.spec.initContainers[0].image: azureakstestcluster.azurecr.io/xebialabs/tiny-tools:22.2.0
 - spec.template.spec.containers[0].image: azureakstestcluster.azurecr.io/xebialabs/tiny-tools:22.2.0
+-->
 
+### Update the Azure DNS setup
 
-### Edit generated files and update the Azure DNS setup
+Open `kubernetes/dai-deploy_cr.yaml`.
 
-Edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.
-
-Update the with selected hostname in the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations`, in our example it is `deploy-ns-yourname`:
+Update the yaml path of the CR file `spec.nginx-ingress-controller.service.annotations` with `deploy-ns-yourname`:
 
 ```yaml
 spec:
-
+  …
   nginx-ingress-controller:
-
+    …
     service:
-
+      …
       annotations:
         service.beta.kubernetes.io/azure-dns-label-name: deploy-ns-yourname
 ```
@@ -215,7 +301,7 @@ spec:
 Save the changes in the file.
 
 
-### Edit generated files and update the Minikube Ingress setup to use NodePort
+### Update Minikube Ingress setup to use NodePort
 
 We will use NodePort option in following example, and will need to update the Custom Resource (CR) YAML and tell Kubernetes we changed it.
 Edit CR, open the `digitalai/dai-deploy/ns-yourname/20221020-001911/kubernetes/dai-deploy_cr.yaml`.

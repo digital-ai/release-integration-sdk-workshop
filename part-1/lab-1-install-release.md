@@ -35,7 +35,11 @@ Before we kick it off, let's get our ducks in a row
 - We are installing 22.2.4 version of Release. Later in the workshop we will upgrade it to 22.3.1
 - The license files will be provided during the workshop and needs to be saved in the working directory.
 - Both Kubernetes namespace and hostname need to be unique. For this workshop, we will refer to the namespace as `ns-yourname`. Every time you encounter `ns-yourname`, replace it with your own namespace, for example `ns-alice`. The namespace total length needs to be below 12 characters. The namespace will be created during the installation.  
-- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for `release-ns-yourname.westus2.cloudapp.azure.com`. When using minikube or Docker you can use any host name you want, for example `release-ns-yourname.local`.
+- When installing on Azure, you will [create a DNS label](https://learn.microsoft.com/en-us/azure/aks/static-ip#apply-a-dns-label-to-the-service) for 
+  - `release-ns-yourname.westus2.cloudapp.azure.com`.  
+  ⚠️ The host name depends on the region the cluster is in. Refer to [Confluence](https://digitalai.atlassian.net/wiki/spaces/Labs/pages/76855148558/xl+kube+workshop+--+Passwords+Clusters) to find out which region you are in,
+- When using minikube or Docker you can use any host name you want, for example
+  - `release-ns-yourname.local`.
 - On Azure we use two custom storage classes.They already exist on the cluster:
   - `xl-kube-workshop-file-storage-class` based on [Azure Files Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv)
   - `xl-kube-workshop-disk-storage-class` based on [Azure Disk Dynamic](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
