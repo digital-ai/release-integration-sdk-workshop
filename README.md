@@ -6,7 +6,7 @@ Workshop for installing Digital.ai Release and Digital.ai Deploy on a Kubernetes
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [xl-cli 22.3.2](https://dist.xebialabs.com/public/xl-cli/22.3.2/) - [Installation instructions](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/how-to/install-the-xl-cli.html)
-- [yq](https://github.com/mikefarah/yq) 4.18.1 or higher
+- [yq](https://github.com/mikefarah/yq) 4.18.1 or higher. Ubuntu comes with a broken version of yq installed. Download the latest version of yq from GitHub directly.
 
 ### Mandatory for Azure
 
