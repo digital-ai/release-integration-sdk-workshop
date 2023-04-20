@@ -60,7 +60,7 @@ Restart the Release container with the following command, or find the restart bu
 
 When the Release server has restarted, refresh the UI by pressing Reload in the browser.
 
-**_Note:_** We are currently working on a feature that makes it possible to install plugins without needing to restart the Release server. Stay tuned! 
+💡 **Note:** We are currently working on a feature that makes it possible to install plugins without needing to restart the Release server. Stay tuned! 
 
 ### 5. Test it!
 
@@ -73,5 +73,5 @@ Congratulations, you just ran your first container-based plugin!
 
 ---
 
-[Next](../part-1/lab-1-install-release.md)
+[Next](../part-2/lab-2-create-project-repository.md)
 

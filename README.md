@@ -40,7 +40,7 @@ To start developing the integrations plugins, install the following
 
 Container-based integration plugins are meant to run on a Kubernetes cluster. To have a hands-on experience you will need the following components.
 
-🐲 _**Note:**_ Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part of Kubernetes is all new to you (or be prepared for a steep learning curve)
+⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part if Kubernetes is all new to you (or be prepared for a steep learning curve)
 
 Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
 
@@ -65,7 +65,12 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
    * Create a project repository in Git
    * Build and install Hello example
    * Wipe environment (docker compose down and up)
-* [Lab 3 - Define a new task]()
+* [Lab 3 - Set up IDE]()
+  * Install Python
+  * Create virtual environment
+  * pip install libraries
+  * Load in IDE
+* [Lab 4 - Define a new task]()
    * Change type-definitions
    * Create a new task in Python
    * Build & install
@@ -74,11 +79,6 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
 
 ### [Part 3 - Create an integration task](part-3/)
 
-* [Lab 4 - Set up IDE]()
-   * Install Python
-   * Create virtual environment
-   * pip install libraries
-   * Load in IDE
 
 * [Lab 5 - Create integration to a third party server]()
    * Download external library. Splunk SDK? We can run it is a container
