@@ -47,4 +47,4 @@ PLUGIN=acme-release-example-integration
 ...
 ```
 
-XXX Next
+[Next](../part-2/lab-3-setup-ide.md)

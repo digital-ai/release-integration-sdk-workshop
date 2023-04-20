@@ -32,8 +32,8 @@ The template project to get you started provides build scripts and a development
 
 To start developing the integrations plugins, install the following
 
-* Python3, version 3.11
-* The `pip` installer tool for Python
+* Python3, version 3.11 XXX download link
+* The `pip` installer tool for Python XXX download link
 * A code editor or IDE like VisualCode or PyCharm
 
 ### Production setup (optional)
@@ -62,14 +62,7 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
 ### [Part 2 - Create a custom task](part-2/)
 
 * [Lab 2 - Create a project repository](part-2/lab-2-create-project-repository.md)
-   * Create a project repository in Git
-   * Build and install Hello example
-   * Wipe environment (docker compose down and up)
 * [Lab 3 - Set up IDE]()
-  * Install Python
-  * Create virtual environment
-  * pip install libraries
-  * Load in IDE
 * [Lab 4 - Define a new task]()
    * Change type-definitions
    * Create a new task in Python
@@ -78,7 +71,6 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
    * As code?
 
 ### [Part 3 - Create an integration task](part-3/)
-
 
 * [Lab 5 - Create integration to a third party server]()
    * Download external library. Splunk SDK? We can run it is a container
