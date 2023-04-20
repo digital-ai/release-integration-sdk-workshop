@@ -42,14 +42,14 @@ Container-based integration plugins are meant to run on a Kubernetes cluster. To
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part if Kubernetes is all new to you (or be prepared for a steep learning curve)
 
-Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
+Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
 
 ## Workshop Contents
 
+💡 **Note:** If you get stuck during the workshop, check the [Troubleshooting section](troubleshooting.md) for common problems
+
 ### Introduction
 * Presentation sketching out the architecture and what we are going to do
-
-
 
 ### [Part 0 - Run Release](part-0/)
 
@@ -62,13 +62,8 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
 ### [Part 2 - Create a custom task](part-2/)
 
 * [Lab 2 - Create a project repository](part-2/lab-2-create-project-repository.md)
-* [Lab 3 - Set up IDE]()
-* [Lab 4 - Define a new task]()
-   * Change type-definitions
-   * Create a new task in Python
-   * Build & install
-   * Run it
-   * As code?
+* [Lab 3 - Set up IDE](part-2/lab-3-setup-ide.md)
+* [Lab 4 - Define a new task](part-2/lab-4-define-a-new-task.md)
 
 ### [Part 3 - Create an integration task](part-3/)
 
@@ -78,17 +73,21 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
    * Define task
    * Build and run
 
-### [Part 4 - Production Setup with Kubernetes](part-4/)
+### [Part 4 - Call the Release API](part-4/)
 
-* [Lab 6 - Prepare Kubernetes](part-4/lab-6-prepare-for-kubernetes.md)
-   * Launch Kubernetes cluster
-* [Lab 7 - Install Remote Runner]()
-   * Create user and token in Release
-   * Install Remote runner with xl kube install
-   * Check that Remote Runner is being registered in Release
-   * Disable Docker runner
-   * Run a task
-   * Check in K9s
+* [Lab 6 - Set the system message]()
+
+### [Part 5 - Production Setup with Kubernetes](part-4/)
+
+* [Lab 7 - Prepare Kubernetes](part-5/lab-7-prepare-for-kubernetes.md)
+  * Launch Kubernetes cluster
+* [Lab 8 - Install Remote Runner]()
+  * Create user and token in Release
+  * Install Remote runner with xl kube install
+  * Check that Remote Runner is being registered in Release
+  * Disable Docker runner
+  * Run a task
+  * Check in K9s
 
 
 ---
