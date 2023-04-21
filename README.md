@@ -1,6 +1,6 @@
 ![Build new integrations in an instant!](integration-sdk-logo.png)
 
-To make your job easier, we are bringing a new integration SDK experience that gets you up and running in a matter of minutes.
+To make your job easier, we are bringing a new integration SDK experience.
 
 Run tasks as containers, using any language or third-party library.
 
@@ -49,7 +49,7 @@ Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of
 💡 **Note:** If you get stuck during the workshop, check the [Troubleshooting section](troubleshooting.md) for common problems
 
 ### Introduction
-* Presentation sketching out the architecture and what we are going to do
+* Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
 ### [Part 0 - Run Release](part-0/)
 
@@ -62,7 +62,7 @@ Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of
 ### [Part 2 - Create a custom task](part-2/)
 
 * [Lab 2 - Create a project repository](part-2/lab-2-create-project-repository.md)
-* [Lab 3 - Set up IDE](part-2/lab-3-setup-ide.md)
+* [Lab 3 - Set up IDE](part-2/lab-3-setup-python-and-ide.md)
 * [Lab 4 - Define a new task](part-2/lab-4-define-a-new-task.md)
 
 ### [Part 3 - Create an integration task](part-3/)

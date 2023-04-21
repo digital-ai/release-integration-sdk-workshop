@@ -37,4 +37,7 @@ types:
 * Rename hello.py to greet.py
 * Rename Hello class to Greet class
 * Install in Release & restart
+* Make a small change in the code
+* Then build but do not restart and see that changes will be picked up
+* Introduce an error, build and run and show how to see the logs
 

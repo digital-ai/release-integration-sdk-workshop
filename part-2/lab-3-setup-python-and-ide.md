@@ -1,4 +1,4 @@
-## Setting up an IDE or code editor
+## Setting up your development environment
 
 This section explains how you can set up Python with VisualCode or IntelliJ/PyCharm to help you code. 
 
@@ -30,6 +30,8 @@ Activate the virtual environment by running the following command
     source venv/bin/activate
 
 Once activated, you should see the name of the virtual environment displayed in your command prompt or terminal, for example `(venv) C:\Users\username\project` on Windows.
+
+Te exit the virtual environment, simply use the `deactivate` command in the terminal.
 
 ### Install libraries required by the project
 
