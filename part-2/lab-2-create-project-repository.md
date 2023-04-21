@@ -13,9 +13,10 @@ Before you duplicate the contents of the template repository, you already need a
 
 We have the following naming convention for developing Digital.ai Release integration plugins:
 
-    [company]-release-[target]-integration
+    [publisher]-release-[target]-integration
 
-Foer the workshop, just use your own name for [company] and `workshop` for [target]
+Where publisher would be the name of your company.
+For the workshop, just use your own name for [publisher] and `workshop` for [target]
 
 For example: `hes-release-workshop-integration`
 
@@ -43,8 +44,9 @@ Now open Terminal and navigate to the directory where you store your projects. G
 Change the following line in `project.properties`:
 
 ```
-PLUGIN=acme-release-example-integration
+PLUGIN=YOUR_NAME-release-workshop-integration
 ...
 ```
 
+---
 [Next](../part-2/lab-3-setup-python-and-ide.md)

@@ -50,7 +50,7 @@ We will now install the plugin into Digital.ai Release
 Go to the [Installed plugins](http://localhost:5516/#/pluginManager) section of the Plugin Manager page in Release.
 
 Press the **Upload** button in the upper right corner and browse to the `build` directory of the `release-integration-template-python` project.
-The plugin jar takes the name of the project, for example `release-integration-template-python-1.0.0.jar`. Select this file and press **Upload**.
+The plugin jar takes the name of the project specified in `project.properties`, for example `publisher-release-target-integration-0.0.1.jar`. Select this file and press **Upload**.
 
 In order to activate the plugin, we need to restart the Release server.
 
@@ -62,11 +62,13 @@ When the Release server has restarted, refresh the UI by pressing Reload in the 
 
 💡 **Note:** We are currently working on a feature that makes it possible to install plugins without needing to restart the Release server. Stay tuned! 
 
-### 5. Test it!
+### Test it!
 
-Create a template with the task **Example: Hello** and run it!
+✍️ **Assignment**
 
-XXX Expand
+ * In Release, create a new folder called **Workshop** 
+ * In the new folder, create a template that contains the task **Container Example: Hello** and run it!
+
 
 
 Congratulations, you just ran your first container-based plugin!
