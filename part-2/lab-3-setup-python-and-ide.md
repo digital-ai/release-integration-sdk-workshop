@@ -60,7 +60,7 @@ XXX Double check if PyCharm grabs the virtual environment this way.
 You are now good to go to start coding!
 
 
-XXX Next
+[Next](../part-2/lab-4-define-a-new-task.md)
 
 
 
