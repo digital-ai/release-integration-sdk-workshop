@@ -1,4 +1,4 @@
-## Define a new task
+## Define a new task and test
 
 In this section we will define and code a new task, based on the `Hello` example task.
 
@@ -102,11 +102,11 @@ greeting = f"Hello {stranger}"
 Do the build and run the task again. It should fail!
 You will get an error summary on the Activity page. 
 
-![Show detailed logs](show-detailed-logs.png)
+![Show detailed logs](img/show-detailed-logs.png)
 
 What's more, you can see the detailed logs by clicking on the **View logs** button
 
-![Expand logs](expand-logs.png)
+![Expand logs](img/expand-logs.png)
 
 You can make the log area large by clicking on the **Expand** button.
 
@@ -159,5 +159,21 @@ FAILED (errors=1)
 ✍️ **Assignment** 
 * Fix the code so the test runs without failure. Then build and retest in the Release server. 
 
----
-[Next](../part-3)
+### Do some coding!
+
+Before we move on, try out some coding for yourself
+
+✍️ **Assignment**
+* Create another task in Python. Define a new type, with input and output variables. Keep it simple and just use standard Python libraries. We will touch more advanced topics in the next parts.
+
+This concludes the first leg of our workshop. Congratulations, you are now able to build container-based plugins for Digital.ai Release! 
+
+## Next
+
+The rest of the workshop builds on the knowledge you have acquired so far. Each topic can be tackled independently. Choose the topic that suits you best! 
+
+* [Part 3](../part-3) - How to integrate with a 3rd party system, using external Python libraries.
+* [Part 4](../part-4) - Calling the Digital.ai public API from a container task
+* [Part 5](../part-5) - Setting up Digital.ai Release with container task execution in Kubernetes using the Remote Runner.
+
+

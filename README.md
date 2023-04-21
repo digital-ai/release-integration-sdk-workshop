@@ -53,7 +53,7 @@ Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of
 
 ### [Part 0 - Run Release](part-0/)
 
-* [Lab 0 - Check out and run](part-0/lab-0-checkout-project-and-run-release.md)
+* [Lab 0 - Getting Started: Check out and run Release](part-0/lab-0-checkout-project-and-run-release.md)
 
 ### [Part 1 - Hello World](part-1/)
 
@@ -62,8 +62,8 @@ Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of
 ### [Part 2 - Create a custom task](part-2/)
 
 * [Lab 2 - Create a project repository](part-2/lab-2-create-project-repository.md)
-* [Lab 3 - Set up IDE](part-2/lab-3-setup-python-and-ide.md)
-* [Lab 4 - Define a new task](part-2/lab-4-define-a-new-task.md)
+* [Lab 3 - Set up Python and IDE](part-2/lab-3-setup-python-and-ide.md)
+* [Lab 4 - Define a new task and test](part-2/lab-4-define-a-new-task-and-test.md)
 
 ### [Part 3 - Create an integration task](part-3/)
 
@@ -92,4 +92,4 @@ Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of
 
 ---
 
-[Start](./part-0/lab-0-checkout-project-and-run-release.md)
+[Start](part-0/lab-0-checkout-project-and-run-release.md)

@@ -24,7 +24,7 @@ We need to initialize a Git repository with this name and note the url.
 
 This can be done easily from GitHub. Just navigate to the mainpage of the cd release-integration-template-python project and find the **Use this template** button, and select **Create new repository**. 
 
-![Use this tempalte button on GitHub](copy-template-on-github.png)
+![Use this tempalte button on GitHub](img/copy-template-on-github.png)
 
 **⚠️ NOTE:**  You need a GitHub account to do so.
 
