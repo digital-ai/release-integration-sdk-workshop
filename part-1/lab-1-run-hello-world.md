@@ -9,8 +9,9 @@ The Release server needs to be able to find the container images of the integrat
 
 **Unix / macOS**
 
-Add the following entry to `/etc/hosts` (sudo privileges is required to edit):
+Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
 
+    127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
 
 **Windows**
