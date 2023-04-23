@@ -1,6 +1,10 @@
 ### Troubleshooting
 
-If Release won't start up with the following message:
+## Release won't start
+
+Release complains on startuop and quits.
+
+For example with the following message:
 
 ```
 java.lang.IllegalStateException: Trying to register duplicate definition for type (...)
@@ -12,13 +16,23 @@ or
 java.lang.NullPointerException: Could not find a type definition associated with type [containerExamples.BaseTask]
 ```
 
-The easiest is to reset the dev environment by doing
+This is usually caused by a plugin with incorrect an `type-definitions.yaml` file
+
+The easiest way is to simply reset the dev environment by doing
 
     docker compose down
     docker compose up -d --build
 
-Unfortunately you will lose your work
+Unfortunately you will lose your work!
 
-XXX Rewrite / expand
+(We are currently working on ways to prevent this situation)
+
+## My task doesn't show up in the Add task menu
+
+* Refresh your browser
+
+## My task shows up but properties are missing
+
+* Refresh your browser
 
 

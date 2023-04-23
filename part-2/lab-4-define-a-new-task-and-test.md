@@ -170,10 +170,12 @@ This concludes the first leg of our workshop. Congratulations, you are now able 
 
 ## Next
 
-The rest of the workshop builds on the knowledge you have acquired so far. Each topic can be tackled independently. Choose the topic that suits you best! 
+The rest of the workshop builds on the knowledge you have acquired so far. 
 
+If you are more interested in coding, continue with
 * [Part 3](../part-3) - How to integrate with a 3rd party system, using external Python libraries.
-* [Part 4](../part-4) - Calling the Digital.ai public API from a container task
+
+If you want to know how to set up a Kubernetes cluster for Digital.ai Release task execution, you can skip to
 * [Part 5](../part-5) - Setting up Digital.ai Release with container task execution in Kubernetes using the Remote Runner.
 
 
