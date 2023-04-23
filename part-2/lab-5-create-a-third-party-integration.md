@@ -84,7 +84,7 @@ See [Lab 3](../part-2/lab-3-setup-python-and-ide.md)
 
 With the libs in place, now is the time to configure your preferred IDE.
 
-See [Lab 3](../part-2/lab-3-setup-python-and-ide.md)
+See [Lab 3](../part-1/lab-3-setup-python-and-ide.md)
 
 ### Remove sample files you won’t need
 
@@ -237,7 +237,7 @@ When the task code is finished and the tests run fine, it is time to create the 
 
 Edit the file `type-modifications.yaml` and 
 
-See [Lab 4](../part-2/lab-4-define-a-new-task-and-test.md#type-definition)
+See [Lab 4](../part-1/lab-4-define-a-new-task-and-test.md#type-definition)
 
 * Remove unneeded classes
 * Rename base type from `containerExamples.BaseTask` to one that is specific to your project, for example `aws.BaseTask` 

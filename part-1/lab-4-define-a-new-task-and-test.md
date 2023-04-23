@@ -66,7 +66,7 @@ To make everything consistent again, do the following
 
 Now we are ready to build and test the plugin
 
-Repeat the steps from [Lab 1](../part-1/lab-1-run-hello-world.md#build-integration-plugin-and-publish-the-container-image)
+Repeat the steps from [Lab 1](lab-1-run-hello-world.md#build-integration-plugin-and-publish-the-container-image)
 
 In summary:
 * Build using `sh build.sh` or `build.bat`
@@ -173,9 +173,9 @@ This concludes the first leg of our workshop. Congratulations, you are now able 
 The rest of the workshop builds on the knowledge you have acquired so far. 
 
 If you are more interested in coding, continue with
-* [Part 3](../part-3) - How to integrate with a 3rd party system, using external Python libraries.
+* [Part 2](../part-2) - How to integrate with a 3rd party system, using external Python libraries.
 
 If you want to know how to set up a Kubernetes cluster for Digital.ai Release task execution, you can skip to
-* [Part 4](../part-4) - Production Setup with Kubernetes, using the Remote Runner
+* [Part 3](../part-3) - Production Setup with Kubernetes, using the Remote Runner
 
 

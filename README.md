@@ -40,7 +40,7 @@ Container-based integration plugins are meant to run on a Kubernetes cluster. To
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part if Kubernetes is all new to you (or be prepared for a steep learning curve)
 
-Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
+Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
 
 ## Workshop Contents
 
@@ -49,41 +49,23 @@ Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of
 ### Introduction
 * Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
-### [Part 0 - Run Release](part-0/)
+### [Part 1 - Getting started](part-1/)
 
-* [Lab 0 - Getting Started: Check out and run Release](part-0/lab-0-checkout-project-and-run-release.md)
-
-### [Part 1 - Hello World](part-1/)
-
-*  [Lab 1 - Run Hello World](part-1/lab-1-run-hello-world.md)
-
-### [Part 2 - Create a custom task](part-2/)
-
+* [Lab 0 - Getting Started: Check out and run Release](part-1/lab-0-checkout-project-and-run-release.md)
+* [Lab 1 - Run Hello World](part-1/lab-1-run-hello-world.md)
 * [Lab 2 - Create a project repository](part-2/lab-2-create-project-repository.md)
 * [Lab 3 - Set up Python and IDE](part-2/lab-3-setup-python-and-ide.md)
 * [Lab 4 - Define a new task and test](part-2/lab-4-define-a-new-task-and-test.md)
 
-### [Part 3 - Create an integration task](part-3/)
+### [Part 2 - Create your own task](part-2/)
 
-* [Lab 5 - Create integration to a third party server]()
-   * Download external library. Splunk SDK? We can run it is a container
-   * Define server type in type-modifications
-   * Define task
-   * Build and run
+* [Lab 5 - Create integration to a third party server](part-2/lab-5-create-a-third-party-integration.md)
 
-### [Part 4 - Production Setup with Kubernetes](part-4/)
+### [Part 3 - Production Setup with Kubernetes](part-3/)
 
-* [Lab 6 - Prepare Kubernetes](part-4/lab-6-prepare-for-kubernetes.md)
-  * Launch Kubernetes cluster
-* [Lab 7 - Install Remote Runner](part-4/lab-7-install-remote-runner.md)
-  * Create user and token in Release
-  * Install Remote runner with xl kube install
-  * Check that Remote Runner is being registered in Release
-  * Disable Docker runner
-  * Run a task
-  * Check in K9s
-
+* [Lab 6 - Prepare Kubernetes](part-3/lab-6-prepare-for-kubernetes.md)
+* [Lab 7 - Install Remote Runner](part-3/lab-7-install-remote-runner.md)
 
 ---
 
-[Start](part-0/lab-0-checkout-project-and-run-release.md)
+[Start](part-1/lab-0-checkout-project-and-run-release.md)

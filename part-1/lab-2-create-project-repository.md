@@ -47,4 +47,4 @@ PLUGIN=YOUR_NAME-release-workshop-integration
 ```
 
 ---
-[Next](../part-2/lab-3-setup-python-and-ide.md)
+[Next](lab-3-setup-python-and-ide.md)

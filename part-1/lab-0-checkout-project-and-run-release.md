@@ -43,5 +43,5 @@ In a browser, go to http://localhost:5516. This should take you to the Digital.a
 
 ---
 
-[Next](../part-1/lab-1-run-hello-world.md)
+[Next](lab-1-run-hello-world.md)
 

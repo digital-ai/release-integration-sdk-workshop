@@ -77,7 +77,7 @@ Then:
 
 ### Run Digital.ai Release
 
-We assume you have Digital.ai Release running in Docker. If not, please revisit [Lab 0](../part-0/lab-0-checkout-project-and-run-release.md).
+We assume you have Digital.ai Release running in Docker. If not, please revisit [Lab 0](../part-1/lab-0-checkout-project-and-run-release.md).
 
 
 ### Set up the `xl` client

@@ -75,5 +75,5 @@ Congratulations, you just ran your first container-based plugin!
 
 ---
 
-[Next](../part-2/lab-2-create-project-repository.md)
+[Next](lab-2-create-project-repository.md)
 
