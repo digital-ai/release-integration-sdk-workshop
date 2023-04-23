@@ -9,8 +9,6 @@ We will create a **duplicate** of this project to start developing our own conta
 
 ## Create a new repository
 
-Before you duplicate the contents of the template repository, you already need a new repository to push to.
-
 We have the following naming convention for developing Digital.ai Release integration plugins:
 
     [publisher]-release-[target]-integration
