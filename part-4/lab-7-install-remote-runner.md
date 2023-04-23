@@ -1,4 +1,4 @@
-# Lab 8 - Installing the Remote Runner using `xl`
+# Lab 7 - Installing the Remote Runner using `xl`
 
 This lab teaches you how to install the Remote Runner using the `xl` command line utility, the companion tool to Digital.ai Release and Deploy.
 

@@ -1,4 +1,4 @@
-# Lab 7 - Production setup: Kubernetes & Remote Runner 
+# Lab 6 - Production setup: Kubernetes & Remote Runner 
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part of Kubernetes is all new to you (or be prepared for a steep learning curve)
 
@@ -113,4 +113,4 @@ OS/Arch:                 darwin/amd64
 You are now set to start the installation procedure of the Remote Runner!
 
 ---
-[Next](lab-8-install-remote-runner.md)
+[Next](lab-7-install-remote-runner.md)

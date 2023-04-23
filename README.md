@@ -40,7 +40,7 @@ Container-based integration plugins are meant to run on a Kubernetes cluster. To
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part if Kubernetes is all new to you (or be prepared for a steep learning curve)
 
-Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
+Refer to [Part 4](part-4/lab-6-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
 
 ## Workshop Contents
 
@@ -71,15 +71,11 @@ Refer to [Part 4](part-5/lab-7-prepare-for-kubernetes.md) for a detailed list of
    * Define task
    * Build and run
 
-### [Part 4 - Call the Release API](part-4/)
+### [Part 4 - Production Setup with Kubernetes](part-4/)
 
-* [Lab 6 - Set the system message]()
-
-### [Part 5 - Production Setup with Kubernetes](part-4/)
-
-* [Lab 7 - Prepare Kubernetes](part-5/lab-7-prepare-for-kubernetes.md)
+* [Lab 6 - Prepare Kubernetes](part-4/lab-6-prepare-for-kubernetes.md)
   * Launch Kubernetes cluster
-* [Lab 8 - Install Remote Runner]()
+* [Lab 7 - Install Remote Runner](part-4/lab-7-install-remote-runner.md)
   * Create user and token in Release
   * Install Remote runner with xl kube install
   * Check that Remote Runner is being registered in Release

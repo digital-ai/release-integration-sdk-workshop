@@ -176,6 +176,6 @@ If you are more interested in coding, continue with
 * [Part 3](../part-3) - How to integrate with a 3rd party system, using external Python libraries.
 
 If you want to know how to set up a Kubernetes cluster for Digital.ai Release task execution, you can skip to
-* [Part 5](../part-5) - Setting up Digital.ai Release with container task execution in Kubernetes using the Remote Runner.
+* [Part 4](../part-4) - Production Setup with Kubernetes, using the Remote Runner
 
 
