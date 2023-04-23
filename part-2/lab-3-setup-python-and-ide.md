@@ -1,4 +1,4 @@
-## Setting up your development environment
+# Lab 3 - Setting up your development environment
 
 This section explains how you can set up Python with VisualCode or IntelliJ/PyCharm to help you code. 
 

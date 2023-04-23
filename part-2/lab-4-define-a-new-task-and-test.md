@@ -1,8 +1,8 @@
-## Define a new task and test
+# Lab 4 - Define a new task and test
 
 In this section we will define and code a new task, based on the `Hello` example task.
 
-### Type definition
+## Type definition
 
 First, we will define the name and properties of the task so Digital.ai Release can handle it.
 
@@ -52,7 +52,7 @@ When building, it will be put in the `jar` file that is uploaded to the Release 
 
 But first, we need to get the code in shape!
 
-### Update Python code
+## Update Python code
 
 Based on `type-definitions.yaml`, the Python SDK will scan the `src` directory for Python classes with the same name as the type definition.
 
@@ -79,7 +79,7 @@ Ok, this takes a bit, but it does validate if the integration plugin is built co
 
 But first, let's highlight a couple of features
 
-#### Update code without restarting Release
+### Update code without restarting Release
 
 Since the container is outside of Release, we don't need to restart the server if we change the code. Only if we are installing a new plugin, or touching `type-definitions.yaml` are restarts required.
 
@@ -91,7 +91,7 @@ greeting = f"Hello {name}, welcome to the SDK workshop!"
 
 Now we only need to build the container. After running the build script, go back to Release and create another release from your test template. The changes in the code are picked up right away.
 
-### Code, build, test in a server
+## Code, build, test in a server
 
 Another feature worth highlighting is more extensive logging. Let's introduce an error in the code, by changing the greeting line to
 
@@ -110,7 +110,7 @@ What's more, you can see the detailed logs by clicking on the **View logs** butt
 
 You can make the log area large by clicking on the **Expand** button.
 
-### Using unit tests
+## Using unit tests
 
 It's pleasing to see your task running in Release. Less so if it fails... 
 
@@ -159,7 +159,7 @@ FAILED (errors=1)
 ✍️ **Assignment** 
 * Fix the code so the test runs without failure. Then build and retest in the Release server. 
 
-### Do some coding!
+## Do some coding!
 
 Before we move on, try out some coding for yourself
 

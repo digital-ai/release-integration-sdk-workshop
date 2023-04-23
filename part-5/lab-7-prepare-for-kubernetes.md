@@ -1,4 +1,4 @@
-## Production setup: Kubernetes & Remote Runner 
+# Lab 7 - Production setup: Kubernetes & Remote Runner 
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part of Kubernetes is all new to you (or be prepared for a steep learning curve)
 
@@ -12,7 +12,7 @@ Note that for this setup, it is not required that the Release server itself runs
 
 Another thing that is useful to know is that the Remote Runner establishes its connection to Release through an outbound connection to the Release server. The Release server needs to be reachable, but the Remote Runner inside Kubernetes does not need to be exposed. This is useful for scenarios where container-based task run in a priviliged network, for example to do production deployments. Only the tasks will have network access then, not the entire Release server.
 
-### Prerequisites
+## Prerequisites
 
 To run container-based integration plugins on a Kubernetes cluster, you will need the following components.
 
@@ -23,7 +23,7 @@ To run container-based integration plugins on a Kubernetes cluster, you will nee
 
 Depending on the flavor of Kubernetes you are using, install the following tools provided by the vendor.
 
-#### Azure AKS
+### Azure AKS
 
 - [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
 
@@ -35,7 +35,7 @@ Depending on the flavor of Kubernetes you are using, install the following tools
 XXX Openshift or AWS?
 
 
-### 2. Configure your `hosts` file
+## Configure your `hosts` file
 
 The Remote Runner needs to be able to find the other components in the system: the Release server and the registry we just installed. The easiest way to do so is to add it to your local machine's `hosts` file. 
 

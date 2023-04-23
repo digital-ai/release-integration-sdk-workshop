@@ -1,5 +1,4 @@
-
-# Lab 0 - Run Hello World
+# Lab 1 - Run Hello World
 
 In this section we will build and install the integration plugin into Digital.ai Release and then run a release that contains a simple Hello World task.
 

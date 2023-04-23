@@ -1,8 +1,8 @@
-## Installing the Remote Runner using `xl`
+# Lab 8 - Installing the Remote Runner using `xl`
 
 This lab teaches you how to install the Remote Runner using the `xl` command line utility, the companion tool to Digital.ai Release and Deploy.
 
-### 3. Configure Digital.ai Release for Remote Runner
+## Configure Digital.ai Release for Remote Runner
 
 We need to configure Release with a _service user_ for the Remote Runner and give it the needed permissions.
 
@@ -17,7 +17,7 @@ The Remote Runner needs a token to register itself with the Release server. In o
 * Enter a token name, for example `Local runner`, and click Generate. Copy the token and store it somewhere for future reference.
 
 
-### 4. Set up the runner
+## Set up the runner
 
 Install the Remote Runner into your local Kubernetes environment with the `xl kube install` command and look closely at the answers below. Note that sometimes you can take the default, sometimes you need to give the value as prompted below, and sometimes you need to give a custom value.
 
@@ -95,7 +95,7 @@ Check the remote runner logs to see if it started correctly and is able to conne
 In the Release UI, log in as **admin** and check the **Connections** page for Remote Runner connections.
 
 
-### 5. Build & publish the plugin
+## Build & publish the plugin
 
 Run the build script
 
@@ -117,7 +117,7 @@ Windows
 * Builds the image and pushes the image to the configured registry  
   ``` build.bat --image ```
 
-### 6. Install plugin into Release
+## Install plugin into Release
 
 In Release UI, use the Plugin Manager interface to upload the jar from `build`.
 The jar takes the name of the project, for example `release-integration-template-python-1.0.0.jar`.
@@ -126,54 +126,12 @@ Then:
 * Restart Release container and wait for it to come up
 * Refresh the UI by pressing Reload in the browser.
 
-### 7. Test it!
+## Test it!
 Create a template with the task **Example: Hello** and run it!
 
-### 8. Clean up
+## Clean up
 
 To remove the Remote Runner, issue the following command
 
     helm delete remote-runner -n digitalai
-
-
-## How to create your own project
-
-Create a **duplicate** of this project to start developing your own container-based integration. Note: Please do _not_ create a fork.
-
-### Create a new repository
-
-Before you duplicate the contents of this repository, you already need the new repository to push to.
-
-Use the following naming convention:
-
-    [company]-release-[target]-integration
-
-For example: `acme-release-jenkins-integration`
-
-Now initialize the Git repository with this name and note the url.
-
-* Instructions to [create a repository on GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
-
-### Clone and duplicate
-
-1. Open Terminal.
-2. Create a bare clone of this repository.
-
-```commandline
-git clone --bare https://github.com/xebialabs/release-integration-template-python.git release-integration-temp
-```
-
-3. Mirror-push to the new repository.
-
-```commandline
-cd release-integration-template-python
-git push --mirror [URL of your new repo]
-```
-
-4. Remove the temporary local repository you created earlier.
-
-```commandline
-cd ..
-rm -rf release-integration-temp
-```
 

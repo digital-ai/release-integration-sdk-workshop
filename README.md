@@ -4,15 +4,13 @@ To make your job easier, we are bringing a new integration SDK experience.
 
 Run tasks as containers, using any language or third-party library.
 
-# SDK Workshop
-
 In this workshop, you will learn how to
 
 * Build and maintain custom integrations using Python 3
 * Set up a development environment for building, testing, installing, and running integration tasks
 * Configure a production-style architecture to run the container-based tasks in a Kubernetes cluster
 
-## Prerequisites
+## Workshop prerequisites
 
 You will run this workshop on your own machine. You will need to have the following installed
 

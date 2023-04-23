@@ -1,4 +1,4 @@
-# Create an integration to 3rd party server
+# Lab 5 - Create an integration to 3rd party server
 
 In the previous labs, we have provided a guided tour through the features of the Digital.ai Release Integration SDK.
 
