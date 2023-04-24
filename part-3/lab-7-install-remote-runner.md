@@ -36,7 +36,7 @@ $ docker run -it \
     -e KUBECONFIG=/opt/xebialabs/.kube/config \
     -v ~/.kube/config:/opt/xebialabs/.kube/config \
     -v ${PWD}:/opt/xebialabs/xl-client/config \
-    --network dev-environment_default \
+    --network k3d-xlrcluster \
     xebialabsunsupported/xl-client:23.1.0-424.1400 \
     kube install
  
