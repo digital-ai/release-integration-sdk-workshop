@@ -67,8 +67,9 @@ When the Release server has restarted, refresh the UI by pressing Reload in the 
 ✍️ **Assignment**
 
  * In Release, create a new folder called **Workshop** 
- * In the new folder, create a template that contains the task **Container Example: Hello** and run it!
+ * In the new folder, create a template that contains the task **Container Example: Hello** and run it! 
 
+XXX more explicit where to select task, add screenshot how to create task
 
 
 Congratulations, you just ran your first container-based plugin!
