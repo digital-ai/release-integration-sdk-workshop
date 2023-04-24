@@ -1,4 +1,4 @@
-![Build new integrations in an instant!](integration-sdk-logo.png)
+![Digital.ai Release Integration SDK](integration-sdk-logo.png)
 
 To make your job easier, we are bringing a new integration SDK experience.
 
