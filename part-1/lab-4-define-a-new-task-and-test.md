@@ -13,7 +13,7 @@ We will do this in the file `type-definitions.yaml`.
 What will do is
 * Take the `type-definitions.yaml` from the template
 * Rename `containerExample.BaseTask` to `workshop.BaseTask`
-* Rename `containerExample.Hello` to `workshop.Greet`
+* Rename `containerExamples.Hello` to `workshop.Greet`
 * Remove the rest
 
 The result would be:
@@ -56,7 +56,7 @@ But first, we need to get the code in shape!
 
 Based on `type-definitions.yaml`, the Python SDK will scan the `src` directory for Python classes with the same name as the type definition.
 
-In the template project, there is a `containerExample.Hello` task defined in `type-defintions.yaml` with a corresponding `Hello` class in `src/hello.py`.
+In the template project, there is a `containerExamples.Hello` task defined in `type-defintions.yaml` with a corresponding `Hello` class in `src/hello.py`.
 
 To make everything consistent again, do the following
 

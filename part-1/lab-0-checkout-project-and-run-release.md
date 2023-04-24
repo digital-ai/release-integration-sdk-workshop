@@ -33,7 +33,7 @@ Open a terminal window and launch the development environment with the following
     cd dev-environment
     docker compose up -d --build
 
-When the docker command is finished, the containers will still be starting. Check the logs of the `digitalai-release-1` container until it displays the following lines:
+When the docker command is finished, the containers will still be starting. Check the logs of the `dev-environment-digitalai-release-1` container until it displays the following lines:
 
     Digital.ai Release has started.
     You can now point your browser to http://host.docker.internal:5516/

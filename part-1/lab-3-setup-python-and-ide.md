@@ -15,7 +15,7 @@ We will create a **virtual environment** in Python, in order to keep all the dep
 
 Create a new Python virtual environment in the project directory by running the following command in your terminal:
 
-    python -m venv venv
+    python3 -m venv venv
 
 This will create a new directory called `venv` in your project directory that will contain all the Python dependencies.
 
