@@ -125,7 +125,7 @@ Unit tests are in the `test` directory. First let's modify the example tests tha
 
 You can now run the unit tests with the command
 
-    python -m unittest discover tests
+    python3 -m unittest discover tests
 
 XXX Mac / Windows
 

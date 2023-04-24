@@ -6,9 +6,6 @@ This section explains how you can set up Python with VisualCode or IntelliJ/PyCh
 
 If you haven't already done so, you'll need to install **Python 3** on your computer. You can download the latest version of Python from the official website at https://www.python.org/downloads/.
 
-XXX Check Docker image
-
-
 ### Virtual environment
 
 We will create a **virtual environment** in Python, in order to keep all the dependencies of the plugin isolated. This will prevent interference with other Python projects on your computer.

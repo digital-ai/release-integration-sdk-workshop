@@ -46,11 +46,11 @@ See [Lab 2](../part-2/lab-2-create-project-repository.md)
 
 Python command to create a local virtual environment:
 
-    python -m venv venv
+    python3 -m venv venv
 
 Alternatively, use the following command that takes a bit longer but makes sure you are on the latest version of the Python libraries, including pip.
 
-    python -m venv --upgrade-deps venv
+    python3 -m venv --upgrade-deps venv
 
 Then activate the virtual environment with
 
@@ -106,7 +106,7 @@ Start with an empty skeleton and make sure you can unit tests with it. Then iter
 
 First, run the tests to make sure that we are in a good state
 
-    python -m unittest discover tests
+    python3 -m unittest discover tests
 
 For AWS, you wouldn't need the `requests` library, the boto3 library takes care of that. So you can remove that and start with a clean, but non-trivial file.
 
