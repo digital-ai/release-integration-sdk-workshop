@@ -15,11 +15,11 @@ Start Docker.
 
 The Digital.ai Release Integration SDK provides a template project to get started. 
 
-In this section we will use the template project directly to make sure you can run Digital.ai Release and run a sample plugin. To build a custom integration, you would create a duplicate of this project. During the workshop, we will do this in Lab XXX.
-
-The template project is located on GitHub:
+The template project **release-integration-template-python** is located on GitHub:
 
 https://github.com/digital-ai/release-integration-template-python
+
+In this lab we will use the template project directly to make sure you can run Digital.ai Release and run a sample plugin. To build a custom integration, you would create a duplicate of this project. During the workshop, we will do this in Lab 2.
 
 Create a copy of this project on your local machine with the following command
 
