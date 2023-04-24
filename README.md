@@ -1,5 +1,7 @@
 ![Digital.ai Release Integration SDK](integration-sdk-logo.png)
 
+# Hands-on Workshop
+
 To make your job easier, we are bringing a new integration SDK experience.
 
 Run tasks as containers, using any language or third-party library.
