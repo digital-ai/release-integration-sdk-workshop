@@ -241,16 +241,12 @@ See [Lab 4](../part-1/lab-4-define-a-new-task-and-test.md#type-definition)
 
 * Remove unneeded classes
 * Rename base type from `containerExamples.BaseTask` to one that is specific to your project, for example `aws.BaseTask` 
-* Add classes for Creating and Listing the buckets
+* Add task types for Creating and Listing the buckets
 * Define input and output properties
 * Make sure the name of the type in `type-definitions.yaml` corresponds with the name of the Python class
 * Make the Python code extracts the right input properties and sets the right output properties
+* Create a type for the Server endpoint, for example `aws.Server`. Make sure the tasks refer to this server type.
 
-⚡️**Note:** Your task will fail because it can't reach the Localstack server.
-
-Unfortunately, the container task does not have direct access to the other services running with Docker compose. This is a current limitation of the SDK Development Environment.
-
-XXX How are we going to solve this.
 
 ### Test in Release
 
@@ -260,6 +256,11 @@ Upload it to Release, restart the server and create a test template.
 
 See [Lab 1](../part-1/lab-1-run-hello-world.md)
 
-💡**Note:** Remember that you don't need to restart the Release server for code changes; only for changes in `type-defintions.yaml`.
+Configure the address for the AWS endpoint to be
 
+    http://host.docker.internal:4566
+
+![Localstack configuration example](img/localstack-configuration.png)
+
+Run your test template.
 
