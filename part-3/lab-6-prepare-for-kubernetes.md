@@ -92,22 +92,32 @@ For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that tak
 
 In the `part-5` directory, issue the following command:
 
-  ./xlw version
+    docker run -it \
+        -e KUBECONFIG=/opt/xebialabs/.kube/config \
+        -v ~/.kube/config:/opt/xebialabs/.kube/config \
+        -v ${PWD}:/opt/xebialabs/xl-client/config \
+        xebialabsunsupported/xl-client:23.1.0-424.1400 version
 
 XXX Windows
 
 The result should be something like:
 
 ```
-Downloading xl binary to /Users/hsiemelink/.xebialabs/wrapper/23.1.0-beta.10/xl
-CLI version:             23.1.0-beta.10
-Git version:             v23.1.0-331.113-1-ga6b13b4
+...
+9b08fb50bca6: Pull complete 
+366ed48ecbee: Pull complete 
+51d313cbfb77: Pull complete 
+Digest: sha256:75942cca2c16e76f9713cb0815a1a3eef6559f3e606d0673a1301de999444b9b
+Status: Downloaded newer image for xebialabsunsupported/xl-client:23.1.0-405.113
+CLI version:             23.1.0-405.113
+Git version:             v23.1.0-beta.10-0-ga6b13b4
 API version XL Deploy:   xl-deploy/v1
 API version XL Release:  xl-release/v1
 Git commit:              a6b13b42ff31acc3c9a40741e09dabee08cac576
-Build date:              2023-04-03T09:26:14.345Z
+Build date:              2023-04-05T02:22:15.187Z
 GO version:              go1.19
-OS/Arch:                 darwin/amd64
+OS/Arch:                 linux/amd64
+
 ```
 
 You are now set to start the installation procedure of the Remote Runner!

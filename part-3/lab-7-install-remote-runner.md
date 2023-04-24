@@ -8,7 +8,13 @@ We need to configure Release with a _service user_ for the Remote Runner and giv
 
 Use the following command to create an account for the Remote Runner. Feel free to use a different password.
 
-    ./xlw apply -f remote-runnner-user.yaml --values password=Remote123
+    docker run -it \
+        -e KUBECONFIG=/opt/xebialabs/.kube/config \
+        -v ~/.kube/config:/opt/xebialabs/.kube/config \
+        -v ${PWD}:/opt/xebialabs/xl-client/config \
+        --network dev-environment_default \
+        xebialabsunsupported/xl-client:23.1.0-424.1400 \
+        apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://dev-environment-digitalai-release-1:5516/
 
 The Remote Runner needs a token to register itself with the Release server. In order to obtain a token, do the following
 
@@ -26,7 +32,13 @@ Install the Remote Runner into your local Kubernetes environment with the `xl ku
 We've marked some questions with a warning sign where you need to pay extra attention.
 
 ```
-$ ./xlw kube install
+$ docker run -it \
+    -e KUBECONFIG=/opt/xebialabs/.kube/config \
+    -v ~/.kube/config:/opt/xebialabs/.kube/config \
+    -v ${PWD}:/opt/xebialabs/xl-client/config \
+    --network dev-environment_default \
+    xebialabsunsupported/xl-client:23.1.0-424.1400 \
+    kube install
  
 ? Following kubectl context will be used during execution: `docker-desktop`?
 » Yes
