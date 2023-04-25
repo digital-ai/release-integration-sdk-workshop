@@ -6,4 +6,5 @@ digitalai/
 digitalai*yaml
 *.lic
 ziprepo
-
+*-kubeconfig.json
+xlrcluster-pv/

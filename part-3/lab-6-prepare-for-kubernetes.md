@@ -18,22 +18,8 @@ To run container-based integration plugins on a Kubernetes cluster, you will nee
 
 * Access to a Kubernetes cluster. This could be Docker Desktop or minikube; or a cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift.
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
-* [Helm](https://helm.sh/docs/intro/install/)
+* [k3d](https://k3d.io/)
 * [k9s](https://k9scli.io/topics/install/) - _(Optional)_ Kubernetes CLI to "Manage Your Clusters In Style". This is a very handy utility.
-
-Depending on the flavor of Kubernetes you are using, install the following tools provided by the vendor.
-
-### Azure AKS
-
-- [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
-
-### Minikube
-
-- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing only on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
-- [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
-
-XXX Openshift or AWS?
-
 
 ## Configure your `hosts` file
 
@@ -61,7 +47,7 @@ Add the following entry to `C:\Windows\System32\drivers\etc\hosts` (Run as admin
 
 You will need to use some code examples that are in the workshop repository.
 
-Check out the repository and navigate to `part-5`
+Check out the repository and navigate to `part-3`
 
 **Http:**
 
@@ -73,7 +59,7 @@ Check out the repository and navigate to `part-5`
 
 Then:
 
-  cd release-integration-sdk-workshop/part-5
+  cd release-integration-sdk-workshop/part-3
 
 ### Run Digital.ai Release
 
@@ -90,13 +76,9 @@ Let's first checkout that it works.
 
 For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that takes care of downloading and running the correct version of `xl`.
 
-In the `part-5` directory, issue the following command:
+In the `part-3` directory, issue the following command:
 
-    docker run -it \
-        -e KUBECONFIG=/opt/xebialabs/.kube/config \
-        -v ~/.kube/config:/opt/xebialabs/.kube/config \
-        -v ${PWD}:/opt/xebialabs/xl-client/config \
-        xebialabsunsupported/xl-client:23.1.0-424.1400 version
+    docker run -it xebialabsunsupported/xl-client:23.1.0-424.1400 version
 
 XXX Windows
 
@@ -119,6 +101,17 @@ GO version:              go1.19
 OS/Arch:                 linux/amd64
 
 ```
+
+### Install k3d
+
+1. Install the k3d according to [k3d install](https://k3d.io/v5.4.9/#installation)
+2. Create k3d cluster:
+In the `part-3` directory, issue the following command:
+
+
+    k3d cluster create  xlrcluster --volume $PWD/xlrcluster-pv:/kube \
+        --registry-create xlr-registry:5051 \
+        --k3s-arg "--tls-san=host.docker.internal@server:0"
 
 You are now set to start the installation procedure of the Remote Runner!
 
