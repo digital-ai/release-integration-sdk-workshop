@@ -16,23 +16,20 @@ Another thing that is useful to know is that the Remote Runner establishes its c
 
 To run container-based integration plugins on a Kubernetes cluster, you will need the following components.
 
-* Access to a Kubernetes cluster. This could be Docker Desktop or minikube; or a cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift.
+* Access to a local Kubernetes cluster. This could be Docker Desktop (recommended), minikube or K3d.
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
 * [Helm](https://helm.sh/docs/intro/install/)
 * [k9s](https://k9scli.io/topics/install/) - _(Optional)_ Kubernetes CLI to "Manage Your Clusters In Style". This is a very handy utility.
 
+
 Depending on the flavor of Kubernetes you are using, install the following tools provided by the vendor.
-
-### Azure AKS
-
-- [Azure Cli - az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) - if you are working with Azure during workshop
 
 ### Minikube
 
-- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing only on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
+- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
 - [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
 
-XXX Openshift or AWS?
+💡 **Note:** A cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift is possible, but may be a bit tricky to set up. The Remote Runner opens a connection to the Release server, not the other way around. When running Release locally in Docker and the Remote Runner in a cloud service, you would need to expose the Release port to the internet using a tool like `ngrok`. Another option would be to install Release into Kubernetes as well, using the `xl kube install` tool. Both approaches take a bit more work and are beyond the scope of this workshop.
 
 
 ## Configure your `hosts` file
@@ -49,31 +46,33 @@ Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
 
     127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
+    127.0.0.1 host.docker.internal
 
 **Windows**
 
-Add the following entry to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
+Add the following entries to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
 
+    127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
-
+    127.0.0.1 host.docker.internal
 
 ### Check out this repo
 
 You will need to use some code examples that are in the workshop repository.
 
-Check out the repository and navigate to `part-5`
+Check out the repository and navigate to `part-3`
 
 **Http:**
 
-  git clone https://github.com/digital-ai/release-integration-sdk-workshop.git
+    git clone https://github.com/digital-ai/release-integration-sdk-workshop.git
 
 **SSH:**  
 
-  git clone git@github.com:digital-ai/release-integration-sdk-workshop.git
+    git clone git@github.com:digital-ai/release-integration-sdk-workshop.git
 
 Then:
 
-  cd release-integration-sdk-workshop/part-5
+    cd release-integration-sdk-workshop/part-3
 
 ### Run Digital.ai Release
 
@@ -90,11 +89,15 @@ Let's first checkout that it works.
 
 For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that takes care of downloading and running the correct version of `xl`.
 
-In the `part-5` directory, issue the following command:
+In the `part-3` directory, issue the following command:
 
-  ./xlw version
+**Unix / macOS**
 
-XXX Windows
+    ./xlw version
+
+**Windows**
+
+    xlw.bat version 
 
 The result should be something like:
 

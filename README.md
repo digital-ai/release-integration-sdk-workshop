@@ -32,9 +32,9 @@ The template project to get you started provides build scripts and a development
 
 To start developing the integrations plugins, install the following
 
-* Python3, version 3.11 XXX download link
-* The `pip` installer tool for Python XXX download link
-* A code editor or IDE like VisualCode or PyCharm
+* [Python3](https://www.python.org/downloads), version 3.11
+* The `pip` installer tool (bundled with Python)
+* A code editor or IDE like VisualCode or PyCharm/IntelliJ
 
 ### Production setup (optional)
 

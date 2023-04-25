@@ -54,7 +54,7 @@ Open PyCharm and select **Open** from the welcome screen. Navigate to the direct
 
 PyCharm needs to know which version of Python to use for your project. To configure the project interpreter, go to **File > Settings > Project: your-project > Python Interpreter**. Click on the gear icon and select **Add**. From the dropdown menu, select "New Environment" and choose the version of Python in the virtual environment you created.
 
-XXX Double check if PyCharm grabs the virtual environment this way.
+<!-- XXX Double check if PyCharm grabs the virtual environment this way. -->
 
 You are now good to go to start coding!
 

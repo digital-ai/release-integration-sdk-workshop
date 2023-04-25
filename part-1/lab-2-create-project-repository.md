@@ -27,7 +27,7 @@ This can be done easily from GitHub. Just navigate to the mainpage of the cd rel
 **⚠️ NOTE:**  You need a GitHub account to do so.
 
 Follow the instructions on GitHub to create the new repository.
-Note the URL of the new repository. XXX screenshot where you can find it
+Note the URL of the new repository. 
 
 ## Check out repository
 

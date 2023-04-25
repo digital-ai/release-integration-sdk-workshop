@@ -70,10 +70,15 @@ When the Release server has restarted, refresh the UI by pressing Reload in the 
 ✍️ **Assignment**
 
  * In Release, create a new folder called **Workshop** 
- * In the new folder, create a template that contains the task **Container Example: Hello** and run it! 
+ * In the new folder, create a template **Hello** that contains the task **Container Example: Hello** 
 
-XXX more explicit where to select task, add screenshot how to create task
+![Add Hello task](img/add-hello-task.png)
 
+Now run it! 
+
+You will see the greeting in the **Activity** section of the task
+
+![Hello World Test](img/hello-world-test.png)
 
 Congratulations, you just ran your first container-based plugin!
 

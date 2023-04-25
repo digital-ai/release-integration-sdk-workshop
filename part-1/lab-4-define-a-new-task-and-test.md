@@ -127,8 +127,6 @@ You can now run the unit tests with the command
 
     python3 -m unittest discover tests
 
-XXX Mac / Windows
-
 If all went well, you should get the following error:
 
 ```
