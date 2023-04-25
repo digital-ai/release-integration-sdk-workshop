@@ -34,13 +34,13 @@ Think of a name of the project that follows the naming conventions, somehting li
 
 Create a new project from [release-integration-template-python](https://github.com/digital-ai/release-integration-template-python).
 
-See [Lab 2](../part-2/lab-2-create-project-repository.md)
+See [Lab 2](../part-1/lab-2-create-project-repository.md)
 
 ### Check out project
 
 Make sure you update `project.properties` with the name of your project.
 
-See [Lab 2](../part-2/lab-2-create-project-repository.md)
+See [Lab 2](../part-1/lab-2-create-project-repository.md)
 
 ### Create Python virtual environment
 
@@ -60,7 +60,7 @@ To exit from a (previous) virtual environment, use the command
 
     deactivate
 
-See [Lab 3](../part-2/lab-3-setup-python-and-ide.md)
+See [Lab 3](../part-1/lab-3-setup-python-and-ide.md)
 
 ### Add libraries
 
@@ -78,7 +78,7 @@ Use `pip` to install the libraries
 
     pip install -r requirements.txt
 
-See [Lab 3](../part-2/lab-3-setup-python-and-ide.md)
+See [Lab 3](../part-1/lab-3-setup-python-and-ide.md)
 
 ### Configure IDE
 
