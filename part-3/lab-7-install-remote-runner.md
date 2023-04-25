@@ -8,19 +8,20 @@ We need to configure Release with a _service user_ for the Remote Runner and giv
 
 Use the following command to create an account for the Remote Runner. Feel free to use a different password.
 
-    docker run -it \
-        -v ${PWD}:/opt/xebialabs/xl-client/config \
-        --network dev-environment_default \
-        xebialabs/xl-client:23.1.0-rc.2 \
-        apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://dev-environment-digitalai-release-1:5516/
-OR
+In case of Docker Desktop or K3D:
 
     docker run -it \
         -v ${PWD}:/opt/xebialabs/xl-client/config \
         xebialabs/xl-client:23.1.0-rc.2 \
         apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://host.docker.internal:5516/
 
+In case of K3D:
 
+    docker run -it \
+        -v ${PWD}:/opt/xebialabs/xl-client/config \
+        --network dev-environment_default \
+        xebialabs/xl-client:23.1.0-rc.2 \
+        apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://dev-environment-digitalai-release-1:5516/
 
 The Remote Runner needs a token to register itself with the Release server. In order to obtain a token, do the following
 
@@ -35,15 +36,13 @@ Install the Remote Runner into your local Kubernetes environment with the `xl ku
 
 💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. XXX Link to documentation and workshop.
 
+In case of Docker Desktop:
 
+    docker context export default --kubeconfig
 
 In case of k3d (replace the `cluster_name` with your k3d cluster - `k3d cluster list`):
 
     k3d kubeconfig get cluster_name | sed 's/0.0.0.0/host.docker.internal/g' > default.kubeconfig
-
-In case of docker desktop:
-
-    docker context export default --kubeconfig
 
 We've marked some questions with a warning sign where you need to pay extra attention.
 
