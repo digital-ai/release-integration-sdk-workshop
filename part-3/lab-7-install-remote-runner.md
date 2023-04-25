@@ -33,7 +33,8 @@ We've marked some questions with a warning sign where you need to pay extra atte
 ? Following kubectl context will be used during execution: `docker-desktop`?
 » Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
-»⚠️ PlainK8s [Plain multi-node K8s cluster]
+»⚠️ AWSEKS [AWS EKS]
+⚡️ Choose the 'AWS' option when using Docker Desktop Kubernetes.
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
 » No
 ? Product server you want to perform install for:
@@ -45,13 +46,13 @@ We've marked some questions with a warning sign where you need to pay extra atte
 ? Enter the remote runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>):
 » xlr-remote-runner
 ? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
-» 0.1.32
+» 0.1.33
 ? Enter the Remote Runner Helm Chart release name: 
 » remote-runner
 ? Use default version of the Remote Runner helm chart. 
 » Yes
 ? Enter the Release URL that will be used by remote runner:
-»⚠️ http://http://digitalai.release.local:5516/
+»⚠️ http://host.docker.internal:5516
 ? Enter the Release Token that will be used by remote runner:
 »⚠️ rpa_... (Paste token here)
 ? Enter the remote runner replica count: 
@@ -63,21 +64,24 @@ We've marked some questions with a warning sign where you need to pay extra atte
 	| CleanBefore                    | false                                              |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
-	| GenerationDateTime             | 20230308-152423                                    |
+	| GenerationDateTime             | 20230425-110838                                    |
 	| ImageNameRemoteRunner          | xlr-remote-runner                                  |
 	| ImageRegistryType              | default                                            |
-	| ImageTagRemoteRunner           | 0.1.32                                             |
-	| IngressType                    | none                                               |
+	| ImageTagRemoteRunner           | 0.1.33                                             |
+	| IngressType                    | nginx                                              |
 	| IsCustomImageRegistry          | false                                              |
 	| K8sSetup                       | PlainK8s                                           |
 	| OidcConfigType                 | no-oidc                                            |
 	| OsType                         | darwin                                             |
 	| ProcessType                    | install                                            |
-	| RemoteRunnerHelmChartUrl       | /Users/hsiemelink/Code/xlr-remote-runner/helm/re.. |
-	| RemoteRunnerReleaseUrl         | host.docker.internal                               |
+	| RemoteRunnerBaseHostPath       | /Users/hsiemelink/Code/release-integration-sdk-w.. |
+	| RemoteRunnerCount              | 1                                                  |
+	| RemoteRunnerReleaseName        | remote-runner                                      |
+	| RemoteRunnerReleaseUrl         | http://host.docker.internal:5516                |
+	| RemoteRunnerRepositoryName     | xebialabs                                          |
 	| RemoteRunnerStorageClass       | hostpath                                           |
-	| RemoteRunnerToken              | rpa_9254744b183882ae604e14ac5644c05f3baa3b8c       |
-	| RepositoryName                 | xebialabs                                          |
+	| RemoteRunnerToken              | rpa_...                                            |
+	| RemoteRunnerUseDefaultLocation | true                                               |
 	| ServerType                     | dai-release-runner                                 |
 	| ShortServerName                | other                                              |
 	| UseCustomNamespace             | false                                              |
@@ -112,7 +116,10 @@ The tasks should run inside Kubernetes. You can check this in k9s by looking for
 
 ## Clean up
 
-To remove the Remote Runner, issue the following command
+To remove the Remote Runner from Kubernetes, use the `xl kube clean` command, with the 'answers' file that was created during installation.
 
-    helm delete remote-runner -n digitalai
+    ./xlw kube clean --skip-prompts --answers digitalai/generated_answers_dai-release-runner_digitalai_install-DATE.yaml 
 
+If you are into Unix command line magic, you can use this command to do the same:
+
+    ./xlw kube clean --skip-prompts --answers `ls -t digitalai/generated_answers_dai-release-runner_digitalai_install-* | head -1`
