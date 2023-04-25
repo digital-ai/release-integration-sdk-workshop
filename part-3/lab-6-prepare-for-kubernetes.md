@@ -78,7 +78,7 @@ For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that tak
 
 In the `part-3` directory, issue the following command:
 
-    docker run -it xebialabsunsupported/xl-client:23.1.0-425.900 version
+    docker run -it xebialabs/xl-client:23.1.0-rc.2 version
 
 XXX Windows
 
@@ -86,17 +86,16 @@ The result should be something like:
 
 ```
 ...
-9b08fb50bca6: Pull complete 
-366ed48ecbee: Pull complete 
-51d313cbfb77: Pull complete 
-Digest: sha256:75942cca2c16e76f9713cb0815a1a3eef6559f3e606d0673a1301de999444b9b
-Status: Downloaded newer image for xebialabsunsupported/xl-client:23.1.0-405.113
-CLI version:             23.1.0-405.113
-Git version:             v23.1.0-beta.10-0-ga6b13b4
+7f6088910750: Pull complete 
+427b377c30f5: Pull complete 
+Digest: sha256:756326e2c593ef5030801e0fbb73dd453f03668c570b1ff30978b689a96a172e
+Status: Downloaded newer image for xebialabs/xl-client:23.1.0-rc.2
+CLI version:             23.1.0-rc.2
+Git version:             v23.1.0-rc.1-1-g267bc7d
 API version XL Deploy:   xl-deploy/v1
 API version XL Release:  xl-release/v1
-Git commit:              a6b13b42ff31acc3c9a40741e09dabee08cac576
-Build date:              2023-04-05T02:22:15.187Z
+Git commit:              267bc7dcf19d34fc4cb4c40f988178596f75b208
+Build date:              2023-04-24T12:50:28.546Z
 GO version:              go1.19
 OS/Arch:                 linux/amd64
 

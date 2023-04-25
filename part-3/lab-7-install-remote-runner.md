@@ -11,13 +11,13 @@ Use the following command to create an account for the Remote Runner. Feel free 
     docker run -it \
         -v ${PWD}:/opt/xebialabs/xl-client/config \
         --network dev-environment_default \
-        xebialabsunsupported/xl-client:23.1.0-425.900 \
+        xebialabs/xl-client:23.1.0-rc.2 \
         apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://dev-environment-digitalai-release-1:5516/
 OR
 
     docker run -it \
         -v ${PWD}:/opt/xebialabs/xl-client/config \
-        xebialabsunsupported/xl-client:23.1.0-425.900 \
+        xebialabs/xl-client:23.1.0-rc.2 \
         apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://host.docker.internal:5516/
 
 
@@ -35,18 +35,24 @@ Install the Remote Runner into your local Kubernetes environment with the `xl ku
 
 💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. XXX Link to documentation and workshop.
 
+
+
 In case of k3d (replace the `cluster_name` with your k3d cluster - `k3d cluster list`):
 
-    k3d kubeconfig get cluster_name | sed 's/0.0.0.0/host.docker.internal/g' > k3d-kubeconfig.json
+    k3d kubeconfig get cluster_name | sed 's/0.0.0.0/host.docker.internal/g' > default.kubeconfig
+
+In case of docker desktop:
+
+    docker context export default --kubeconfig
 
 We've marked some questions with a warning sign where you need to pay extra attention.
 
 ```
 $ docker run -it \
     -e KUBECONFIG=/opt/xebialabs/.kube/config \
-    -v ${PWD}/k3d-kubeconfig.json:/opt/xebialabs/.kube/config \
+    -v ${PWD}/default.kubeconfig:/opt/xebialabs/.kube/config \
     -v ${PWD}:/opt/xebialabs/xl-client/config \
-    xebialabsunsupported/xl-client:23.1.0-425.900 \
+    xebialabs/xl-client:23.1.0-rc.2 \
     kube install
 
 ? Following kubectl context will be used during execution: `k3d-xlrcluster`? 
@@ -59,6 +65,8 @@ $ docker run -it \
 »⚠️ dai-release-runner [Remote Runner for Digital.ai Release]
 ? Select type of image registry: 
 » default
+? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): 
+» xebialabs
 ? Enter the remote runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
 » xlr-remote-runner
 ? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
@@ -75,8 +83,9 @@ $ docker run -it \
 » 1
 ? Provide storage class for the remote runner: 
 » local-path
-? Provide storage class base host path: 
-» /kube
+? Provide storage class base host path (input '-' to skip the usage of base host path):
+»⚠️ -                                                       <---- Docker Desktop
+»⚠️ /kube                                                   <---- K3D
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
