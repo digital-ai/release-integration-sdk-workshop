@@ -45,4 +45,6 @@ Happens when starting digitalai-release-setup container. So far only seen on M1
 
 Install the xl command utility for this -- see also [Lab 6](part-3/lab-6-prepare-for-kubernetes.md#set-up-the-xl-client)
 
+* Or add the configuration items from `dev-environment/digitalai-release-setup/instance-configuration.yaml` manually through Release UI. 
+
 
