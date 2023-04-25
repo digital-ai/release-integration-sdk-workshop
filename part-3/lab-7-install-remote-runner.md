@@ -36,7 +36,7 @@ Install the Remote Runner into your local Kubernetes environment with the `xl ku
 
 💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. XXX Link to documentation and workshop.
 
-In case of Docker Desktop:
+In case of Docker Desktop (check the name of the context with `docker context ls`):
 
     docker context export default --kubeconfig
 
