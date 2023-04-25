@@ -42,19 +42,26 @@ Now you have a virtual environment set up with the required dependencies install
 
 ## IDE support
 
-### Using Visual Code as an IDE
+### Visual Code
 
 Follow the instructions from the [Visual Code Python tutorial](https://code.visualstudio.com/docs/python/python-tutorial) to install the Python plugin for Visual Code. 
 
-### Using PyCharm as an IDE
+### PyCharm
 
-You can download the latest version of PyCharm from the official website at https://www.jetbrains.com/pycharm/download/. Make sure to select the appropriate installer for your operating system.
+You can download the latest version of PyCharm from the official website at https://www.jetbrains.com/pycharm/download/. 
 
 Open PyCharm and select **Open** from the welcome screen. Navigate to the directory where you cloned the project and open it.
 
-PyCharm needs to know which version of Python to use for your project. To configure the project interpreter, go to **File > Settings > Project: your-project > Python Interpreter**. Click on the gear icon and select **Add**. From the dropdown menu, select "New Environment" and choose the version of Python in the virtual environment you created.
+Then it should work out-of-the-box. PyCharm will even create a `venv` Python virtual environment for you, so you can skip the previous steps.
 
-<!-- XXX Double check if PyCharm grabs the virtual environment this way. -->
+### Intellij
+
+Intellij as PyCharm's older brother and works similar to PyCharm. However, there seems to be a bit more manual setup.
+
+IntelliJ needs to know which version of Python to use for your project. 
+* Go to **File > Project Structure > Project Settings > Project
+* Select **Add Python SDK** from the **SDK** dropdown
+* Choose **Existing environment" and select the `...` icon on the right. Navigate to the virtual environment you just created, then select `bin/python3`
 
 You are now good to go to start coding!
 
