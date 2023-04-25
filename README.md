@@ -55,9 +55,9 @@ Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of
 
 * [Lab 0 - Getting Started: Check out and run Release](part-1/lab-0-checkout-project-and-run-release.md)
 * [Lab 1 - Run Hello World](part-1/lab-1-run-hello-world.md)
-* [Lab 2 - Create a project repository](part-2/lab-2-create-project-repository.md)
-* [Lab 3 - Set up Python and IDE](part-2/lab-3-setup-python-and-ide.md)
-* [Lab 4 - Define a new task and test](part-2/lab-4-define-a-new-task-and-test.md)
+* [Lab 2 - Create a project repository](part-1/lab-2-create-project-repository.md)
+* [Lab 3 - Set up Python and IDE](part-1/lab-3-setup-python-and-ide.md)
+* [Lab 4 - Define a new task and test](part-1/lab-4-define-a-new-task-and-test.md)
 
 ### [Part 2 - Create your own task](part-2/)
 
