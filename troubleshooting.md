@@ -1,8 +1,8 @@
-### Troubleshooting
+# Troubleshooting
 
 ## Release won't start
 
-Release complains on startuop and quits.
+Release complains on startup and quits.
 
 For example with the following message:
 

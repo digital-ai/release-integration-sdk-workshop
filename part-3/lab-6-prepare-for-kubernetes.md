@@ -99,16 +99,17 @@ XXX Windows
 The result should be something like:
 
 ```
-Downloading xl binary to /Users/hsiemelink/.xebialabs/wrapper/23.1.0-beta.10/xl
-CLI version:             23.1.0-beta.10
-Git version:             v23.1.0-331.113-1-ga6b13b4
+Downloading xl binary to /Users/hsiemelink/.xebialabs/wrapper/23.1.0-rc.2/xl
+CLI version:             23.1.0-rc.2
+Git version:             v23.1.0-rc.1-1-g267bc7d
 API version XL Deploy:   xl-deploy/v1
 API version XL Release:  xl-release/v1
-Git commit:              a6b13b42ff31acc3c9a40741e09dabee08cac576
-Build date:              2023-04-03T09:26:14.345Z
+Git commit:              267bc7dcf19d34fc4cb4c40f988178596f75b208
+Build date:              2023-04-24T12:50:28.546Z
 GO version:              go1.19
 OS/Arch:                 darwin/amd64
 ```
+
 
 You are now set to start the installation procedure of the Remote Runner!
 

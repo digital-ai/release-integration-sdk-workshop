@@ -21,13 +21,15 @@ The Remote Runner needs a token to register itself with the Release server. In o
 
 Install the Remote Runner into your local Kubernetes environment with the `xl kube install` command and look closely at the answers below. Note that sometimes you can take the default, sometimes you need to give the value as prompted below, and sometimes you need to give a custom value.
 
-💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. XXX Link to documentation and workshop.
+💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. See the [Installing Digital.ai Release onto Kubernetes](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-before-you-begin.html) on our documentation site.
+
+Start the command with
+
+    ./xlw kube install
 
 We've marked some questions with a warning sign where you need to pay extra attention.
 
-```
-$ ./xlw kube install
- 
+``` 
 ? Following kubectl context will be used during execution: `docker-desktop`?
 » Yes
 ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:
@@ -88,46 +90,25 @@ Installing helm chart remote-runner from /Users/hsiemelink/Code/release-integrat
 Installed helm chart remote-runner to namespace digitalai
 ```
 
-XXX Start k9s
-
 Check the remote runner logs to see if it started correctly and is able to connect to Release.
 
-In the Release UI, log in as **admin** and check the **Connections** page for Remote Runner connections.
+We found **k9s** very helpful when dealing with Kubernetes. In a new terminal window, start the `k9s` utility and open the logs for the `remote-runner` pod to see if it is starting correctly.
 
+## Check Runner in Release
 
-## Build & publish the plugin
+In the Release UI, log in as **admin** and check the **[Connections](http://digitalai.release.local:5516/#/configuration)** page for Remote Runner connections. You should see an entry for Remote Runner.
 
-Run the build script
+![Job runners in Connections](img/job-runners.png)
 
-Unix/macOS
+Now disable the built-in Docker runner for the development environment by choosing **Edit** for the **Local Docker** entry and disabling the **Enabled** switch 
 
-* Builds the jar, image and pushes the image to the configured registry  
-  ``` sh build.sh ```
-* Builds the jar  
-  ``` sh build.sh --jar ```
-* Builds the image and pushes the image to the configured registry  
-  ```  sh build.sh --image ```
+![Disable Enable](img/disable-docker-runner.png)
 
-Windows
+Run one of the templates you built previously. 
 
-* Builds the jar, image and pushes the image to the configured registry  
-  ``` build.bat ```
-* Builds the jar  
-  ``` build.bat --jar ```
-* Builds the image and pushes the image to the configured registry  
-  ``` build.bat --image ```
+The tasks should run inside Kubernetes. You can check this in k9s by looking for pods called `92133d95a06d49c19c190869608b61b0-job-4`
 
-## Install plugin into Release
-
-In Release UI, use the Plugin Manager interface to upload the jar from `build`.
-The jar takes the name of the project, for example `release-integration-template-python-1.0.0.jar`.
-
-Then:
-* Restart Release container and wait for it to come up
-* Refresh the UI by pressing Reload in the browser.
-
-## Test it!
-Create a template with the task **Example: Hello** and run it!
+![K9s](img/k9s.png)
 
 ## Clean up
 

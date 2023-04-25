@@ -12,12 +12,15 @@ Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
 
     127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
+    127.0.0.1 host.docker.internal
 
 **Windows**
 
-Add the following entry to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
+Add the following entries to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
 
+    127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
+    127.0.0.1 host.docker.internal
 
 ### Build integration plugin and publish the container image
 
