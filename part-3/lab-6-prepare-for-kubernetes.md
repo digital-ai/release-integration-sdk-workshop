@@ -78,7 +78,7 @@ For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that tak
 
 In the `part-3` directory, issue the following command:
 
-    docker run -it xebialabsunsupported/xl-client:23.1.0-424.1400 version
+    docker run -it xebialabsunsupported/xl-client:23.1.0-425.900 version
 
 XXX Windows
 

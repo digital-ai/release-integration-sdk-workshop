@@ -11,13 +11,13 @@ Use the following command to create an account for the Remote Runner. Feel free 
     docker run -it \
         -v ${PWD}:/opt/xebialabs/xl-client/config \
         --network dev-environment_default \
-        xebialabsunsupported/xl-client:23.1.0-424.1400 \
+        xebialabsunsupported/xl-client:23.1.0-425.900 \
         apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://dev-environment-digitalai-release-1:5516/
 OR
 
     docker run -it \
         -v ${PWD}:/opt/xebialabs/xl-client/config \
-        xebialabsunsupported/xl-client:23.1.0-424.1400 \
+        xebialabsunsupported/xl-client:23.1.0-425.900 \
         apply -f /opt/xebialabs/xl-client/config/remote-runnner-user.yaml --values password=Remote123 --xl-release-url=http://host.docker.internal:5516/
 
 
@@ -46,7 +46,7 @@ $ docker run -it \
     -e KUBECONFIG=/opt/xebialabs/.kube/config \
     -v ${PWD}/k3d-kubeconfig.json:/opt/xebialabs/.kube/config \
     -v ${PWD}:/opt/xebialabs/xl-client/config \
-    xebialabsunsupported/xl-client:23.1.0-424.1400 \
+    xebialabsunsupported/xl-client:23.1.0-425.900 \
     kube install
 
 ? Following kubectl context will be used during execution: `k3d-xlrcluster`? 
