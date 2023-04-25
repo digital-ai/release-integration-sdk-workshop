@@ -35,4 +35,10 @@ Unfortunately you will lose your work!
 
 * Refresh your browser
 
+## (M1 Mac) qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+
+Happens when starting digitalai-release-setup container. So far only seen on M1
+
+(We are currently working on ways to prevent this situation)
+
 
