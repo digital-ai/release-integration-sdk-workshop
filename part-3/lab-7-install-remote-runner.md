@@ -98,7 +98,7 @@ $ docker run -it \
 	| RemoteRunnerReleaseName        | remote-runner                                      |
 	| RemoteRunnerReleaseUrl         | http://host.k3d.internal:5516/                     |
 	| RemoteRunnerStorageClass       | local-path                                         |
-	| RemoteRunnerToken              | rpa_b836b0c041121430007f57ee9a1316639f10e2ff       |
+	| RemoteRunnerToken              | rpa_...                                            |
 	| RemoteRunnerUseDefaultLocation | true                                               |
 	| ServerType                     | dai-release-runner                                 |
 	| ShortServerName                | other                                              |
