@@ -39,6 +39,10 @@ Unfortunately you will lose your work!
 
 Happens when starting digitalai-release-setup container. So far only seen on M1
 
-(We are currently working on ways to prevent this situation)
+* Workaround is to configure the Release server with the command 
+
+  xl apply -f dev-environment/digitalai-release-setup/instance-configuration.yaml
+
+Install the xl command utility for this -- see also [Lab 6](part-3/lab-6-prepare-for-kubernetes.md#set-up-the-xl-client)
 
 
