@@ -83,7 +83,7 @@ But first, let's highlight a couple of features
 
 Since the container is outside of Release, we don't need to restart the server if we change the code. Only if we are installing a new plugin, or touching `type-definitions.yaml` are restarts required.
 
-Test this out by changing the code in `hello.py`. Change the greeting to something like 
+Test this out by changing the code in `greet.py`. Change the greeting to something like 
 
 ```python
 greeting = f"Hello {name}, welcome to the SDK workshop!"
