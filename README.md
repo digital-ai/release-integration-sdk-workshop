@@ -14,9 +14,9 @@ In this workshop, you will learn how to
 
 ## Workshop prerequisites
 
-You will run this workshop on your own machine. You will need to have the following installed
+You will run this workshop on your own machine. Here's a breakdown of the components that you need to have.
 
-### Bare minimum
+### Requirements for part 1: Getting started
 
 To run the HelloWorld example and do a few minor modifications to the example, you only need
 
@@ -26,19 +26,19 @@ To run the HelloWorld example and do a few minor modifications to the example, y
 
 This is all to get started!
 
-The template project to get you started provides build scripts and a development environment that will launch Digital.ai Release with a temporary license.
+The template project provides build scripts and a development environment that will launch Digital.ai Release with a temporary license.
 
-### Development exercises
+### Requirements for part 2: Create your own task
 
-To start developing the integrations plugins, install the following
+To start developing the integrations plugins, you will need
 
 * [Python3](https://www.python.org/downloads), version 3.11
 * The `pip` installer tool (bundled with Python)
 * A code editor or IDE like VisualCode or PyCharm/IntelliJ
 
-### Production setup (optional)
+### Requirements for part 3: Production Setup with Kubernetes (optional)
 
-Container-based integration plugins are meant to run on a Kubernetes cluster. To have a hands-on experience you will need the following components.
+Container-based integration plugins are meant to run on a Kubernetes cluster. To have a hands-on experience you will need to install additional components.
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part if Kubernetes is all new to you (or be prepared for a steep learning curve)
 

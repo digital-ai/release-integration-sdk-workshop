@@ -37,14 +37,16 @@ Unfortunately you will lose your work!
 
 ## (M1 Mac) qemu: uncaught target signal 11 (Segmentation fault) - core dumped
 
-Happens when starting digitalai-release-setup container. So far only seen on M1
+Happens when starting digitalai-release-setup container. So far only seen on M1.
 
-* Workaround is to configure the Release server with the command 
+* **Solution:** Upgrade to Macos Ventura
+
+* **Workaround 1** Configure the Release server with the command 
 
   xl apply -f dev-environment/digitalai-release-setup/instance-configuration.yaml
 
 Install the xl command utility for this -- see also [Lab 6](part-3/lab-6-prepare-for-kubernetes.md#set-up-the-xl-client)
 
-* Or add the configuration items from `dev-environment/digitalai-release-setup/instance-configuration.yaml` manually through Release UI. 
+* **Workaround 2:** Add the configuration items from `dev-environment/digitalai-release-setup/instance-configuration.yaml` manually through Release UI. 
 
 
