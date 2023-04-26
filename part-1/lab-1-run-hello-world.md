@@ -48,9 +48,9 @@ This builds the jar and the container image and pushes the image to the registry
 
 ### Install plugin into Release
 
-We will now install the plugin into Digital.ai Release 
+We will now install the plugin into Digital.ai Release through the plugin manager.
 
-Go to the [Installed plugins](http://localhost:5516/#/pluginManager) section of the Plugin Manager page in Release.
+Go to **Cog item** (⚙️ -- upper right corner) > **Manage Plugins** >  [Installed plugins](http://localhost:5516/#/pluginManager).
 
 Press the **Upload** button in the upper right corner and browse to the `build` directory of the `release-integration-template-python` project.
 The plugin jar takes the name of the project specified in `project.properties`, for example `publisher-release-target-integration-0.0.1.jar`. Select this file and press **Upload**.

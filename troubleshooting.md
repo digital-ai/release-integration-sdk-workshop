@@ -49,4 +49,19 @@ Install the xl command utility for this -- see also [Lab 6](part-3/lab-6-prepare
 
 * **Workaround 2:** Add the configuration items from `dev-environment/digitalai-release-setup/instance-configuration.yaml` manually through Release UI. 
 
+# (Windows) After starting docker I got an error "docker endpoint for "default" not found". 
+
+* Remove `meta.json` from `.docker\contexts\meta\<guid>\` and restart docker
+
+# Docker compose won't start
+
+Make sure nothing else is running on the following ports
+
+* `5516` - Release
+* `5050` - Container registry
+* `8086` - Container registry UI
+* `4566` - Localstack (part 2)
+
+See also `dev-environment/docker-compose.yaml` in your project
+
 

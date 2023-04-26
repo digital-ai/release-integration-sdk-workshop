@@ -2,7 +2,7 @@
 
 In this section we will set up a new Git project that will contain the plugin integration.
 
-The `release-integration-template-python` repo is a template project, meaning you shouldn't make changes to it or fork it. 
+The [release-integration-template-python](https://github.com/digital-ai/release-integration-template-python) repo is a template project, meaning you shouldn't make changes to it or fork it. 
 
 We will create a **duplicate** of this project to start developing our own container-based integration.
 
@@ -20,7 +20,7 @@ For example: `hes-release-workshop-integration`
 
 We need to initialize a Git repository with this name and note the url.  
 
-This can be done easily from GitHub. Just navigate to the mainpage of the cd release-integration-template-python project and find the **Use this template** button, and select **Create new repository**. 
+This can be done easily from GitHub. Just navigate to the mainpage of the [release-integration-template-python](https://github.com/digital-ai/release-integration-template-python) project and find the **Use this template** button, and select **Create new repository**. 
 
 ![Use this tempalte button on GitHub](img/copy-template-on-github.png)
 
