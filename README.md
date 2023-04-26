@@ -51,7 +51,7 @@ Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of
 ### Introduction
 * Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
-### [Part 1 - Getting started](part-1/)
+### Part 1 - Getting started
 
 * [Lab 0 - Getting Started: Check out and run Release](part-1/lab-0-checkout-project-and-run-release.md)
 * [Lab 1 - Run Hello World](part-1/lab-1-run-hello-world.md)
@@ -59,11 +59,11 @@ Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of
 * [Lab 3 - Set up Python and IDE](part-1/lab-3-setup-python-and-ide.md)
 * [Lab 4 - Define a new task and test](part-1/lab-4-define-a-new-task-and-test.md)
 
-### [Part 2 - Create your own task](part-2/)
+### Part 2 - Create your own task
 
 * [Lab 5 - Create integration to a third party server](part-2/lab-5-create-a-third-party-integration.md)
 
-### [Part 3 - Production Setup with Kubernetes](part-3/)
+### Part 3 - Production Setup with Kubernetes
 
 * [Lab 6 - Prepare Kubernetes](part-3/lab-6-prepare-for-kubernetes.md)
 * [Lab 7 - Install Remote Runner](part-3/lab-7-install-remote-runner.md)
