@@ -48,7 +48,7 @@ Python command to create a local virtual environment:
 
     python3 -m venv venv
 
-Alternatively, use the following command that takes a bit longer but makes sure you are on the latest version of the Python libraries, including pip.
+Alternatively, use the following command that takes a bit longer but makes sure you are on the latest version of the Python libraries, including pip. (May not work on older versions of Python)
 
     python3 -m venv --upgrade-deps venv
 

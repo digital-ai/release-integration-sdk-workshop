@@ -12,9 +12,9 @@ We will do this in the file `type-definitions.yaml`.
 
 What will do is
 * Take the `type-definitions.yaml` from the template
-* Rename `containerExamples.BaseTask` to `workshop.BaseTask`
+* Rename `containerExamples.BaseTask` to `workshop.BaseTask` (use find & replace)
 * Rename `containerExamples.Hello` to `workshop.Greet`
-* Remove the rest
+* Remove `containerExamples.SetSystemMessage`, `containerExamples.ServerQuery` and `containerExamples.Server`
 
 The result would be:
 
