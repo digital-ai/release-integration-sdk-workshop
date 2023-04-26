@@ -23,6 +23,12 @@ In this lab we will use the template project directly to make sure you can run D
 
 For now, create a copy of the template project on your local machine with the following command
 
+**Https:**
+
+    git clone https://github.com/digital-ai/release-integration-template-python.git
+
+**Private key:**
+
     git clone git@github.com:digital-ai/release-integration-template-python.git
 
 ## Run a development instance of Digital.ai Release
