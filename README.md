@@ -12,29 +12,17 @@ In this workshop, you will learn how to
 * Set up a development environment for building, testing, installing, and running integration tasks
 * Configure a production-style architecture to run the container-based tasks in a Kubernetes cluster
 
-## Workshop prerequisites
+## System requirements
 
 You will run this workshop on your own machine. Here's a breakdown of the components that you need to have.
 
-### Requirements for part 1: Getting started
-
-To run the HelloWorld example and do a few minor modifications to the example, you only need
-
-* A git client
-* Docker
-* Admin privileges on your system
-
-This is all to get started!
-
-The template project provides build scripts and a development environment that will launch Digital.ai Release with a temporary license.
-
-### Requirements for part 2: Create your own task
-
-To start developing the integrations plugins, you will need
-
-* [Python3](https://www.python.org/downloads), version 3.11
-* The `pip` installer tool (bundled with Python)
-* A code editor or IDE like VisualCode or PyCharm/IntelliJ
+* **Operating system**: Windows, Linux, macOS. For Macs with the M1/M2 chip, macOS Ventura is required
+* **Internal memory**: Enough to run Docker comfortably, 8 GB min; 16 GB recommended
+* **GitHub** account
+* **Docker Desktop**, latest version
+* **Admin privileges** on your system. You need to be able to edit the `/etc/hosts` file
+* **Python 3.11**
+* **Code editor or IDE** like PyCharm or Visual Code
 
 ### Requirements for part 3: Production Setup with Kubernetes (optional)
 
