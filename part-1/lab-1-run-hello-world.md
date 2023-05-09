@@ -63,7 +63,7 @@ Restart the Release container with the following command, or find the restart bu
 
     docker restart dev-environment-digitalai-release-1
 
-When the Release server has restarted, refresh the UI by pressing Reload in the browser.
+When the Release server has restarted, also **refresh the UI** by pressing Reload in the browser.
 
 💡 **Note:** We are currently working on a feature that makes it possible to install plugins without needing to restart the Release server. Stay tuned! 
 

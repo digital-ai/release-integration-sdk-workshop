@@ -10,9 +10,9 @@ We will do this in the file `type-definitions.yaml`.
 
 💡 **Note:** If you have written plugins for Release before: this is a new format taking the place of `synthetic.xml`. 
 
-What will do is
-* Take the `type-definitions.yaml` from the template
-* Rename `containerExamples.BaseTask` to `workshop.BaseTask` (use find & replace)
+You need to do the following:
+* Open the `type-definitions.yaml` file in the `resources` directory.
+* Rename `containerExamples.BaseTask` to `workshop.BaseTask`. Use find & replace!
 * Rename `containerExamples.Hello` to `workshop.Greet`
 * Remove `containerExamples.SetSystemMessage`, `containerExamples.ServerQuery` and `containerExamples.Server`
 
@@ -48,15 +48,15 @@ types:
 ```
 
 With this metadata and other artifacts like icons, Release will be able to display the task in the UI and execute it. 
-When building, it will be put in the `jar` file that is uploaded to the Release server.
+The build script packages this file together with the icon in the `jar` file that is uploaded to the Release server.
 
-But first, we need to get the code in shape!
+But before we do that, we need to get the code in shape!
 
 ## Update Python code
 
 Based on `type-definitions.yaml`, the Python SDK will scan the `src` directory for Python classes with the same name as the type definition.
 
-In the template project, there is a `containerExamples.Hello` task defined in `type-defintions.yaml` with a corresponding `Hello` class in `src/hello.py`.
+In the template project, there is a `containerExamples.Hello` task defined in `type-defintions.yaml` that has a corresponding `Hello` class in `src/hello.py`.
 
 To make everything consistent again, do the following
 
@@ -64,14 +64,16 @@ To make everything consistent again, do the following
 * Inside `hello.py`, rename the `Hello` class to `Greet`
 * Remove the unused files `sample_release_api_task.py` and `sample_server_task.py`
 
+💡 **Note for PyCharm users:** Ignore the warning about `sample_server_task.py` being used. We will fix that later when we take a look at the unit tests.
+
 Now we are ready to build and test the plugin
 
 Repeat the steps from [Lab 1](lab-1-run-hello-world.md#build-integration-plugin-and-publish-the-container-image)
 
 In summary:
 * Build using `sh build.sh` or `build.bat`
-* Upload plugin
-* Restart server
+* Upload the new plugin
+* Restart server & refresh browser
 * Create a test template with the new task
 * Run it
 
@@ -81,9 +83,9 @@ But first, let's highlight a couple of features
 
 ### Update code without restarting Release
 
-Since the container is outside of Release, we don't need to restart the server if we change the code. Only if we are installing a new plugin, or touching `type-definitions.yaml` are restarts required.
+Since the container is outside of Release, we don't need to restart the server if we change the code. Restarts are only requiered when installing a new plugin, or changing `type-definitions.yaml`.
 
-Test this out by changing the code in `greet.py`. Change the greeting to something like 
+Test this out by modifying the code in `greet.py`. Change the greeting to something like 
 
 ```python
 greeting = f"Hello {name}, welcome to the SDK workshop!"
@@ -122,7 +124,7 @@ Unit tests are in the `test` directory. First let's modify the example tests tha
 
 ✍️ **Assignment**
 
-1. Rename `test_hello.py` and inside the file, rename all references to 'Hello' to 'Greet'
+1. Rename `test_hello.py` to `test_greet.py` and inside the file, rename all references to 'Hello' to 'Greet'
 2. Remove the `test_with_server.py` file
 
 You can now run the unit tests with the command
@@ -166,16 +168,17 @@ Before we move on, try out some coding for yourself
 ✍️ **Assignment**
 * Create another task in Python. Define a new type, with input and output variables. Keep it simple and just use standard Python libraries. We will touch more advanced topics in the next parts.
 
-This concludes the first leg of our workshop. Congratulations, you are now able to build container-based plugins for Digital.ai Release! 
+This concludes the first leg of our workshop. 
+Congratulations! You are now able to build container-based plugins for Digital.ai Release! 
 
 ## Next
 
 The rest of the workshop builds on the knowledge you have acquired so far. 
 
 If you are more interested in coding, continue with
-* [Part 2](../part-2) - How to integrate with a 3rd party system, using external Python libraries.
+* [Part 2](../part-2/lab-5-create-a-third-party-integration.md) - How to integrate with a 3rd party system, using external Python libraries.
 
-If you want to know how to set up a Kubernetes cluster for Digital.ai Release task execution, you can skip to
-* [Part 3](../part-3) - Production Setup with Kubernetes, using the Remote Runner
+If you want to know how to prepare a Kubernetes cluster for a production set up of Digital.ai Release with containerized tasks, go to
+* [Part 3](../part-3/lab-6-prepare-for-kubernetes.md) - Production Setup with Kubernetes, using the Remote Runner
 
 
