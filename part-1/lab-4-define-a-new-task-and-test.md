@@ -75,7 +75,7 @@ In summary:
 * Create a test template with the new task
 * Run it
 
-Ok, this takes a bit, but it does validate if the integration plugin is built correctly. The debug/test loop can be shortened by using [Unit tests](#using-unit-tests), that we will cover at the end of this exercise.
+This takes a bit, but it does validate if the integration plugin is built correctly and can be run inside Release. The debug/test loop can be shortened by using [Unit tests](#using-unit-tests), that we will cover at the end of this exercise.
 
 But first, let's highlight a couple of features
 
@@ -89,7 +89,9 @@ Test this out by changing the code in `greet.py`. Change the greeting to somethi
 greeting = f"Hello {name}, welcome to the SDK workshop!"
 ```
 
-Now we only need to build the container. After running the build script, go back to Release and create another release from your test template. The changes in the code are picked up right away.
+✍️ **Assignment**
+* Rebuild the container using the build script
+* In Release, run another release from your test template. Check that the changes in the code are picked up.
 
 ## Code, build, test in a server
 
@@ -125,7 +127,7 @@ Unit tests are in the `test` directory. First let's modify the example tests tha
 
 You can now run the unit tests with the command
 
-    python3 -m unittest discover tests
+    python -m unittest discover tests
 
 If all went well, you should get the following error:
 

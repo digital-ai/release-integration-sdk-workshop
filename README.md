@@ -16,7 +16,7 @@ In this workshop, you will learn how to
 
 You will run this workshop on your own machine. Here's a breakdown of the components that you need to have.
 
-* **Operating system**: Windows, Linux, macOS. For Macs with the M1/M2 chip, macOS Ventura is required
+* **Operating system**: Windows, Linux, macOS. For Macs with the M1/M2 chip, macOS Ventura is required and enable Rosetta in Docker Desktop under 'Feature in development'
 * **Internal memory**: Enough to run Docker comfortably, 8 GB min; 16 GB recommended
 * **GitHub** account
 * **Docker Desktop**, latest version

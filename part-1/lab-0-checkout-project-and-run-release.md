@@ -46,6 +46,7 @@ When the docker command is finished, the containers will still be starting. In D
 
 In a browser, go to http://localhost:5516. This should take you to the Digital.ai Release login screen. Log in with username `admin` and password `admin`
 
+💡 **Note:** The development environment uses a temporary evaluation license for Digital.ai Release
 
 ---
 

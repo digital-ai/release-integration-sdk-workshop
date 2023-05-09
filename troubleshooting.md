@@ -27,6 +27,19 @@ Unfortunately you will lose your work!
 
 (We are currently working on ways to prevent this situation)
 
+## Release won't start
+
+Release gets stuck when starting with the following messages in the log:
+```
+2023-04-26 12:27:50.233 [main] {} INFO  l.lockservice.StandardLockService - Waiting for changelog lock....
+2023-04-26 12:28:00.243 [main] {} INFO  l.lockservice.StandardLockService - Waiting for changelog lock....
+```
+
+**Workaround:** Reset the dev environment by doing
+
+    docker compose down
+    docker compose up -d --build
+
 ## My task doesn't show up in the Add task menu
 
 * Refresh your browser
@@ -48,6 +61,12 @@ Happens when starting digitalai-release-setup container. So far only seen on M1.
 Install the xl command utility for this -- see also [Lab 6](part-3/lab-6-prepare-for-kubernetes.md#set-up-the-xl-client)
 
 * **Workaround 2:** Add the configuration items from `dev-environment/digitalai-release-setup/instance-configuration.yaml` manually through Release UI. 
+
+## (M1 Mac) compilation errors
+
+On an M1/M2 Mac, make sure you have the Rosetta option turned on in Docker Desktop
+
+![Docker Desktop > Features in development > Use Rosetta](img/enable-rosetta-in-docker-desktop.png)
 
 # (Windows) After starting docker I got an error "docker endpoint for "default" not found". 
 

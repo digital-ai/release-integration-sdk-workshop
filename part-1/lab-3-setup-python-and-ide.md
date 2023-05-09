@@ -6,13 +6,16 @@ This section explains how you can set up Python with VisualCode or IntelliJ/PyCh
 
 If you haven't already done so, you'll need to install **Python 3** on your computer. You can download the latest version of Python from the official website at https://www.python.org/downloads/.
 
+
 ### Virtual environment
 
 We will create a **virtual environment** in Python, in order to keep all the dependencies of the plugin isolated. This will prevent interference with other Python projects on your computer.
 
 Create a new Python virtual environment in the project directory by running the following command in your terminal:
 
-    python3 -m venv venv
+    python -m venv venv
+
+💡 **Note:** Some installations of Python use the `python3` command. In that case use `python3 -m venv venv`.   
 
 This will create a new directory called `venv` in your project directory that will contain all the Python dependencies.
 
