@@ -40,17 +40,17 @@ You probably have done this already in [Lab 1](../part-1/lab-1-run-hello-world.m
 
 If not, here are the steps for reference:
 
-**Unix / macOS**
+**Windows**
 
-Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
+Add the following entries to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
 
     127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
     127.0.0.1 host.docker.internal
 
-**Windows**
+**Unix / macOS**
 
-Add the following entries to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
+Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
 
     127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
@@ -91,13 +91,13 @@ For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that tak
 
 In the `part-3` directory, issue the following command:
 
-**Unix / macOS**
-
-    ./xlw version
-
 **Windows**
 
     xlw.bat version 
+
+**Unix / macOS**
+
+    ./xlw version
 
 The result should be something like:
 
