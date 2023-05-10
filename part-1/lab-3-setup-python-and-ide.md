@@ -35,13 +35,13 @@ Te exit the virtual environment, simply use the `deactivate` command in the term
 
 ### Install libraries required by the project
 
-Now we can install the required libraries using the following command:
+Install the required Python libraries using the following command:
 
     pip install -r requirements.txt 
 
 This command will install the required Python packages listed in the `requirements.txt` file within the virtual environment.
 
-Now you have a virtual environment set up with the required dependencies installed for the project.
+Now you have a virtual environment set up with the required dependencies needed for the project.
 
 ## IDE support
 

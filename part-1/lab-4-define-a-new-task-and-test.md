@@ -11,10 +11,10 @@ We will do this in the file `type-definitions.yaml`.
 💡 **Note:** If you have written plugins for Release before: this is a new format taking the place of `synthetic.xml`. 
 
 You need to do the following:
-* Open the `type-definitions.yaml` file in the `resources` directory.
-* Rename `containerExamples.BaseTask` to `workshop.BaseTask`. Use find & replace!
-* Rename `containerExamples.Hello` to `workshop.Greet`
-* Remove `containerExamples.SetSystemMessage`, `containerExamples.ServerQuery` and `containerExamples.Server`
+1. Open the `type-definitions.yaml` file in the `resources` directory.
+2. Rename `containerExamples.BaseTask` to `workshop.BaseTask`. Use find & replace!
+3. Rename `containerExamples.Hello` to `workshop.Greet`
+4. Remove `containerExamples.SetSystemMessage`, `containerExamples.ServerQuery` and `containerExamples.Server`
 
 The result would be:
 
@@ -56,26 +56,31 @@ But before we do that, we need to get the code in shape!
 
 Based on `type-definitions.yaml`, the Python SDK will scan the `src` directory for Python classes with the same name as the type definition.
 
-In the template project, there is a `containerExamples.Hello` task defined in `type-defintions.yaml` that has a corresponding `Hello` class in `src/hello.py`.
+In the template project, there is a `containerExamples.Hello` task defined in `type-defintions.yaml` that has a corresponding `Hello` class in `src/hello.py`. Now that we have changed the task name to be `workshop.Greet`, there need to be a `Greet` Python class.
 
-To make everything consistent again, do the following
+✍️ **Assignment**
 
-* Rename `hello.py` to `greet.py`
-* Inside `hello.py`, rename the `Hello` class to `Greet`
-* Remove the unused files `sample_release_api_task.py` and `sample_server_task.py`
+Make everything consistent again by doing the following.
+
+In the `src` directory,
+1. Rename `hello.py` to `greet.py`
+2. Inside `hello.py`, rename the `Hello` class to `Greet`
+3. Remove the unused files `sample_release_api_task.py` and `sample_server_task.py`
 
 💡 **Note for PyCharm users:** Ignore the warning about `sample_server_task.py` being used. We will fix that later when we take a look at the unit tests.
 
 Now we are ready to build and test the plugin
 
-Repeat the steps from [Lab 1](lab-1-run-hello-world.md#build-integration-plugin-and-publish-the-container-image)
+✍️ **Assignment**
+
+Repeat the steps from [Lab 1](lab-1-run-hello-world.md#build-integration-plugin-and-publish-the-container-image) to build and test the new plugin.
 
 In summary:
-* Build using `sh build.sh` or `build.bat`
-* Upload the new plugin
-* Restart server & refresh browser
-* Create a test template with the new task
-* Run it
+1. Build using `sh build.sh` or `build.bat`
+2. Upload the new plugin
+3. Restart server & refresh browser
+4. Create a test template with the new task
+5. Run it
 
 This takes a bit, but it does validate if the integration plugin is built correctly and can be run inside Release. The debug/test loop can be shortened by using [Unit tests](#using-unit-tests), that we will cover at the end of this exercise.
 
@@ -92,8 +97,8 @@ greeting = f"Hello {name}, welcome to the SDK workshop!"
 ```
 
 ✍️ **Assignment**
-* Rebuild the container using the build script
-* In Release, run another release from your test template. Check that the changes in the code are picked up.
+1. Rebuild the container using the build script
+2. In Release, run another release from your test template. Check that the changes in the code are picked up.
 
 ## Code, build, test in a server
 
@@ -124,10 +129,11 @@ Unit tests are in the `test` directory. First let's modify the example tests tha
 
 ✍️ **Assignment**
 
+In the `tests` directory,
 1. Rename `test_hello.py` to `test_greet.py` and inside the file, rename all references to 'Hello' to 'Greet'
 2. Remove the `test_with_server.py` file
 
-You can now run the unit tests with the command
+Run the unit tests from the top level directory of the repository with the command
 
     python -m unittest discover tests
 
@@ -159,7 +165,7 @@ FAILED (errors=1)
 ```
 
 ✍️ **Assignment** 
-* Fix the code so the test runs without failure. Then build and retest in the Release server. 
+* Fix the code so the test runs without failure.  
 
 ## Do some coding!
 

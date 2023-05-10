@@ -10,6 +10,7 @@ The Release server needs to be able to find the container images of the integrat
 
 Add the following entries to `C:\Windows\System32\drivers\etc\hosts` (Run as administrator permission is required to edit):
 
+    # Digital.ai Release SDK
     127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
     127.0.0.1 host.docker.internal
@@ -18,10 +19,12 @@ Add the following entries to `C:\Windows\System32\drivers\etc\hosts` (Run as adm
 
 Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
 
+    # Digital.ai Release SDK
     127.0.0.1 digitalai.release.local
     127.0.0.1 container-registry
     127.0.0.1 host.docker.internal
 
+Check if the changes were applied correctly by opening Digital.ai Release on http://digitalai.release.local:5516
 
 ### Build integration plugin and publish the container image
 
@@ -46,13 +49,13 @@ sh build.sh
 ```
 
 
-This builds the jar and the container image and pushes the image to the registry running in Docker.
+This builds the jar and the container image and pushes the image to the local registry running in Docker.
 
 ### Install plugin into Release
 
-We will now install the plugin into Digital.ai Release through the plugin manager.
+Now install the plugin into Digital.ai Release through the plugin manager.
 
-Go to **Cog item** (⚙️ -- upper right corner) > **Manage Plugins** >  [Installed plugins](http://localhost:5516/#/pluginManager).
+Go to **Cog item** (⚙️ -- upper right corner) > **Manage Plugins** >  [Installed plugins](http://digitalai.release.local:5516/#/pluginManager).
 
 Press the **Upload** button in the upper right corner and browse to the `build` directory of the `release-integration-template-python` project.
 The plugin jar takes the name of the project specified in `project.properties`, for example `publisher-release-target-integration-0.0.1.jar`. Select this file and press **Upload**.
