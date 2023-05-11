@@ -17,20 +17,30 @@ Another thing that is useful to know is that the Remote Runner establishes its c
 To run container-based integration plugins on a Kubernetes cluster, you will need the following components.
 
 * Access to a local Kubernetes cluster. This could be Docker Desktop (recommended), minikube or K3d.
-* [kubectl](https://kubernetes.io/docs/tasks/tools/)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/) (This may have been installed already with Docker Desktop)
 * [Helm](https://helm.sh/docs/intro/install/)
+* [yq](https://mikefarah.gitbook.io/yq/v/v3.x/) - Command line utility to process Yaml. This is used by `xl` under the hood.
+* A Java JDK - The `xl` utility has a dependency on the `keytool` command that is bundled with the JDK. 
 * [k9s](https://k9scli.io/topics/install/) - _(Optional)_ Kubernetes CLI to "Manage Your Clusters In Style". This is a very handy utility.
 
 
 Depending on the flavor of Kubernetes you are using, install the following tools provided by the vendor.
 
+### Docker Desktop
+
+In Docker Desktop, just enable Kubernetes in the Settings and restart.
+
 ### Minikube
 
-- [minikube](https://minikube.sigs.k8s.io/docs/start/) - if you plan to use Minikube during workshop (use the latest version), we are testing on minikube with [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
-- [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
+If you plan to use Minikube during workshop, please use the latest version
+* [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-💡 **Note:** A cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift is possible, but may be a bit tricky to set up. The Remote Runner opens a connection to the Release server, not the other way around. When running Release locally in Docker and the Remote Runner in a cloud service, you would need to expose the Release port to the internet using a tool like `ngrok`. Another option would be to install Release into Kubernetes as well, using the `xl kube install` tool. Both approaches take a bit more work and are beyond the scope of this workshop.
+We have tested minikube with **virtualbox driver**
+* [virtualbox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/)
 
+### Cloud-based Kubernetes
+
+A cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift is possible, but may be a bit tricky to set up. The Remote Runner opens a connection to the Release server, not the other way around. When running Release locally in Docker and the Remote Runner in a cloud service, you would need to expose the Release port to the internet using a tool like `ngrok`. Another option would be to install Release into Kubernetes as well, using the `xl kube install` tool. Both approaches take a bit more work and are beyond the scope of this workshop.
 
 ## Configure your `hosts` file
 
@@ -56,9 +66,9 @@ Add the following lines to `/etc/hosts` (sudo privileges is required to edit):
     127.0.0.1 container-registry
     127.0.0.1 host.docker.internal
 
-### Check out this repo
+### Check out the workshop repo
 
-You will need to use some code examples that are in the workshop repository.
+You will need to use some code examples that are in the workshop repository itself.
 
 Check out the repository and navigate to `part-3`
 
@@ -85,7 +95,7 @@ In the next lab, you wil install the Remote Runner using the `xl` command line u
 
 💡 **Note:** The name 'xl' comes from 'XebiaLabs', the company that created Release and Deploy and is now part of Digital.ai
 
-Let's first checkout that it works. 
+Let's first check that it works. 
 
 For the workshop, we will use `xlw`, the "xl wrapper", a wrapper script that takes care of downloading and running the correct version of `xl`.
 
@@ -102,13 +112,13 @@ In the `part-3` directory, issue the following command:
 The result should be something like:
 
 ```
-Downloading xl binary to /Users/hsiemelink/.xebialabs/wrapper/23.1.0-rc.2/xl
-CLI version:             23.1.0-rc.2
-Git version:             v23.1.0-rc.1-1-g267bc7d
+Downloading xl binary to /Users/hsiemelink/.xebialabs/wrapper/23.1.0/xl
+CLI version:             23.1.0
+Git version:             v23.1.0-rc.3-0-g722b121
 API version XL Deploy:   xl-deploy/v1
 API version XL Release:  xl-release/v1
-Git commit:              267bc7dcf19d34fc4cb4c40f988178596f75b208
-Build date:              2023-04-24T12:50:28.546Z
+Git commit:              722b121c7c59448524a4cf98ef18012475731b1c
+Build date:              2023-05-09T10:24:09.165Z
 GO version:              go1.19
 OS/Arch:                 darwin/amd64
 ```

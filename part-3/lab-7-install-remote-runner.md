@@ -110,7 +110,7 @@ Now disable the built-in Docker runner for the development environment by choosi
 
 Run one of the templates you built previously. 
 
-The tasks should run inside Kubernetes. You can check this in k9s by looking for pods called `92133d95a06d49c19c190869608b61b0-job-4`
+The tasks should run inside Kubernetes. You can check this in `k9s` by looking for pods called something like `92133d95a06d49c19c190869608b61b0-job-4`
 
 ![K9s](img/k9s.png)
 

@@ -16,9 +16,9 @@ For each new integration, you will need to do the following steps.
 
 - [ ] Create a new project from [release-integration-template-python](https://github.com/digital-ai/release-integration-template-python)
 - [ ] Check out project and update project properties
+- [ ] Configure IDE
 - [ ] Create Python virtual environment
 - [ ] Add libraries and pip install
-- [ ] Configure IDE
 - [ ] Remove sample files you won’t need
 - [ ] Create skeleton implementation and tests
 - [ ] Set up testing infrastructure
@@ -53,6 +53,12 @@ Alternatively, use the following command that takes a bit longer but makes sure 
     python -m venv --upgrade-deps venv
 
 Then activate the virtual environment with
+
+**Windows:**
+
+    venv\Scripts\activate
+
+**Linux / macOS:**
 
     source venv/bin/activate
 
@@ -108,9 +114,9 @@ First, run the tests to make sure that we are in a good state
 
     python -m unittest discover tests
 
-For AWS, you wouldn't need the `requests` library, the boto3 library takes care of that. So you can remove that and start with a clean, but non-trivial file.
+Use `sample_server_task.py` as a base and remove the stuff you won't need. For AWS, you wouldn't need the `requests` library, the boto3 library takes care of that. So you can remove that and start with a clean, but non-trivial file.
 
-Here's an example of what the starting poinnt coud look like
+Here's an example of what the starting point could look like
 
 `sample_server_task.py`:
 ```python
@@ -153,7 +159,7 @@ class TestServerQuery(unittest.TestCase):
         task = ServerQuery()
         task.input_properties = {
             'server': {
-                'url': 'http://localstack'
+                'url': 'http://localhost:4566'
             }
         }
 
@@ -184,15 +190,15 @@ For example:
 
 💡**Note:** Since we are not testing with Release yet, you won't have to propagate changes `type-defintions.yaml` yet. This will come later in the development cycle.
 
-Before we dive into coding, let's take a look at the other essential part of integration development: the test infrastructure.
+Before we dive into coding, let's take a look at the other essential part of developing integration plugins: the integration test infrastructure.
 
-### Set up testing infrastructure
+### Set up integration test infrastructure
 
 Make sure you have a test environment of the target system to test your integration. For example, you would need a test environment and account to connect to.
 
 If possible, it is useful to have a local test environment in Docker that is self-contained.  
 
-For AWS, we can set up a local environment using [Localstack](https://localstack.cloud) -- a Docker based environment that supports many of the AWS APIs.
+For AWS, we can set up a local environment inside Docker using [Localstack](https://localstack.cloud) -- an environment that supports many of the AWS APIs.
 
 Here's a snippet to set up a Docker environment for Localstack. Append it to `dev-environment/docker-compose.yaml`, making sure it is defined under `services`. (It's Yaml, so double check indentation) 
 
@@ -210,7 +216,9 @@ Here's a snippet to set up a Docker environment for Localstack. Append it to `de
       - "/var/run/docker.sock:/var/run/docker.sock"
 ```
 
-With this change, recycle your Docker environment with
+With this change, the Localstack environment will be available on `htp://localhost:4566`
+
+Recycle your Docker environment with
 
     cd dev-environment
     docker compose down
@@ -222,30 +230,43 @@ While Localstack is starting, you can go back to the code and start developing t
 
 Update the task code to work with boto3. The relevant snippet to make it work is
 
-    s3_client = boto3.client('s3', endpoint_url=endpoint_url, region_name='eu-west-2',
-                          aws_access_key_id="", aws_secret_access_key="")
-    
-    response = s3_client.create_bucket(Bucket='new-bucket')
+```python
+s3_client = boto3.client('s3', endpoint_url=server['url'], region_name='eu-west-2',
+                      aws_access_key_id="", aws_secret_access_key="")
 
-Adapt your code and run the unit tests against localstack.
+response = s3_client.create_bucket(Bucket='new-bucket')
+```
 
-When you have the 'create' example working, take a crack at the 'List buckets' task
+✍️ **Assignment**
+
+Make the unit tests work with Localstack.
+1. Adapt your code with the above snippet 
+2. Run the unit tests against localstack
+3. Set the task output property according to the response of the boto3 call. Use the [Boto 3 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/create_bucket.html#) to extract the right property from the response.
+4. Test
+5. Add an input property to task and test code
+6. Test
+
 
 ### Extract properties and define type-modifications.yaml
 
-When the task code is finished and the tests run fine, it is time to create the metadata for Release.
+Now that the task code is finished and the tests run fine, it is time to create the package for Release.
 
-Edit the file `type-modifications.yaml` and 
+✍️ **Assignment**
+
+Open the file `type-modifications.yaml` and do the following.
+
+💡**Note:** PyCharm provides auto-completion on this file. 
+
+1. Remove unneeded classes
+2. Rename base type from `containerExamples.BaseTask` to one that is specific to your project, for example `aws.BaseTask`. 💡 Use Find & Replace! 
+3. Add task types for Creating and Listing the buckets
+4. Define input and output properties
+5. Make sure the name of the type in `type-definitions.yaml` corresponds with the name of the Python class
+6. Make the Python code extracts the right input properties and sets the right output properties
+7. Create a type for the Server endpoint, for example `aws.Server`. Make sure the tasks refer to this server type.
 
 See [Lab 4](../part-1/lab-4-define-a-new-task-and-test.md#type-definition)
-
-* Remove unneeded classes
-* Rename base type from `containerExamples.BaseTask` to one that is specific to your project, for example `aws.BaseTask` 
-* Add task types for Creating and Listing the buckets
-* Define input and output properties
-* Make sure the name of the type in `type-definitions.yaml` corresponds with the name of the Python class
-* Make the Python code extracts the right input properties and sets the right output properties
-* Create a type for the Server endpoint, for example `aws.Server`. Make sure the tasks refer to this server type.
 
 
 ### Test in Release
@@ -264,3 +285,16 @@ Configure the address for the AWS endpoint to be
 
 Run your test template.
 
+### New task: List buckets
+
+When you have the 'create' example working, take a crack at the 'List buckets' task.
+
+Use the [S3 documentation for `list_buckets`](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/list_buckets.html) as a reference
+
+✍️ **Assignment**
+1. Create a task that lists the available buckets on S3
+2. Create and run a unit test for it
+3. Define a task type, create a jar package and test it in Release 
+
+---
+[Next](../part-3/lab-6-prepare-for-kubernetes.md)

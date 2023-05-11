@@ -12,7 +12,7 @@ We will do this in the file `type-definitions.yaml`.
 
 You need to do the following:
 1. Open the `type-definitions.yaml` file in the `resources` directory.
-2. Rename `containerExamples.BaseTask` to `workshop.BaseTask`. Use find & replace!
+2. Rename `containerExamples.BaseTask` to `workshop.BaseTask`. Use Find & Replace!
 3. Rename `containerExamples.Hello` to `workshop.Greet`
 4. Remove `containerExamples.SetSystemMessage`, `containerExamples.ServerQuery` and `containerExamples.Server`
 

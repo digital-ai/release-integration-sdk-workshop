@@ -47,11 +47,15 @@ Now you have a virtual environment set up with the required dependencies needed 
 
 ### PyCharm
 
+This is our recommended IDE for plugin development in Python. 
+
 You can download the latest version of PyCharm from the official website at https://www.jetbrains.com/pycharm/download/. 
 
 Open PyCharm and select **Open** from the welcome screen. Navigate to the directory where you cloned the project and open it.
 
 Then it should work out-of-the-box. PyCharm will even create a `venv` Python virtual environment for you, so you can skip the previous steps.
+
+Another bonus is that it provides auto-completion when editing synthetic types in `type-definitions.yaml`.
 
 ### Intellij
 
