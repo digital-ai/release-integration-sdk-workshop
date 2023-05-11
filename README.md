@@ -12,6 +12,11 @@ In this workshop, you will learn how to
 * Set up a development environment for building, testing, installing, and running integration tasks
 * Configure a production-style architecture to run the container-based tasks in a Kubernetes cluster
 
+### Communication channel
+
+* During the live workshop, please ask questions on the Teams chat channel.
+* After the workshop, please use our public Slack channel [#release-sdk-workshop](https://u.digital.ai/4dx4f4s) for questions.
+
 ## System requirements
 
 You will run this workshop on your own machine. Here's a breakdown of the components that you need to have.
