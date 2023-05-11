@@ -64,7 +64,7 @@ Make everything consistent again by doing the following.
 
 In the `src` directory,
 1. Rename `hello.py` to `greet.py`
-2. Inside `hello.py`, rename the `Hello` class to `Greet`
+2. Inside `greet.py`, rename the `Hello` class to `Greet`
 3. Remove the unused files `sample_release_api_task.py` and `sample_server_task.py`
 
 💡 **Note for PyCharm users:** Ignore the warning about `sample_server_task.py` being used. We will fix that later when we take a look at the unit tests.
