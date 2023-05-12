@@ -42,7 +42,9 @@ Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of
 💡 **Note:** If you get stuck during the workshop, check the [Troubleshooting section](troubleshooting.md) for common problems
 
 ### Introduction
-* Presentation sketching out the container-based architecture and what we are going to do in the workshop
+Presentation sketching out the container-based architecture and what we are going to do in the workshop
+
+* [Watch the recording](https://u.digital.ai/7pdulhg)
 
 ### Part 1 - Getting started
 
