@@ -12,11 +12,6 @@ In this workshop, you will learn how to
 * Set up a development environment for building, testing, installing, and running integration tasks
 * Configure a production-style architecture to run the container-based tasks in a Kubernetes cluster
 
-### Communication channel
-
-* During the live workshop, please ask questions on the Teams chat channel.
-* After the workshop, please use our public Slack channel [#release-sdk-workshop](https://u.digital.ai/4dx4f4s) for questions.
-
 ## System requirements
 
 You will run this workshop on your own machine. Here's a breakdown of the components that you need to have.
@@ -37,10 +32,15 @@ Container-based integration plugins are meant to run on a Kubernetes cluster. To
 
 Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of requirements regarding the Kubernetes setup.
 
+## Help needed?
+
+If you get stuck during the workshop, check the [Troubleshooting section](troubleshooting.md) for common problems
+
+For further questions or remarks, use our public Slack channel [#release-sdk-workshop](https://u.digital.ai/4dx4f4s).
+
 ## Workshop Contents
 
-💡 **Note:** If you get stuck during the workshop, check the [Troubleshooting section](troubleshooting.md) for common problems
-
+💡 **Note:** 
 ### Introduction
 Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
