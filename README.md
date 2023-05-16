@@ -1,4 +1,4 @@
-![Digital.ai Release Integration SDK](integration-sdk-logo.png)
+![Digital.ai Release Integration SDK](img/integration-sdk-logo.png)
 
 # Hands-on Workshop
 
@@ -45,6 +45,7 @@ Refer to [Part 3](part-3/lab-6-prepare-for-kubernetes.md) for a detailed list of
 Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
 * [Watch the recording](https://u.digital.ai/7pdulhg)
+* [PowerPoint slides](resources/Digitalai-Release-SDK-Introduction.pptx)
 
 ### Part 1 - Getting started
 
