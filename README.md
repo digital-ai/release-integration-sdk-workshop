@@ -44,7 +44,7 @@ For further questions or remarks, use our public Slack channel [#release-sdk-wor
 ### Introduction
 Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
-* [Watch the recording](https://u.digital.ai/8mgmgtt)
+* [Watch the recording](https://digitalai.wistia.com/medias/6orhkhx1n8)
 * [PowerPoint slides](https://github.com/digital-ai/release-integration-sdk-workshop/raw/main/resources/Digitalai-Release-SDK-Introduction.pptx)
 
 ### Part 1 - Getting started
