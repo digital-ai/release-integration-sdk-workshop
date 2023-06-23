@@ -54,7 +54,7 @@ For further questions or remarks, use our public Slack channel [#release-sdk-wor
 * [Lab 3 - Set up Python and IDE](part-1/lab-3-setup-python-and-ide.md)
 * [Lab 4 - Define a new task and test](part-1/lab-4-define-a-new-task-and-test.md)
 
-[Watch the recording of Part 1](https://digitalai.wistia.com/medias/6orhkhx1n8)
+[Watch the recording of Part 1](https://digitalai.wistia.com/medias/84bua0bspj)
 
 ### Part 2 - Create your own task
 
