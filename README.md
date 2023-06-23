@@ -40,12 +40,11 @@ For further questions or remarks, use our public Slack channel [#release-sdk-wor
 
 ## Workshop Contents
 
-💡 **Note:** 
 ### Introduction
-Presentation sketching out the container-based architecture and what we are going to do in the workshop
 
-* [Watch the recording](https://digitalai.wistia.com/medias/6orhkhx1n8)
-* [PowerPoint slides](https://github.com/digital-ai/release-integration-sdk-workshop/raw/main/resources/Digitalai-Release-SDK-Introduction.pptx)
+* [PowerPoint presentation](https://github.com/digital-ai/release-integration-sdk-workshop/raw/main/resources/Digitalai-Release-SDK-Introduction.pptx)
+
+[Watch the recording of the Introduction](https://digitalai.wistia.com/medias/6orhkhx1n8)
 
 ### Part 1 - Getting started
 
@@ -54,6 +53,8 @@ Presentation sketching out the container-based architecture and what we are goin
 * [Lab 2 - Create a project repository](part-1/lab-2-create-project-repository.md)
 * [Lab 3 - Set up Python and IDE](part-1/lab-3-setup-python-and-ide.md)
 * [Lab 4 - Define a new task and test](part-1/lab-4-define-a-new-task-and-test.md)
+
+[Watch the recording of Part 1](https://digitalai.wistia.com/medias/6orhkhx1n8)
 
 ### Part 2 - Create your own task
 
