@@ -76,33 +76,17 @@ Now we are ready to build and test the plugin
 Repeat the steps from [Lab 1](lab-1-run-hello-world.md#build-integration-plugin-and-publish-the-container-image) to build and test the new plugin.
 
 In summary:
-1. Build using `sh build.sh` or `build.bat`
-2. Upload the new plugin
-3. Restart server & refresh browser
-4. Create a test template with the new task
-5. Run it
+1. Build using `sh build.sh --upload` or `build.bat --upload`
+2. Refresh browser
+3. Create a test template with the new task
+4. Run it
 
 This takes a bit, but it does validate if the integration plugin is built correctly and can be run inside Release. The debug/test loop can be shortened by using [Unit tests](#using-unit-tests), that we will cover at the end of this exercise.
 
-But first, let's highlight a couple of features
-
-### Update code without restarting Release
-
-Since the container is outside of Release, we don't need to restart the server if we change the code. Restarts are only requiered when installing a new plugin, or changing `type-definitions.yaml`.
-
-Test this out by modifying the code in `greet.py`. Change the greeting to something like 
-
-```python
-greeting = f"Hello {name}, welcome to the SDK workshop!"
-```
-
-✍️ **Assignment**
-1. Rebuild the container using the build script
-2. In Release, run another release from your test template. Check that the changes in the code are picked up.
 
 ## Code, build, test in a server
 
-Another feature worth highlighting is more extensive logging. Let's introduce an error in the code, by changing the greeting line to
+One feature worth highlighting is logging. Let's introduce an error in the code, by changing the greeting line to
 
 ```python
 greeting = f"Hello {stranger}" 

@@ -29,8 +29,8 @@ Check if the changes were applied correctly by opening Digital.ai Release on htt
 ### Build integration plugin and publish the container image
 
 A container-based integration plugin consists of two parts
-1. The metadata in the plugin `jar` file. This is the file that we will install into Digital.ai Release
-2. The container image containing the code that will be executed when a task runs.
+1. The container image containing the code that will be executed when a task runs.
+2. The metadata in the plugin `zip` file. This is the file that we will install into Digital.ai Release
 
 We will create both by running the build script. Open a new terminal window and navigate to the top-level directory of the repository
 
@@ -48,29 +48,53 @@ cd release-integration-template-python
 sh build.sh 
 ```
 
-
-This builds the jar and the container image and pushes the image to the local registry running in Docker.
+This builds both the plugin zip file and the container image and pushes the image to the local registry running in Docker.
 
 ### Install plugin into Release
 
-Now install the plugin into Digital.ai Release through the plugin manager.
+The next step is to install the plugin into Digital.ai Release.
 
-Go to **Cog item** (⚙️ -- upper right corner) > **Manage Plugins** >  [Installed plugins](http://digitalai.release.local:5516/#/pluginManager).
+Simply issue the following command:
 
-Press the **Upload** button in the upper right corner and browse to the `build` directory of the `release-integration-template-python` project.
-The plugin jar takes the name of the project specified in `project.properties`, for example `publisher-release-target-integration-0.0.1.jar`. Select this file and press **Upload**.
+**Windows**
 
-In order to activate the plugin, we need to restart the Release server.
+```commandline
+xlw.bat plugin release install --file build/publisher-release-target-integration-0.0.1.zip 
+```
 
-Restart the Release container with the following command, or find the restart button in the Docker Desktop UI to do so
+**Unix / macOS**
 
-    docker restart dev-environment-digitalai-release-1
+```commandline
+sh build.sh plugin release install --file build/publisher-release-target-integration-0.0.1.zip
+```
 
-When the Release server has restarted, also **refresh the UI** by pressing Reload in the browser.
+The plugin is installed immediately, no restart is required.
 
-💡 **Note:** We are currently working on a feature that makes it possible to install plugins without needing to restart the Release server. Stay tuned! 
+When going to the UI, you will see this pop up
+
+![Plugin installed](img/plugin-installed.png)
+
+Refresh the browser and the plugin is ready for use. 
+
+### Build and install in one go
+
+It is also possible to combine the build and install step into one with `--upload` flag in the build command.
+
+**Windows**
+
+```commandline
+build.bat --upload 
+```
+
+**Unix / macOS**
+
+```commandline
+sh build.sh --upload
+```
 
 ### Test it!
+
+Now that the plugin is installed in Release, let's take it for a spin. The plugin contains a simple Hello World task that is run as a container.
 
 ✍️ **Assignment**
 
@@ -79,7 +103,7 @@ When the Release server has restarted, also **refresh the UI** by pressing Reloa
 
 ![Add Hello task](img/add-hello-task.png)
 
-Now run it! 
+Run the template. 
 
 You will see the greeting in the **Activity** section of the task
 

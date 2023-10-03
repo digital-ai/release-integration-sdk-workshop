@@ -1,10 +1,8 @@
 ![Digital.ai Release Integration SDK](img/integration-sdk-logo.png)
 
-# Hands-on Workshop
+# Digital.ai Release Integration SDK Workshop
 
-To make your job easier, we are bringing a new integration SDK experience.
-
-Run tasks as containers, using any language or third-party library.
+The Integration SDK for Digital.ai Release allows you to run tasks as containers, using any language or third-party library.
 
 In this workshop, you will learn how to
 
