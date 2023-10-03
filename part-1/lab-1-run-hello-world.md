@@ -65,7 +65,7 @@ xlw.bat plugin release install --file build/publisher-release-target-integration
 **Unix / macOS**
 
 ```commandline
-sh build.sh plugin release install --file build/publisher-release-target-integration-0.0.1.zip
+./xlw plugin release install --file build/publisher-release-target-integration-0.0.1.zip
 ```
 
 The plugin is installed immediately, no restart is required.
