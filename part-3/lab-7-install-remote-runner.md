@@ -1,13 +1,14 @@
 # Lab 7 - Installing the Remote Runner using `xl`
 
-This lab teaches you how to install the Remote Runner using the `xl` command line utility, the companion tool to Digital.ai Release and Deploy.
+This lab teaches you how to install the Remote Runner into Kubernetes using the `xl` command line utility, the companion tool to Digital.ai Release and Deploy.
 
 ## Configure Digital.ai Release for Remote Runner
 
 We need to configure Release with a _service user_ for the Remote Runner and give it the needed permissions.
 
-Use the following command to create an account for the Remote Runner. Feel free to use a different password.
+Use the following command to create an account for the Remote Runner. Feel free to use a different password. The `remote-runner-user.yaml` file can be found in the `part-3` directory of the SDK workshop repository.
 
+    cd part-3
     ./xlw apply -f remote-runnner-user.yaml --values password=Remote123
 
 The Remote Runner needs a token to register itself with the Release server. In order to obtain a token, do the following
@@ -15,6 +16,16 @@ The Remote Runner needs a token to register itself with the Release server. In o
 * Log in to release as the `remote-runner` user with the password you gave as a parameter to the `xl apply` command
 * Go to the [Access tokens](http://digitalai.release.local:5516/#/personal-access-token) page: In the top-right corner, click on the **RR** icon and select **Access tokens**
 * Enter a token name, for example `Local runner`, and click Generate. Copy the token and store it somewhere for future reference.
+
+### Disable SDK runner
+
+The SDK environment already contains a Remote Runner running in plain Docker. We need to disable it as to make sure new tasks will be run in the Kubernetes Remote Runner we are about to install. 
+
+In the Release UI, log in as **admin** and check the **[Connections](http://digitalai.release.local:5516/#/configuration)** page for Remote Runner connections. You should see an entry for Remote Runner.
+
+![Job runners in Connections](img/job-runners.png)
+
+Now disable this Remote Runner for by choosing **Edit** for the **Local Docker** entry and disabling the **Enabled** switch.
 
 
 ## Set up the runner
@@ -38,15 +49,15 @@ We've marked some questions with a warning sign where you need to pay extra atte
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
 » No
 ? Product server you want to perform install for:
-»⚠️ dai-release-runner [Remote Runner for Digital.ai Release]
+»⚠️ dai-release-remote-runner [Remote Runner for Digital.ai Release]
 ? Select type of image registry:
 » default
 ? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>):
 » xebialabs
 ? Enter the remote runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>):
-» xlr-remote-runner
+» release-remote-runner
 ? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
-» 0.1.33
+» 23.3.0
 ? Enter the Remote Runner Helm Chart release name: 
 » remote-runner
 ? Use default version of the Remote Runner helm chart. 
@@ -57,40 +68,46 @@ We've marked some questions with a warning sign where you need to pay extra atte
 »⚠️ rpa_... (Paste token here)
 ? Enter the remote runner replica count: 
 » 1
-? Provide storage class for the remote runner: hostpath
+? Enable truststore for Remote Runner: 
+» No
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
 	| CleanBefore                    | false                                              |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
-	| GenerationDateTime             | 20230425-110838                                    |
-	| ImageNameRemoteRunner          | xlr-remote-runner                                  |
+	| GenerationDateTime             | 20231003-135901                                    |
+	| ImageNameRemoteRunner          | release-remote-runner                              |
 	| ImageRegistryType              | default                                            |
-	| ImageTagRemoteRunner           | 0.1.33                                             |
+	| ImageTagRemoteRunner           | 23.3.0-beta.6                                      |
 	| IngressType                    | nginx                                              |
+	| IngressTypeGeneric             | nginx                                              |
+	| IngressTypeOpenshift           | route                                              |
 	| IsCustomImageRegistry          | false                                              |
-	| K8sSetup                       | PlainK8s                                           |
+	| IsRemoteRunnerTruststoreEnab.. | false                                              |
+	| K8sSetup                       | AWSEKS                                             |
 	| OidcConfigType                 | no-oidc                                            |
 	| OsType                         | darwin                                             |
 	| ProcessType                    | install                                            |
-	| RemoteRunnerBaseHostPath       | /Users/hsiemelink/Code/release-integration-sdk-w.. |
 	| RemoteRunnerCount              | 1                                                  |
+	| RemoteRunnerGeneration         | false                                              |
+	| RemoteRunnerInstall            | true                                               |
+	| RemoteRunnerInstallConfirm     | false                                              |
 	| RemoteRunnerReleaseName        | remote-runner                                      |
-	| RemoteRunnerReleaseUrl         | http://host.docker.internal:5516                |
-	| RemoteRunnerRepositoryName     | xebialabs                                          |
-	| RemoteRunnerStorageClass       | hostpath                                           |
-	| RemoteRunnerToken              | rpa_...                                            |
+	| RemoteRunnerReleaseUrl         | http://host.docker.internal:5516                   |
+	| RemoteRunnerRepositoryName     | xebialabsunsupported                               |
+	| RemoteRunnerToken              | rpa_9623e512832f89c2f8d60d344d681baa3a7cfb6f       |
 	| RemoteRunnerUseDefaultLocation | true                                               |
-	| ServerType                     | dai-release-runner                                 |
+	| ServerType                     | dai-release-remote-runner                          |
 	| ShortServerName                | other                                              |
 	| UseCustomNamespace             | false                                              |
 	 -------------------------------- ----------------------------------------------------
 ? Do you want to proceed to the deployment with these values? Yes
-For current process files will be generated in the: digitalai/dai-remote-runner/digitalai/20230308-152423/kubernetes
-Generated answers file successfully: digitalai/generated_answers_dai-release-runner_digitalai_install-20230308-152423.yaml 
+For current process files will be generated in the: digitalai/dai-release-remote-runner/digitalai/20231003-135901/kubernetes
+Generated answers file successfully: digitalai/generated_answers_dai-release-remote-runner_digitalai_install-20231003-135901.yaml 
 Starting install processing.
-Installing helm chart remote-runner from /Users/hsiemelink/Code/release-integration-template-python/doc/digitalai/dai-remote-runner/digitalai/20230308-152423/kubernetes/helm-chart
+Installing helm chart remote-runner from: digitalai/dai-release-remote-runner/digitalai/20231003-135901/kubernetes/remote-runner-0.1.0.tgz
+Using helm chart values from: digitalai/dai-release-remote-runner/digitalai/20231003-135901/kubernetes/values-cli.yaml
 Installed helm chart remote-runner to namespace digitalai
 ```
 
@@ -100,17 +117,11 @@ We found **k9s** very helpful when dealing with Kubernetes. In a new terminal wi
 
 ## Check Runner in Release
 
-In the Release UI, log in as **admin** and check the **[Connections](http://digitalai.release.local:5516/#/configuration)** page for Remote Runner connections. You should see an entry for Remote Runner.
-
-![Job runners in Connections](img/job-runners.png)
-
-Now disable the built-in Docker runner for the development environment by choosing **Edit** for the **Local Docker** entry and disabling the **Enabled** switch 
-
-![Disable Enable](img/disable-docker-runner.png)
+In the Release UI, log in as **admin** and check the **[Connections](http://digitalai.release.local:5516/#/configuration)** page for Remote Runner connections. You should see an additional entry for the Remote Runner that was just installed.
 
 Run one of the templates you built previously. 
 
-The tasks should run inside Kubernetes. You can check this in `k9s` by looking for pods called something like `92133d95a06d49c19c190869608b61b0-job-4`
+The tasks should run inside Kubernetes. You can check this in `k9s` by looking for pods with random names like `fa6fdfd01554f848a5145343669693d4bc48d901`.
 
 ![K9s](img/k9s.png)
 
@@ -120,6 +131,6 @@ To remove the Remote Runner from Kubernetes, use the `xl kube clean` command, wi
 
     ./xlw kube clean --skip-prompts --answers digitalai/generated_answers_dai-release-runner_digitalai_install-DATE.yaml 
 
-If you are into Unix command line magic, you can use this command to do the same:
+If you are into Unix command line magic, you can use this command to do a clean with the last answers file generated:
 
     ./xlw kube clean --skip-prompts --answers `ls -t digitalai/generated_answers_dai-release-runner_digitalai_install-* | head -1`

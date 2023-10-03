@@ -4,7 +4,7 @@
 
 In previous labs you have used the development environment that is purely Docker-based. However, this set up is not suitable for production use, due to issues with  scalability, manageability and security.
 
-This part of the workshop walks you through setting up Digital.ai Release with the **Remote Runner** to run container-based tasks in Kubernetes.
+This part of the workshop walks you through setting up Digital.ai Release with the **Remote Runner in Kubernetes** to run container-based tasks.
 
 The Remote Runner is the glue between the main Release application and the container tasks that are being run. It lives inside Kubernetes, registers itself with Digital.ai Release and then waits for work. When a task needs to be executed, it launches a pod to do so and takes care of the communication between task and Release.
 
