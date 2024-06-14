@@ -20,7 +20,7 @@ For example: `hes-release-workshop-integration`
 
 We need to initialize a Git repository with this name and note the url.  
 
-This can be done easily from GitHub. Just navigate to the mainpage of the [release-integration-template-python](https://github.com/digital-ai/release-integration-template-python) project and find the **Use this template** button, and select **Create new repository**. 
+This can be done easily from GitHub. Just navigate to the main page of the [release-integration-template-python](https://github.com/digital-ai/release-integration-template-python) project and find the **Use this template** button, and select **Create new repository**. 
 
 ![Use this tempalte button on GitHub](img/copy-template-on-github.png)
 
@@ -39,7 +39,7 @@ Now open Terminal and navigate to the directory where you store your projects. G
 
 ## Configure the project
 
-Change the following line in `project.properties`:
+Open the file `project.properties` in a code editor and change the `PLUGIN` variable to the name of your plugin.
 
 ```
 PLUGIN=YOUR_NAME-release-workshop-integration

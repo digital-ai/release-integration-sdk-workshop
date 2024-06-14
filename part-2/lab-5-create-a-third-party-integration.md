@@ -74,9 +74,9 @@ Libraries are defined in `requirements.txt`.
 
 Hunt for the external libraries that you need on [pypi.org](https://pypi.org).
 
-To integrate with AWS form Python, the recommended library is Boto3. Add it to the requirements with the following line:
+To integrate with AWS form Python, the recommended library is Boto3. Add it to `requirements.txt` with the following line:
 
-    boto3 == 1.26.118
+    boto3 == 1.34.127
 
 ⚡️ **Note:** Don't forget to check if the library is trustworthy and that you are on the latest stable version.
 

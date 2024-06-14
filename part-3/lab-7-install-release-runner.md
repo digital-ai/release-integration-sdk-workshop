@@ -7,28 +7,23 @@ This lab teaches you how to install the Release runner into Kubernetes using the
 
 ## Configure Digital.ai Release for Release runner
 
-We need to configure Release with a _service user_ for the Release runner and give it the needed permissions.
+The runner connects to Release by using a token. To get a token, do the following
 
-Use the following command to create an account for the runner. Feel free to use a different password. The `remote-runner-user.yaml` file can be found in the `part-3` directory of the SDK workshop repository.
-
-    cd part-3
-    ./xlw apply -f remote-runnner-user.yaml --values password=Remote123
-
-The runner needs a token to register itself with the Release server. In order to obtain a token, do the following
-
-* Log in to release as the `remote-runner` user with the password you gave as a parameter to the `xl apply` command
-* Go to the [Access tokens](http://digitalai.release.local:5516/#/personal-access-token) page: In the top-right corner, click on the **RR** icon and select **Access tokens**
-* Enter a token name, for example `Local runner`, and click Generate. Copy the token and store it somewhere for future reference.
+* Log in as `admin` in the Release UI. 
+* Go to the [Access tokens](http://digitalai.release.local:5516/#/personal-access-token) page: In the top-right corner, click on the **RA** icon and select **Access tokens**
+* Enter a token name, for example `Kubernetes runner`
+* Select **Let me select permissions**, scroll to the bottom of the list and select **Runner registration**
+* Click Generate. Copy the token and store it somewhere for future reference.
 
 ### Disable SDK runner
 
 The SDK environment already contains a  runner running in plain Docker. We need to disable it as to make sure new tasks will be run in the Kubernetes runner we are about to install. 
 
-In the Release UI, log in as **admin** and check the **[Connections](http://digitalai.release.local:5516/#/configuration)** page for Release runner connections. You should see an entry for Release runner.
+In the Release UI, log in as **admin**. In the top right corner, click the cog wheel and select **[Runners](http://digitalai.release.local:5516/#/runners)**.
+
+Disable the active runner by hitting the **Enabled** switch. The runner should now be disabled.
 
 ![Job runners in Connections](img/job-runners.png)
-
-Now disable this runner for by choosing **Edit** for the **Local Docker** entry and disabling the **Enabled** switch.
 
 
 ## Set up the runner
@@ -51,38 +46,42 @@ We've marked some questions with a warning sign where you need to pay extra atte
 ⚡️ Choose the 'AWS' option when using Docker Desktop Kubernetes.
 ? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'):
 » No
-? Product server you want to perform install for:
-»⚠️ dai-release-remote-runner [Remote Runner for Digital.ai Release]
+? Do you want to create custom Kubernetes namespace digitalai, it does not exist: 
+» Yes
+? Product server you want to perform install for: 
+»⚠️ dai-release-remote-runner [Digital.ai Release Runner]
 ? Select type of image registry:
 » default
-? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>):
+? Enter the Release Runner repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): xebialabsunsupported
 » xebialabs
-? Enter the remote runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>):
-» release-remote-runner
-? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
-» 23.3.0
-? Enter the Remote Runner Helm Chart release name: 
-» remote-runner
-? Use default version of the Remote Runner helm chart. 
+? Enter the Release Runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
+» release-runner
+? Enter the Release Runner image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
+» 24.1.3
+? Enter the Release Runner Helm Chart release name: 
+» release-runner
+? Use default version of the Release Runner helm chart: Yes? 
 » Yes
-? Enter the Release URL that will be used by remote runner:
+? Enter the Release URL that will be used by Release Runner:
 »⚠️ http://host.docker.internal:5516
-? Enter the Release Token that will be used by remote runner:
+? Enter the Release Token that will be used by Release Runner:
 »⚠️ rpa_... (Paste token here)
-? Enter the remote runner replica count: 
+? Enter the Release Runner replica count:
 » 1
-? Enable truststore for Remote Runner: 
+? Enable truststore for Release Runner: 
 » No
 	 -------------------------------- ----------------------------------------------------
 	| LABEL                          | VALUE                                              |
 	 -------------------------------- ----------------------------------------------------
+	| AdminPassword                  | TDA0nWciRxYGb7Ct                                   |
 	| CleanBefore                    | false                                              |
 	| CreateNamespace                | true                                               |
 	| ExternalOidcConf               | external: false                                    |
-	| GenerationDateTime             | 20231003-135901                                    |
-	| ImageNameRemoteRunner          | release-remote-runner                              |
+	| GenerationDateTime             | 20240617-163517                                    |
+	| ImageNameRemoteRunner          | release-runner                                     |
 	| ImageRegistryType              | default                                            |
-	| ImageTagRemoteRunner           | 23.3.0-beta.6                                      |
+	| ImageTagRemoteRunner           | 24.1.3                                             |
+	| IngressKeystoreSource          | generate                                           |
 	| IngressType                    | nginx                                              |
 	| IngressTypeGeneric             | nginx                                              |
 	| IngressTypeOpenshift           | route                                              |
@@ -92,26 +91,29 @@ We've marked some questions with a warning sign where you need to pay extra atte
 	| OidcConfigType                 | no-oidc                                            |
 	| OsType                         | darwin                                             |
 	| ProcessType                    | install                                            |
+	| RemoteRunnerClean              | false                                              |
 	| RemoteRunnerCount              | 1                                                  |
 	| RemoteRunnerGeneration         | false                                              |
 	| RemoteRunnerInstall            | true                                               |
-	| RemoteRunnerInstallConfirm     | false                                              |
-	| RemoteRunnerReleaseName        | remote-runner                                      |
+	| RemoteRunnerInstallType        |                                                    |
+	| RemoteRunnerReleaseName        | release-runner                                     |
 	| RemoteRunnerReleaseUrl         | http://host.docker.internal:5516                   |
-	| RemoteRunnerRepositoryName     | xebialabsunsupported                               |
-	| RemoteRunnerToken              | rpa_9623e512832f89c2f8d60d344d681baa3a7cfb6f       |
+	| RemoteRunnerRepositoryName     | xebialabs                                          |
+	| RemoteRunnerToken              | rpa_64566bb26d2e08f1e471a3e5d5ae3a8ec0de4c75       |
+	| RemoteRunnerTokenExpiration    | 0                                                  |
 	| RemoteRunnerUseDefaultLocation | true                                               |
-	| ServerType                     | dai-release-remote-runner                          |
+	| RemoteRunnerUserEmail          | release-runner@no.reply                            |
+	| RemoteRunnerUserPassword       | ca2YvEa93NKXr5Mu                                   |
+	| ServerType                     | dai-release-runner                                 |
 	| ShortServerName                | other                                              |
 	| UseCustomNamespace             | false                                              |
 	 -------------------------------- ----------------------------------------------------
-? Do you want to proceed to the deployment with these values? Yes
-For current process files will be generated in the: digitalai/dai-release-remote-runner/digitalai/20231003-135901/kubernetes
-Generated answers file successfully: digitalai/generated_answers_dai-release-remote-runner_digitalai_install-20231003-135901.yaml 
+For current process files will be generated in the: digitalai/dai-release-runner/digitalai/20240617-163517/kubernetes
+Generated answers file successfully: digitalai/generated_answers_dai-release-runner_digitalai_install-20240617-163517.yaml 
 Starting install processing.
-Installing helm chart remote-runner from: digitalai/dai-release-remote-runner/digitalai/20231003-135901/kubernetes/remote-runner-0.1.0.tgz
-Using helm chart values from: digitalai/dai-release-remote-runner/digitalai/20231003-135901/kubernetes/values-cli.yaml
-Installed helm chart remote-runner to namespace digitalai
+Installing helm chart for Digital.ai Release Runner from: digitalai/dai-release-runner/digitalai/20240617-163517/kubernetes/runner-0.1.0.tgz
+Using helm chart values from: digitalai/dai-release-runner/digitalai/20240617-163517/kubernetes/values-cli.yaml
+Installed helm chart release-runner to namespace digitalai
 ```
 
 Check the runner logs to see if it started correctly and is able to connect to Release.
@@ -120,7 +122,7 @@ We found **k9s** very helpful when dealing with Kubernetes. In a new terminal wi
 
 ## Check Runner in Release
 
-In the Release UI, log in as **admin** and check the **[Connections](http://digitalai.release.local:5516/#/configuration)** page for Release runner connections. You should see an additional entry for the Remote Runner that was just installed.
+In the Release UI as admin, check the **[Runners](http://digitalai.release.local:5516/#/runners)** page under settings. You should see an additional entry for the Remote Runner that was just installed.
 
 Run one of the templates you built previously. 
 

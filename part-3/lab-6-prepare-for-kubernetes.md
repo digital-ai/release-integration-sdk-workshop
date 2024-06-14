@@ -112,14 +112,14 @@ In the `part-3` directory, issue the following command:
 The result should be something like:
 
 ```
-Downloading xl binary to ~/.xebialabs/wrapper/23.3.0/xl
-CLI version:             23.3.0
-Git version:             v23.3.0-1016.1808-0-g14a9e87
+Downloading xl binary to /Users/hsiemelink/.xebialabs/wrapper/24.1.3/xl
+CLI version:             24.1.3
+Git version:             v24.1.2-1-gfaaee99
 Deploy API version:      xl-deploy/v1
 Release API version:     xl-release/v1
-Git commit:              14a9e8743493f4b8f89a38a5e603d9737bc941fb
-Build date:              2023-10-19T14:45:47.712Z
-GO version:              go1.19
+Git commit:              faaee99d4b6e3a72b672c17ae29091edfe891345
+Build date:              2024-06-12T12:24:42.326Z
+GO version:              go1.21.8
 OS/Arch:                 darwin/amd64
 ```
 

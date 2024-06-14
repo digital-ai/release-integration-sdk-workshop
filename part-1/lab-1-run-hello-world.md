@@ -74,7 +74,7 @@ When going to the UI, you will see this pop up
 
 ![Plugin installed](img/plugin-installed.png)
 
-Refresh the browser and the plugin is ready for use. 
+Click **Reload** and the plugin is ready for use. 
 
 ### Build and install in one go
 

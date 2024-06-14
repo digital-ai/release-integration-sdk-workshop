@@ -14,7 +14,8 @@ You need to do the following:
 1. Open the `type-definitions.yaml` file in the `resources` directory.
 2. Rename `containerExamples.BaseTask` to `workshop.BaseTask`. Use Find & Replace!
 3. Rename `containerExamples.Hello` to `workshop.Greet`
-4. Remove `containerExamples.SetSystemMessage`, `containerExamples.ServerQuery` and `containerExamples.Server`
+4. Remove `containerExamples.BaseScript` and contents
+5. Remove `containerExamples.SetSystemMessage` and everything below it
 
 The result would be:
 
@@ -65,7 +66,7 @@ Make everything consistent again by doing the following.
 In the `src` directory,
 1. Rename `hello.py` to `greet.py`
 2. Inside `greet.py`, rename the `Hello` class to `Greet`
-3. Remove the unused files `sample_release_api_task.py` and `sample_server_task.py`
+3. Remove the other files from the `src` directory
 
 💡 **Note for PyCharm users:** Ignore the warning about `sample_server_task.py` being used. We will fix that later when we take a look at the unit tests.
 

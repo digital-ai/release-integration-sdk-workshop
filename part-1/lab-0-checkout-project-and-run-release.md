@@ -41,8 +41,8 @@ Open a terminal window and launch the development environment with the following
 
 When the docker command is finished, the containers will still be starting. In Docker Desktop, check the logs of the `dev-environment-digitalai-release-1` container until it displays the following lines:
 
-    2023-04-26 11:48:21 2023-04-26 09:48:21.377 [main] {activemq.broker=embedded-broker} INFO  c.x.x.s.jetty.JettyServerListener - Digital.ai Release has started.
-    2023-04-26 11:48:21 2023-04-26 09:48:21.378 [main] {activemq.broker=embedded-broker} INFO  c.x.x.s.jetty.JettyServerListener - You can now point your browser to http://host.docker.internal:5516/
+    [main] {...} INFO  c.x.x.s.jetty.JettyServerListener - Digital.ai Release has started.
+    [main] {...} INFO  c.x.x.s.jetty.JettyServerListener - You can now point your browser to http://host.docker.internal:5516/
 
 In a browser, go to http://localhost:5516. This should take you to the Digital.ai Release login screen. Log in with username `admin` and password `admin`
 
