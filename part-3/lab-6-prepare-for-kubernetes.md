@@ -1,16 +1,16 @@
-# Lab 6 - Production setup: Kubernetes & Remote Runner 
+# Lab 6 - Production setup: Kubernetes & Release runner 
 
 ⚡️ **Note:** Some Kubernetes experience is needed to make the best of this exercise. Feel free to skip this part of Kubernetes is all new to you (or be prepared for a steep learning curve)
 
 In previous labs you have used the development environment that is purely Docker-based. However, this set up is not suitable for production use, due to issues with  scalability, manageability and security.
 
-This part of the workshop walks you through setting up Digital.ai Release with the **Remote Runner in Kubernetes** to run container-based tasks.
+This part of the workshop walks you through setting up Digital.ai Release with the **Release runner in Kubernetes** to run container-based tasks.
 
-The Remote Runner is the glue between the main Release application and the container tasks that are being run. It lives inside Kubernetes, registers itself with Digital.ai Release and then waits for work. When a task needs to be executed, it launches a pod to do so and takes care of the communication between task and Release.
+The Release runner is the glue between the main Release application and the container tasks that are being run. It lives inside Kubernetes, registers itself with Digital.ai Release and then waits for work. When a task needs to be executed, it launches a pod to do so and takes care of the communication between task and Release.
 
 Note that for this setup, it is not required that the Release server itself runs inside Kubernetes. In fact, we will keep the same development server and make it use Kubernetes instead of Docker. 
 
-Another thing that is useful to know is that the Remote Runner establishes its connection to Release through an outbound connection to the Release server. The Release server needs to be reachable, but the Remote Runner inside Kubernetes does not need to be exposed. This is useful for scenarios where container-based task run in a priviliged network, for example to do production deployments. Only the tasks will have network access then, not the entire Release server.
+Another thing that is useful to know is that the Release runner establishes its connection to Release through an outbound connection to the Release server. The Release server needs to be reachable, but the Release runner inside Kubernetes does not need to be exposed. This is useful for scenarios where container-based task run in a priviliged network, for example to do production deployments. Only the tasks will have network access then, not the entire Release server.
 
 ## Prerequisites
 
@@ -40,11 +40,11 @@ We have tested minikube with **virtualbox driver**
 
 ### Cloud-based Kubernetes
 
-A cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift is possible, but may be a bit tricky to set up. The Remote Runner opens a connection to the Release server, not the other way around. When running Release locally in Docker and the Remote Runner in a cloud service, you would need to expose the Release port to the internet using a tool like `ngrok`. Another option would be to install Release into Kubernetes as well, using the `xl kube install` tool. Both approaches take a bit more work and are beyond the scope of this workshop.
+A cloud-based environment like AWS EKS, Azure AKS, Google Cloud or OpenShift is possible, but may be a bit tricky to set up. The Release runner opens a connection to the Release server, not the other way around. When running Release locally in Docker and the runner in a cloud service, you would need to expose the Release port to the internet using a tool like `ngrok`. Another option would be to install Release into Kubernetes as well, using the `xl kube install` tool. Both approaches take a bit more work and are beyond the scope of this workshop.
 
 ## Configure your `hosts` file
 
-The Remote Runner needs to be able to find the other components in the system: the Release server and the registry we just installed. The easiest way to do so is to add it to your local machine's `hosts` file. 
+The Release runner needs to be able to find the other components in the system: the Release server and the registry we just installed. The easiest way to do so is to add it to your local machine's `hosts` file. 
 
 You probably have done this already in [Lab 1](../part-1/lab-1-run-hello-world.md#configure-your-hosts-file).
 
@@ -91,7 +91,7 @@ We assume you have Digital.ai Release running in Docker. If not, please revisit 
 
 ### Set up the `xl` client
 
-In the next lab, you wil install the Remote Runner using the `xl` command line utility, the companion tool to Digital.ai Release and Deploy.
+In the next lab, you wil install the Release runner using the `xl` command line utility, the companion tool to Digital.ai Release and Deploy.
 
 💡 **Note:** The name 'xl' comes from 'XebiaLabs', the company that created Release and Deploy and is now part of Digital.ai
 
@@ -124,7 +124,7 @@ OS/Arch:                 darwin/amd64
 ```
 
 
-You are now set to start the installation procedure of the Remote Runner!
+You are now set to start the installation procedure of the Release runner!
 
 ---
-[Next](lab-7-install-remote-runner.md)
+[Next](lab-7-install-release-runner)

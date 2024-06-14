@@ -61,7 +61,7 @@ For further questions or remarks, use our public Slack channel [#release-sdk-wor
 ### Part 3 - Production Setup with Kubernetes
 
 * [Lab 6 - Prepare Kubernetes](part-3/lab-6-prepare-for-kubernetes.md)
-* [Lab 7 - Install Remote Runner](part-3/lab-7-install-remote-runner.md)
+* [Lab 7 - Install Release runner](part-3/lab-7-install-release-runner)
 
 ---
 

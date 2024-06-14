@@ -169,6 +169,6 @@ If you are more interested in coding, continue with
 * [Part 2](../part-2/lab-5-create-a-third-party-integration.md) - How to integrate with a 3rd party system, using external Python libraries.
 
 If you want to know how to prepare a Kubernetes cluster for a production set up of Digital.ai Release with containerized tasks, go to
-* [Part 3](../part-3/lab-6-prepare-for-kubernetes.md) - Production Setup with Kubernetes, using the Remote Runner
+* [Part 3](../part-3/lab-6-prepare-for-kubernetes.md) - Production Setup with Kubernetes, using the Release runner.
 
 
