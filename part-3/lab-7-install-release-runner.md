@@ -52,7 +52,7 @@ We've marked some questions with a warning sign where you need to pay extra atte
 »⚠️ dai-release-remote-runner [Digital.ai Release Runner]
 ? Select type of image registry:
 » default
-? Enter the Release Runner repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): xebialabsunsupported
+? Enter the Release Runner repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>):
 » xebialabs
 ? Enter the Release Runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
 » release-runner
