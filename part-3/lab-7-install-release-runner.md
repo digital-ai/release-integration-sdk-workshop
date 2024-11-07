@@ -30,7 +30,7 @@ Disable the active runner by hitting the **Enabled** switch. The runner should n
 
 Install the Release runner into your local Kubernetes environment with the `xl kube install` command and look closely at the answers below. Note that sometimes you can take the default, sometimes you need to give the value as prompted below, and sometimes you need to give a custom value.
 
-💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. See the [Installing Digital.ai Release onto Kubernetes](https://docs.digital.ai/bundle/devops-release-version-v.22.3/page/release/operator/xl-op-before-you-begin.html) on our documentation site.
+💡 **Note:** You can also use `xl kube install` to install Release or Deploy itself. See the [Installing Digital.ai Release onto Kubernetes](https://docs.digital.ai/bundle/devops-release-version-v.24.3/page/release/operator/xl-op-before-you-begin.html) on our documentation site.
 
 Start the command with
 
@@ -57,7 +57,7 @@ We've marked some questions with a warning sign where you need to pay extra atte
 ? Enter the Release Runner image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): 
 » release-runner
 ? Enter the Release Runner image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>):
-» 24.1.3
+» 24.3.0
 ? Enter the Release Runner Helm Chart release name: 
 » release-runner
 ? Use default version of the Release Runner helm chart: Yes? 
@@ -76,11 +76,12 @@ We've marked some questions with a warning sign where you need to pay extra atte
 	| AdminPassword                  | TDA0nWciRxYGb7Ct                                   |
 	| CleanBefore                    | false                                              |
 	| CreateNamespace                | true                                               |
+	| DefaultResourcesEditor         | resources:\n  requests:\n    cpu:\n    memory:\n.. |
 	| ExternalOidcConf               | external: false                                    |
-	| GenerationDateTime             | 20240617-163517                                    |
+	| GenerationDateTime             | 20241107-154225                                    |
 	| ImageNameRemoteRunner          | release-runner                                     |
 	| ImageRegistryType              | default                                            |
-	| ImageTagRemoteRunner           | 24.1.3                                             |
+	| ImageTagRemoteRunner           | 24.3.0                                             |
 	| IngressKeystoreSource          | generate                                           |
 	| IngressType                    | nginx                                              |
 	| IngressTypeGeneric             | nginx                                              |
@@ -91,7 +92,8 @@ We've marked some questions with a warning sign where you need to pay extra atte
 	| OidcConfigType                 | no-oidc                                            |
 	| OsType                         | darwin                                             |
 	| ProcessType                    | install                                            |
-	| RemoteRunnerClean              | false                                              |
+	| RemoteRunnerAdminPasswordEnv.. | ADMIN_PASSWORD                                     |
+    | RemoteRunnerClean              | false                                              |
 	| RemoteRunnerCount              | 1                                                  |
 	| RemoteRunnerGeneration         | false                                              |
 	| RemoteRunnerInstall            | true                                               |
